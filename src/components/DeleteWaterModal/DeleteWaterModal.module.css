@@ -1,0 +1,109 @@
+.title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    color: var(--dark-blue);
+}
+
+.paragraf {
+    color: var(--dark-blue);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+}
+
+.deleteModalBackground {
+    width: 100%;
+    min-width: 320px;
+    max-width: 375px;
+    padding: 40px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.buttondelete {
+    border-radius: 30px;
+    border: none;
+    background-color: var(--accent);
+    color: var(--dark-blue);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    text-align: center;
+    padding: 14px 0;
+    transition: background-color var(--animation);
+}
+
+.buttoncancel {
+    border-radius: 30px;
+    background-color: var(--light-gray-transparent);
+    color: var(--color-light-grey);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    text-align: center;
+    border: none;
+    padding: 14px 0;
+    transition: background-color var(--animation), color var(--animation);
+}
+
+.buttondelete:hover,
+.buttondelete:focus {
+    background-color: var(--accent-secondary);
+}
+
+.buttoncancel:hover,
+.buttoncancel:focus {
+    color: var(--dark-blue);
+    background-color: var(--light-gray);
+}
+
+
+@media screen and (min-width: 768px) {
+    .deleteModalBackground {
+        width: 518px;
+        max-width: 518px;
+        padding: 40px;
+    }
+
+    .title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .paragraf {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+    .buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .buttondelete {
+        font-size: 16px;
+        line-height: 1.5em;
+        padding: 18px 59px;
+    }
+
+    .buttoncancel {
+        font-size: 16px;
+        line-height: 1.5em;
+        padding: 18px 59px;
+    }
+}

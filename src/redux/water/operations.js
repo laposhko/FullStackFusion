@@ -8,6 +8,14 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = 'http://localhost3000';
 
+// import {
+    
+//     requestDeleteWater,
+//     requestGetWaterDay,
+//     requestGetWaterMonth,
+    
+//   } from './services';
+  
 
 export const getCards = createAsyncThunk('water/getcards', async (_, thunkAPI) => {
     try {
@@ -56,3 +64,29 @@ export const deleteCard = createAsyncThunk('water/deletecard', async (id, thunkA
         thunkAPI.rejectWithValue(error.message);
     }
 });
+
+
+
+  // export const apiGetWaterMonth = createAsyncThunk(
+  //   'water/getWaterMonth',
+  //   async (date, thunkAPI) => {
+  //     try {
+  //       const response = await requestGetWaterMonth(date);
+  //       return response.daysInMonth;
+  //     } catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
+
+  // export const apiGetWaterDay = createAsyncThunk(
+  //   'water/getWaterDay',
+  //   async (day, thunkAPI) => {
+  //     try {
+  //       const response = await requestGetWaterDay(day);
+  //       return response;
+  //     } catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
