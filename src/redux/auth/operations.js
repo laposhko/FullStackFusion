@@ -7,7 +7,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'http://localhost3000';
+axios.defaults.baseURL = 'http://localhost:3000';
 
 export const setAuthHeader = (token) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
