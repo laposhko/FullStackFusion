@@ -4,11 +4,11 @@
     line-height: 1.29;
     letter-spacing: -0.01em;
     margin-bottom: 16px;
-    color: var(--dark-blue);
+    color: var(--button-gray);
 }
 
 .paragraf {
-    color: var(--dark-blue);
+    color: var(--button-gray);
     font-weight: 400;
     font-size: 14px;
     line-height: 1.29;
@@ -35,21 +35,21 @@
 .buttondelete {
     border-radius: 30px;
     border: none;
-    background-color: var(--accent);
-    color: var(--dark-blue);
+    background-color: var(--background-avocado-green);
+    color: var(--button-gray);
     font-size: 14px;
     font-weight: 700;
     line-height: 1.28;
     letter-spacing: -0.01em;
     text-align: center;
     padding: 14px 0;
-    transition: background-color var(--animation);
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);;
 }
 
 .buttoncancel {
     border-radius: 30px;
-    background-color: var(--light-gray-transparent);
-    color: var(--color-light-grey);
+    background-color: var(--secondary-background-color);
+    color: var(--button-gray);
     font-size: 14px;
     font-weight: 700;
     line-height: 1.28;
@@ -57,18 +57,18 @@
     text-align: center;
     border: none;
     padding: 14px 0;
-    transition: background-color var(--animation), color var(--animation);
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);;
 }
 
 .buttondelete:hover,
 .buttondelete:focus {
-    background-color: var(--accent-secondary);
+    background-color: var(--accent-darkgreen-color);
 }
 
 .buttoncancel:hover,
 .buttoncancel:focus {
-    color: var(--dark-blue);
-    background-color: var(--light-gray);
+    color: var(--button-gray);
+    background-color: var(--secondary-background-color);
 }
 
 
