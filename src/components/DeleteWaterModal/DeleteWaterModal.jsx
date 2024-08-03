@@ -24,7 +24,7 @@ const DeleteWaterModal = ({ onDelete }) => {
     try {
       await dispatch(apiDeleteWater(onDelete));
       closeModal();
-      toast.success('Record deleted successfully');
+      toast.success('Entry deleted successfully');
 
       dispatch(apiGetWaterDay(selectedDate));
 
@@ -35,7 +35,7 @@ const DeleteWaterModal = ({ onDelete }) => {
         dispatch(apiGetWaterMonth(currentMonth));
       }
     } catch (error) {
-      toast.error('Failed to delete the record');
+      toast.error('Failed to delete the entry');
     }
   };
 
