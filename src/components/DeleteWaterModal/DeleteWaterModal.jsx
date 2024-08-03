@@ -4,7 +4,7 @@ import css from './DeleteWaterModal.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import { selectMonth, selectDate } from '../../redux/water/selectors';
+// import { selectMonth, selectDate } from '../../redux/water/selectors';
 import {
     deleteCard,
   apiGetWaterMonth,
@@ -17,8 +17,9 @@ const DeleteWaterModal = ({ onDelete }) => {
 
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
-  const selectedDate = useSelector(selectDate);
-  const currentMonth = useSelector(selectMonth);
+
+//   const selectedDate = useSelector(selectDate);
+//   const currentMonth = useSelector(selectMonth);
 
   const handleDelete = async () => {
     try {
@@ -26,14 +27,15 @@ const DeleteWaterModal = ({ onDelete }) => {
       closeModal();
       toast.success('Entry deleted successfully');
 
-      dispatch(apiGetWaterDay(selectedDate));
+    //   dispatch(apiGetWaterDay(selectedDate));
 
-      if (
-        Number(selectedDate.split('-')[0]) === currentMonth.year &&
-        Number(selectedDate.split('-')[1]) === currentMonth.month
-      ) {
-        dispatch(apiGetWaterMonth(currentMonth));
-      }
+    //   if (
+    //     Number(selectedDate.split('-')[0]) === currentMonth.year &&
+    //     Number(selectedDate.split('-')[1]) === currentMonth.month
+    //   ) {
+    //     dispatch(apiGetWaterMonth(currentMonth));
+    //   }
+
     } catch (error) {
       toast.error('Failed to delete the entry');
     }
