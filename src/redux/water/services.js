@@ -1,4 +1,4 @@
-import axios from '../../utils/axiosConfig';
+import axios from '../auth/operations';
 
 export const requestDeleteWater = async (waterid) => {
     const { data } = await axios.delete(`/water/${waterid}`);
