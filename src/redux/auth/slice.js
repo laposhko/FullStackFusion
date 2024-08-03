@@ -24,7 +24,7 @@ const authSlice = createSlice({
         isRefreshing: false,
         isError: false, 
     },
-    extraReducers: builder => builder.addCase(signUp.pending, (state, action) => {
+    extraReducers: builder => builder.addCase(signUp.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
     })
@@ -35,11 +35,11 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.user = action.payload.user;
     })
-    .addCase(signUp.rejected, (state, action) => {
+    .addCase(signUp.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
     })
-    .addCase(signIn.pending, (state, action) => {
+    .addCase(signIn.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
     })
@@ -50,15 +50,15 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.user = action.payload.user;
     })
-    .addCase(signIn.rejected, (state, action) => {
+    .addCase(signIn.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
     })
-    .addCase(signOut.pending, (state, action) => {
+    .addCase(signOut.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
     })
-    .addCase(signOut.fulfilled, (state, action) => {
+    .addCase(signOut.fulfilled, (state) => {
        state.user = {
         name: null,
         email: null,
