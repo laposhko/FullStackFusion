@@ -67,26 +67,26 @@ export const deleteCard = createAsyncThunk('water/deletecard', async (id, thunkA
 
 
 
-  export const apiGetWaterMonth = createAsyncThunk(
-    'water/getWaterMonth',
-    async (date, thunkAPI) => {
-      try {
-        const response = await requestGetWaterMonth(date);
-        return response.daysInMonth;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  // export const apiGetWaterMonth = createAsyncThunk(
+  //   'water/getWaterMonth',
+  //   async (date, thunkAPI) => {
+  //     try {
+  //       const response = await requestGetWaterMonth(date);
+  //       return response.daysInMonth;
+  //     } catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
 
-  export const apiGetWaterDay = createAsyncThunk(
-    'water/getWaterDay',
-    async (day, thunkAPI) => {
-      try {
-        const response = await requestGetWaterDay(day);
-        return response;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
+  // export const apiGetWaterDay = createAsyncThunk(
+  //   'water/getWaterDay',
+  //   async (day, thunkAPI) => {
+  //     try {
+  //       const response = await requestGetWaterDay(day);
+  //       return response;
+  //     } catch (error) {
+  //       return thunkAPI.rejectWithValue(error.message);
+  //     }
+  //   }
+  // );
