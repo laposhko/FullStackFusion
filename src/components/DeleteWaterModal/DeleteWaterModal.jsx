@@ -49,10 +49,10 @@ const DeleteWaterModal = ({ onDelete }) => {
           onClick={handleDelete}
           type="button"
         >
-          {('modals.delete.delete')}
+          Delete
         </button>
         <button className={css.buttoncancel} onClick={closeModal} type="button">
-          {('modals.delete.cancel')}
+          Cancel
         </button>
       </div>
     </div>
