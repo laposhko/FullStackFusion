@@ -41,8 +41,8 @@ const DeleteWaterModal = ({ onDelete }) => {
 
   return (
     <div className={css.deleteModalBackground}>
-      <h2 className={css.title}>{('modals.delete.title')}</h2>
-      <p className={css.paragraf}>{('modals.delete.text')}</p>
+      <h2 className={css.title}>Delete entry</h2>
+      <p className={css.paragraf}>Are you sure you want to delete the entry?</p>
       <div className={css.buttons}>
         <button
           className={css.buttondelete}
