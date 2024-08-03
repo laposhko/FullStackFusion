@@ -1,0 +1,23 @@
+.form {
+  background-color: aquamarine;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.radiobuttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 
+.genderInput {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+} */

@@ -1,9 +1,10 @@
 import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
+import css from "./UserSettingsModal.module.css";
 export default function UserSettingsModal() {
   return (
-    <>
-      <h2>Settings</h2>
+    <div className={css.modal}>
+      <h2 className={css.title}>Settings</h2>
       <UserSettingsForm></UserSettingsForm>
-    </>
+    </div>
   );
 }
