@@ -1,7 +1,7 @@
 // при операції signIn бекенд по фото повертає лише accessToken. Потрібно щоб повертав інформацію про User, бо немає інформації для state.auth.user 
 
 import { createSlice } from "@reduxjs/toolkit";
-import { signIn, signOut, signUp } from "./operations";
+import { refresh, signIn, signOut, signUp } from "./operations";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -75,6 +75,22 @@ const authSlice = createSlice({
     state.isLoading = false;
     state.isError = false;
     state.isLoggedIn = false;
+    })
+    .addCase(refresh.pending, (state) => {
+        state.isRefreshing = true;
+        state.isError = false;
+        state.isLoggedIn = false;
+    })
+    .addCase(refresh.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.isError = false;
+        state.isLoggedIn = true;
+        state.token = action.payload;
+    })
+    .addCase(refresh.rejected, (state) => {
+        state.isRefreshing = false;
+        state.isLoggedIn = false;
+        state.isError = true;
     })
 });
 
