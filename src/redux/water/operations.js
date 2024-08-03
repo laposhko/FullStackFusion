@@ -8,13 +8,13 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = 'http://localhost3000';
 
-import {
+// import {
     
-    requestDeleteWater,
-    requestGetWaterDay,
-    requestGetWaterMonth,
+//     requestDeleteWater,
+//     requestGetWaterDay,
+//     requestGetWaterMonth,
     
-  } from './services';
+//   } from './services';
   
 
 export const getCards = createAsyncThunk('water/getcards', async (_, thunkAPI) => {
