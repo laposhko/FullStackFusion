@@ -66,17 +66,6 @@ export const deleteCard = createAsyncThunk('water/deletecard', async (id, thunkA
 });
 
 
-export const apiDeleteWater = createAsyncThunk(
-    'water/deleteWater',
-    async (recordId, thunkAPI) => {
-      try {
-        const response = await requestDeleteWater(recordId);
-        return response;
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    }
-  );
 
   export const apiGetWaterMonth = createAsyncThunk(
     'water/getWaterMonth',

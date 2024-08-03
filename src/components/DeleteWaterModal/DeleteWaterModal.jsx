@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 import { selectMonth, selectDate } from '../../redux/water/selectors';
 import {
-  apiDeleteWater,
+    deleteCard,
   apiGetWaterMonth,
   apiGetWaterDay,
 } from '../../redux/water/operations';
@@ -22,7 +22,7 @@ const DeleteWaterModal = ({ onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      await dispatch(apiDeleteWater(onDelete));
+      await dispatch(deleteCard(onDelete));
       closeModal();
       toast.success('Entry deleted successfully');
 
