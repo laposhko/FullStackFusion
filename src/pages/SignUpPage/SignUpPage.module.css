@@ -1,0 +1,14 @@
+.container {
+  padding: 16px;
+  width: 100%;
+}
+
+.mainForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  border-radius: 30px;
+  padding: 70px 16px 216px 16px;
+  background-color: var(--secondary-background-color);
+}
