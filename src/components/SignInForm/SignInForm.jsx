@@ -3,17 +3,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import css from "./SignInForm.module.css";
-import Logo from "src/components/Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -92,7 +92,7 @@ const SignInForm = () => {
                 onClick={togglePasswordVisibility}
                 className={css.togglePassword}
               >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                {/* <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} /> */}
               </button>
               {/* </div> */}
               <p>{errors.password?.message}</p>
