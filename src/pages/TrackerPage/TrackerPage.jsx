@@ -5,7 +5,7 @@ export default function TrackerPage() {
   return (
     <div>
       <h1>TrackerPage</h1>
-      {/* <UserPanel /> */}
+      <UserPanel />
     </div>
   );
 }
