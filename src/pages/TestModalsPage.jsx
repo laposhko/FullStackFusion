@@ -1,6 +1,12 @@
 
-import TestModal from "../components/TestModals";
+import TestModals from "../components/TestModals";
+import Modals from '../components/Modal/ModalWindow';
 
 export default function TestModalsPage() {
-    return <TestModal />;
+    return (
+      <div>
+        <TestModals />
+        <Modals />
+      </div>
+    );
   }
