@@ -13,15 +13,15 @@ import { ModalProvider } from "./context/ModalContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          <HelmetProvider>
-            <ModalProvider>
-              <App />
-            </ModalProvider>
-          </HelmetProvider>
-        </BrowserRouter>
-      </PersistGate>
+      {/* <PersistGate persistor={persistor}> */}
+      <BrowserRouter>
+        <HelmetProvider>
+          <ModalProvider>
+            <App />
+          </ModalProvider>
+        </HelmetProvider>
+      </BrowserRouter>
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );

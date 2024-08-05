@@ -1,4 +1,4 @@
-import { createContext, useState, useCallback } from 'react';
+import { createContext, useState, useCallback } from "react";
 
 const ModalContext = createContext();
 
@@ -7,6 +7,8 @@ export const ModalProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = useCallback((content) => {
+    console.log("open modal");
+    console.log(content);
     setModalContent(content);
     setIsOpen(true);
   }, []);
