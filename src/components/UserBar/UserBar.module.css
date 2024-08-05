@@ -1,29 +1,26 @@
 .arrowDown {
-  width: 16px;
-  height: 16px;
-  fill: transparent;
-  stroke: #ffffff;
-  transition: transform 0.3s;
+  width: 20px;
+  height: 20px;
+  fill: var(--main-background-color);
+  transition: transform 0.3s ease;
 }
 
-.arrowDown.open {
+.arrowDownOpen {
   transform: rotate(180deg);
 }
 
 .userBar {
-  position: relative;
   display: flex;
   align-items: center;
   border-radius: 30px;
   border-color: transparent;
-  gap: 8px;
-  opacity: 1px;
-  background-color: #323f47;
+  gap: 10px;
+  background-color: var(--button-gray);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.29;
   letter-spacing: -0.01em;
-  color: #ffffff;
+  color: var(--main-background-color);
   padding: 6px 12px;
 }
 
