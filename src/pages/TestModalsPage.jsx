@@ -1,5 +1,5 @@
 
-import TestModal from "../components/TestModal/TestModal";
+import TestModal from "../components/TestModals";
 
 export default function TestModalsPage() {
     return <TestModal />;
