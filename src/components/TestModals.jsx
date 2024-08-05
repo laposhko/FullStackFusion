@@ -6,8 +6,11 @@ import sprite from './../../img/icons/sprite.svg';
 import DeleteWaterModal from '../../../Modals/DeleteWaterModal/DeleteWaterModal.jsx';
 import css from './TestModals.module.css';
 
-function WaterItem() {
+function WaterItem({data}) {
 
+    const { openModal } = useModalContext();
+
+    const { _id: id } = data;
 
     return (
    
