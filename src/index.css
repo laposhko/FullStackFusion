@@ -8,6 +8,7 @@
   --button-gray: #323f47;
   --text-color: #2f2f2f;
   --light-gray-text-color: rgba(47, 47, 47, 0.6);
+  --error-text: #ef5050;
 }
 
 body {
