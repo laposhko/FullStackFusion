@@ -6,7 +6,6 @@
   right: 0;
   top: 110%;
   align-items: center;
-  background: var(--main-background-color);
   box-shadow: 0 4px 8px #0000001a;
   border-radius: 8px;
   overflow: hidden;
@@ -22,12 +21,12 @@
 }
 
 .popoverItem {
-  color: var(--light-gray-text-color);
+  color: #323f4766;
   display: block;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: color 0.3s linear;
 }
 
 .popoverItem:hover {
@@ -42,5 +41,6 @@
   width: 16px;
   height: 16px;
   margin-right: 10px;
-  fill: var(--light-gray-text-color);
+  fill: #323f4766;
+  transition: color 0.3s linear;
 }

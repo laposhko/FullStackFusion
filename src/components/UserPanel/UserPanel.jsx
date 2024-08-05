@@ -1,18 +1,18 @@
 import { useSelector } from 'react-redux';
 import css from './UserPanel.module.css';
 import { selectAuthUser } from '../../redux/auth/selectors';
-import UserBar from '../UserBar/UserBar';
+import UserBar from '../UserBar/UserBar.jsx';
 
 function UserPanel() {
   const user = useSelector(selectAuthUser);
 
   return (
     <div className={css.userBarWrapper}>
-      <p className={css.welcome}>
+      <h1 className={css.welcome}>
         Hello
         {/* <span className={css}>, {user.name}!</span> */}
         <span className={css.userName}>, User!</span>
-      </p>
+      </h1>
       <UserBar />
     </div>
   );
