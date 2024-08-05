@@ -2,6 +2,7 @@ import { lazy } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
+import TestModalsPage from "../../pages/TestModalsPage";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -9,7 +10,7 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
-const TestModal = lazy(() => import("../TestModal/TestModal"));
+
 export default function App() {
   return (
     <Routes>
@@ -42,7 +43,7 @@ export default function App() {
         }
       ></Route>
 
-      <Route path="/testModals" element={<TestModal></TestModal>}></Route>
+      <Route path="/testModals" element={<TestModalsPage></TestModalsPage>}></Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
