@@ -5,6 +5,27 @@
   flex-direction: column;
   gap: 20px;
 }
+.uploadImgContainer {
+  height: 103px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin-bottom: 10px;
+}
+/* .uploadIcon { */
+/* display: block; */
+/* } */
+.uploadBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .inputContainer {
   display: flex;
   flex-direction: column;
