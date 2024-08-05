@@ -9,6 +9,7 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
+const TestModal = lazy(() => import("../TestModal/TestModal"));
 export default function App() {
   return (
     <Routes>
@@ -40,6 +41,9 @@ export default function App() {
           <PrivateRoute component={<TrackerPage></TrackerPage>}></PrivateRoute>
         }
       ></Route>
+
+      <Route path="/testModals" element={<TestModal></TestModal>}></Route>
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
