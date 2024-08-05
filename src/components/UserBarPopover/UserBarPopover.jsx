@@ -1,5 +1,6 @@
 import css from './UserBarPopover.module.css';
 import sprite from '../../img/sprite.svg';
+// import svg from '../../img/icons/sprite.svg';
 
 function UserBarPopover() {
   return (
@@ -8,7 +9,7 @@ function UserBarPopover() {
         <li>
           <button className={css.popoverItem} type="button">
             <svg className={css.icon}>
-              <use xlinkHref={`${sprite}#icon-settings`}></use>
+              <use xlinkHref={`${svg}#icon-settings`}></use>
             </svg>
             Settings
           </button>
@@ -16,7 +17,7 @@ function UserBarPopover() {
         <li>
           <button className={css.popoverItem} type="button">
             <svg className={css.icon}>
-              <use xlinkHref={`${sprite}#icon-log-out`}></use>
+              <use xlinkHref={`${svg}#icon-log-out`}></use>
             </svg>
             Sign out
           </button>
