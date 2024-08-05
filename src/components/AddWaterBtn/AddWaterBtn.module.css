@@ -1,0 +1,21 @@
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    border-radius: 30px;
+    letter-spacing: -0.01em;
+    font-weight: bold;
+    width: 140px;
+    height: 46px;
+    padding: 20px 14px;
+    font-size: 14px;
+    line-height: 1.29;
+    z-index: 2;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    color: var(--main-background-color);
+    background-color: var(--button-gray);
+    transition:  150ms ease-in;
+  }
