@@ -24,8 +24,7 @@ export default function AdvantagesSection() {
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-
-  const totalUsers = userQuantity.data.totalUsers;
+  const totalUsers = userQuantity?.data?.totalUsers || "";
 
   return (
     <div className={css.advantagesContainer}>
@@ -95,8 +94,7 @@ export default function AdvantagesSection() {
           </li>
         </ul>
         <p className={css.customerText}>
-          Our {`${totalUsers}`} <span className={css.happy}>happy</span>{" "}
-          customers
+          Our {totalUsers} <span className={css.happy}>happy</span> customers
         </p>
       </div>
 

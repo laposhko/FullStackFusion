@@ -12,7 +12,7 @@ export const getAllUsers = createAsyncThunk(
       return response.data;
     } catch (error) {
       toast.error(`Something wrong in total users amount: ${error.message}`);
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
