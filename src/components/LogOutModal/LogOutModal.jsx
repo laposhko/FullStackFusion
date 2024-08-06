@@ -22,13 +22,13 @@ const LogOutModal = () => {
           onClick={() => {
             dispatch(logOut());
             closeModal();
-            toast.success(t('toast.logOut'));
+            toast.success('You have successfully logged out');
           }}
         >
-          {t('modals.logOut.logOut')}
+          Log out
         </button>
         <button className={css.cancelButton} onClick={closeModal}>
-          {t('modals.logOut.cancel')}
+         Cancel
         </button>
       </div>
     </div>

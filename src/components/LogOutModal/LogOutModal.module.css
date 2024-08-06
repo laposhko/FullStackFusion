@@ -1,0 +1,110 @@
+.modalContent {
+    background: var(--main-background-color);
+    padding: 40px 14px;
+  
+    border-radius: 15px;
+    text-align: center;
+    max-width: 375px;
+    min-width: 320px;
+  }
+  
+  .wrapperText {
+    margin-bottom: 28px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  
+  .text {
+    font-size: 14px;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+  }
+  
+  .logoutButton {
+    width: 100%;
+    background-color: var(--background-avocado-green);
+    color: var(--button-gray);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.28;
+    border: none;
+    border-radius: 30px;
+  
+    padding: 14px 0;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .logoutButton:hover,
+  .logoutButton:active {
+    background-color: var(--accent-darkgreen-color);
+  }
+  
+  .cancelButton {
+    width: 100%;
+    background-color: var(--secondary-background-color);
+    color: rgb(50, 63, 71, 0.3);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.28;
+    border: none;
+    border-radius: 30px;
+    padding: 14px 0;
+  
+    transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .cancelButton:hover {
+    color: var(--button-gray);
+  }
+  
+  .closeButton {
+    padding: 0;
+    height: 24px;
+  }
+  
+  @media only screen and (min-width: 768px) {
+    .modalContent {
+      width: 516px;
+      max-width: 516px;
+      padding: 40px 78px;
+    }
+  
+    .title {
+      margin-bottom: 24px;
+      font-size: 28px;
+      line-height: 1.14;
+    }
+  
+    .text {
+      font-size: 18px;
+      margin-bottom: 24px;
+      line-height: 1.33;
+    }
+  
+    .buttonContainer {
+      flex-direction: row;
+      gap: 10px;
+    }
+  
+    .cancelButton {
+      padding: 18px 0;
+      line-height: 1.5;
+    }
+  
+    .logoutButton {
+      line-height: 1.5;
+      padding: 18px 0;
+    }
+  }
