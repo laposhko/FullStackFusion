@@ -10,45 +10,52 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
-
+import Modals from "../Modal/ModalWindow";
 export default function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <RestrictedRoute component={<HomePage></HomePage>}></RestrictedRoute>
-        }
-      ></Route>
-      <Route
-        path="/signup"
-        element={
-          <RestrictedRoute
-            component={<SignUpPage></SignUpPage>}
-          ></RestrictedRoute>
-        }
-      ></Route>
-      <Route
-        path="/signin"
-        element={
-          <RestrictedRoute
-            component={<SignInPage></SignInPage>}
-          ></RestrictedRoute>
-        }
-      ></Route>
-      <Route
-        path="/tracker"
-        element={
-          <PrivateRoute component={<TrackerPage></TrackerPage>}></PrivateRoute>
-        }
-      ></Route>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RestrictedRoute
+              component={<HomePage></HomePage>}
+            ></RestrictedRoute>
+          }
+        ></Route>
+        <Route
+          path="/signup"
+          element={
+            <RestrictedRoute
+              component={<SignUpPage></SignUpPage>}
+            ></RestrictedRoute>
+          }
+        ></Route>
+        <Route
+          path="/signin"
+          element={
+            <RestrictedRoute
+              component={<SignInPage></SignInPage>}
+            ></RestrictedRoute>
+          }
+        ></Route>
+        <Route
+          path="/tracker"
+          element={
+            <PrivateRoute
+              component={<TrackerPage></TrackerPage>}
+            ></PrivateRoute>
+          }
+        ></Route>
 
-      <Route
-        path="/testModals"
-        element={<TestModalsPage></TestModalsPage>}
-      ></Route>
+        <Route
+          path="/testModals"
+          element={<TestModalsPage></TestModalsPage>}
+        ></Route>
 
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Modals></Modals>
+    </>
   );
 }

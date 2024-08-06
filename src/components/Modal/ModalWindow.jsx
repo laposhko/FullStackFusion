@@ -1,10 +1,10 @@
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./ModalWindow.module.css";
 import { useEffect } from "react";
-import Modal from 'react-modal';
-import { useModalContext } from '../../context/useModalContext.jsx';
+import Modal from "react-modal";
+import { useModalContext } from "../../context/useModalContext.jsx";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 const ModalWindow = ({
   isOpen,
@@ -14,29 +14,27 @@ const ModalWindow = ({
 }) => {
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
-
   return (
-
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       style={{
         overlay: {
-          backgroundColor: 'rgba(47, 47, 47, 0.6)',
-          zIndex: '15',
-          overflow: 'auto',
-          display: 'grid',
-          placeItems: 'center',
+          backgroundColor: "rgba(47, 47, 47, 0.6)",
+          zIndex: "15",
+          overflow: "auto",
+          display: "grid",
+          placeItems: "center",
         },
       }}
       className={{
@@ -45,8 +43,7 @@ const ModalWindow = ({
         beforeClose: css.beforeClose,
       }}
     >
-
-    {/* <div className={css.modal}> </div>*/}
+      {/* <div className={css.modal}> </div>*/}
 
       <button onClick={onRequestClose} className={css.closeButton}>
         <SvgIcon
@@ -60,7 +57,7 @@ const ModalWindow = ({
     </Modal>
   );
 };
-   
+
 const Modals = () => {
   const { isOpen, closeModal, modalContent } = useModalContext();
 
