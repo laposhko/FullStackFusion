@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import css from './UserBarPopover.module.css';
-import svg from '../../img/icons/sprite.svg';
-
+import css from "./UserBarPopover.module.css";
+import svg from "../../img/icons/sprite.svg";
+import { useModalContext } from "../../context/useModalContext";
+import UserSettingsModal from "../UserSettingsModal/UserSettingsModal";
 function UserBarPopover() {
-  const [openModal, setOpenModal] = useState(null);
+  const { openModal } = useModalContext();
 
-  const handleOpenSettings = () => setOpenModal('settings');
-  const handleOpenSignOut = () => setOpenModal('signOut');
-  const handleCloseModal = () => setOpenModal(null);
+  // const [openModal, setOpenModal] = useState(null);
+
+  // const handleOpenSettings = () => setOpenModal("settings");
+  // const handleOpenSignOut = () => setOpenModal("signOut");
+  // const handleCloseModal = () => setOpenModal(null);
 
   return (
     <div className={css.popover}>
@@ -16,7 +18,10 @@ function UserBarPopover() {
           <button
             className={css.popoverItem}
             type="button"
-            onClick={handleOpenSettings}
+            onClick={() => {
+              openModal(<UserSettingsModal></UserSettingsModal>);
+            }}
+            // onClick={handleOpenSettings}
           >
             <svg className={css.icon}>
               <use href={`${svg}#icon-settings`}></use>
@@ -28,7 +33,9 @@ function UserBarPopover() {
           <button
             className={css.popoverItem}
             type="button"
-            onClick={handleOpenSignOut}
+            //function opening logout modal when it will be ready
+
+            // onClick={handleOpenSignOut}
           >
             <svg className={css.icon}>
               <use href={`${svg}#icon-log-out`}></use>

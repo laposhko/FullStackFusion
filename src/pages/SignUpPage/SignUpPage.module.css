@@ -11,9 +11,13 @@
   justify-content: center;
   height: 100vh;
   border-radius: 30px;
-  padding: 0px 16px 216px 16px;
+  padding: 24px 16px;
   background-color: var(--secondary-background-color);
   margin: 0 auto;
+}
+
+.desktopForm {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -23,5 +27,25 @@
 
   .mainForm {
     width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .mainForm {
+    width: 672px;
+    height: 736px;
+    margin: 0;
+  }
+
+  .desktopForm {
+    display: flex;
   }
 }

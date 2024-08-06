@@ -1,0 +1,104 @@
+.welcomeContainer {
+  min-width: 320px;
+  padding: 118px 16px 67px 16px;
+  background-color: var(--secondary-background-color);
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+}
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+.mainTitle {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--button-gray);
+  margin-bottom: 32px;
+}
+.buttonBox {
+  display: flex;
+  gap: 10px;
+}
+.linkTry {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  padding: 14px 19px;
+  color: var(--button-gray);
+  background-color: var(--background-avocado-green);
+  border-radius: 30px;
+}
+.linkTry:hover {
+  background-color: var(--accent-darkgreen-color);
+}
+.disabled {
+  background-color: transparent;
+  border: none;
+  pointer-events: none;
+  opacity: 20%;
+  cursor: not-allowed;
+}
+.linkSignIn {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  padding: 14px 28px;
+  color: var(--button-gray);
+  border: 1px solid var(--button-gray);
+  background-color: transparent;
+  border-radius: 30px;
+}
+.linkSignIn:hover {
+  border: 1px solid var(--accent-darkgreen-color);
+  color: var(--accent-darkgreen-color);
+}
+
+@media screen and (min-width: 768px) {
+  .welcomeContainer {
+    width: 704px;
+    /* height: 446px; */
+    padding: 106px 93px 50px 64px;
+  }
+  .subtitle {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .mainTitle {
+    font-size: 64px;
+    line-height: 1.09;
+  }
+  .buttonBox {
+    gap: 16px;
+  }
+  .linkTry {
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .linkSignIn {
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .welcomeContainer {
+    width: 672px;
+    height: 736px;
+    padding: 188px 61px 188px 64px;
+  }
+  .mainTitle {
+    font-size: 80px;
+  }
+}

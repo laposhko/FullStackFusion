@@ -40,10 +40,9 @@ const waterSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
     })
-    .addCase(updateCard.fulfilled, (state, action) => {
+    .addCase(updateCard.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
-        state.cards = action.payload;
     })
     .addCase(updateCard.rejected, (state) => {
         state.isLoading = false;
@@ -53,10 +52,9 @@ const waterSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
     })
-    .addCase(deleteCard.fulfilled, (state, action) => {
+    .addCase(deleteCard.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
-        state.cards = action.payload;
     })
     .addCase(signOut.pending, (state)=> {
         state.isLoading = true;

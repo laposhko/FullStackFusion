@@ -1,9 +1,10 @@
+import SvgIcon from "../../img/icons/sprite";
 import * as Yup from "yup";
 import sprite from "../../img/icons/sprite.svg";
 import clsx from "clsx";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
@@ -30,7 +31,7 @@ const SignUpForm = () => {
   const passwordId = useId();
   const repeatPasswordId = useId();
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -47,8 +48,18 @@ const SignUpForm = () => {
     return clsx(style.inputField, !!errorInput && style.inputError);
   };
 
+  const setVisibleToggler = () => {
+    setIsVisible(!isVisible);
+  };
+
   const handleFormSubmit = (data) => {
-    console.log(data);
+    dispatch(
+      signUp({
+        email: data.email,
+        password: data.password,
+      })
+    );
+    navigation("/tracker");
   };
 
   return (
@@ -79,13 +90,14 @@ const SignUpForm = () => {
             {...register("password")}
             id={passwordId}
           />
-
-          <svg className={style.svgIcon}>
-            <use
-              xlinkHref={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
-            ></use>
-          </svg>
-
+          <button type="button">
+            <SvgIcon
+              className={style.svgIcon}
+              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
+              width={20}
+              height={20}
+            />
+          </button>
           {errors.password && (
             <p className={style.errorMessage}>{errors.password?.message}</p>
           )}
@@ -100,6 +112,14 @@ const SignUpForm = () => {
             {...register("repeatPassword")}
             id={repeatPasswordId}
           />
+          <button type="button">
+            <SvgIcon
+              className={style.svgIcon}
+              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
+              width={20}
+              height={20}
+            />
+          </button>
           {errors.repeatPassword && (
             <p className={style.errorMessage}>
               {errors.repeatPassword?.message}
@@ -112,7 +132,10 @@ const SignUpForm = () => {
       </div>
       <div className={style.linkContainer}>
         <p>
-          Already have account? <a href="/signin">Sign In</a>
+          Already have account?{" "}
+          <Link className={style.linkTo} to={"/signin"}>
+            Sign In
+          </Link>
         </p>
       </div>
     </form>
