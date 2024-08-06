@@ -43,7 +43,10 @@ export default function App() {
         }
       ></Route>
 
-      <Route path="/testModals" element={<TestModalsPage></TestModalsPage>}></Route>
+      <Route
+        path="/testModals"
+        element={<TestModalsPage></TestModalsPage>}
+      ></Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
