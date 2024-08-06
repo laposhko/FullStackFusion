@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  selectUsersQuantity,
-  selectUsersIsLoading,
-  selectUsersIsError,
-} from "../../redux/users/selectors.js";
+import { selectUsersQuantity } from "../../redux/users/selectors.js";
 import { getAllUsers } from "../../redux/users/operations.js";
 import imageCustomerGirlMob1x from "../../img/HomePage/male-memojis-first-girl-mobile.png";
 import imageCustomerGirlMob2x from "../../img/HomePage/male-memojis-first-girl-mobile@2x.png";
@@ -23,23 +19,14 @@ import clsx from "clsx";
 
 export default function AdvantagesSection() {
   const userQuantity = useSelector(selectUsersQuantity);
-  const isLoading = useSelector(selectUsersIsLoading);
-  const isError = useSelector(selectUsersIsError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  const totalUsers = userQuantity.data.totalUsers;
 
-  // if (isError) {
-  //   return <div>Error loading user quantity</div>;
-  // }
-
-  // console.log(userQuantity);
   return (
     <div className={css.advantagesContainer}>
       <div className={css.customersBox}>
@@ -108,7 +95,8 @@ export default function AdvantagesSection() {
           </li>
         </ul>
         <p className={css.customerText}>
-          Our <span className={css.happy}>happy</span> customers
+          Our {`${totalUsers}`} <span className={css.happy}>happy</span>{" "}
+          customers
         </p>
       </div>
 
