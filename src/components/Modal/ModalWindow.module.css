@@ -1,0 +1,68 @@
+.modal {
+  /* padding: 20px; */
+  background-color: var(--main-background-color);
+  /* width: 344px; */
+  border-radius: 15px;
+  position: relative;
+}
+/* .closeIcon {
+  stroke: var(--button-gray);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+} */
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  background-color: transparent;
+  border: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .closeButton {
+      right: 20px;
+  }
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+
+  stroke: var(--button-gray);
+  transition: stroke 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media screen and (min-width: 768px) {
+  .closeIcon {
+      width: 28px;
+      height: 28px;
+  }
+}
+
+.closeButton:hover .closeIcon,
+.closeButton:active .closeIcon {
+  stroke: var(--background-avocado-green);
+}
+
+.modalContent {
+  position: relative;
+
+  opacity: 0;
+  background-color: var(--main-background-color);
+  border-radius: 15px;
+
+  z-index: 15;
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  margin: 20px auto;
+}
+
+.modalContentOpen {
+  opacity: 1;
+}
+
+.beforeClose {
+  opacity: 0;
+}

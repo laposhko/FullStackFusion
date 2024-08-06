@@ -1,0 +1,27 @@
+.container {
+  padding: 16px;
+  width: 100%;
+}
+
+.mainForm {
+  position: relative;
+  display: flex;
+  width: 343px;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  border-radius: 30px;
+  padding: 0px 16px 216px 16px;
+  background-color: var(--secondary-background-color);
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+
+  .mainForm {
+    width: 704px;
+  }
+}

@@ -1,23 +1,151 @@
 .form {
-  background-color: aquamarine;
   padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+.uploadImgContainer {
+  height: 103px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin-bottom: 10px;
+}
+/* .uploadIcon { */
+/* display: block; */
+/* } */
+.uploadBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .inputContainer {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+}
+.inputName {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+  /* margin-bottom: 34px; */
+}
+.inputField {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 14px 16px 14px 16px;
+  /* width: 303px; */
+  /* width: 100%; */
+  height: 46px;
 }
 .radiobuttons {
   display: flex;
   gap: 10px;
 }
+.radiobuttonsLabel {
+  width: 100px;
+  position: relative;
+}
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
 
-/* 
-.genderInput {
-  background-color: blueviolet;
-  display: flex;
-  flex-direction: column;
-} */
+.customRadio {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 2px solid var(--background-avocado-green);
+  border-radius: 50%;
+}
+.radioInput:checked ~ .customRadio {
+  background: rgb(155, 225, 160);
+  background: radial-gradient(
+    circle,
+    rgba(155, 225, 160, 1) 40%,
+    rgba(255, 255, 255, 1) 30%
+  );
+  /* background-color: var(--background-avocado-green);
+  padding: 5px;
+  border: 2px solid #9be1a0; */
+}
+
+.radioInput::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+}
+
+.radioInput:checked ~ .customRadio::after {
+  display: block;
+}
+
+.radiobuttonText {
+  margin-left: 25px;
+}
+
+.formulaLabel {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+}
+
+.formula {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--background-avocado-green);
+}
+
+.formulasDescription {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: var(--light-gray-text-color);
+}
+.accentColor {
+  color: var(--background-avocado-green);
+}
+
+.waterAmount {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--background-avocado-green);
+}
+
+.saveBtn {
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+  background-color: var(--background-avocado-green);
+}
