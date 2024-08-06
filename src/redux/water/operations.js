@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'https://aquatrackerapp.onrender.com'
+axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
 // import {
 
