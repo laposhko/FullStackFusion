@@ -1,0 +1,46 @@
+.popover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 15px 20px;
+  right: 0;
+  top: 110%;
+  align-items: center;
+  box-shadow: 0 4px 8px #0000001a;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1;
+  font-weight: 700;
+  /* outline: 1px solid black; */
+}
+
+.wrapperItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popoverItem {
+  color: #323f4766;
+  display: block;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s linear;
+}
+
+.popoverItem:hover {
+  color: var(--text-color);
+}
+
+.popoverItem:hover .icon {
+  fill: var(--text-color);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  fill: #323f4766;
+  transition: color 0.3s linear;
+}
