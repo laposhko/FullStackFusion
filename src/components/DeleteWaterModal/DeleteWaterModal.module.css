@@ -74,8 +74,8 @@
 
 @media screen and (min-width: 768px) {
     .deleteModalBackground {
-        width: 518px;
-        max-width: 518px;
+        width: 516px;
+        max-width: 516px;
         padding: 40px;
     }
 

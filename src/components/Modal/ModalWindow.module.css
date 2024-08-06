@@ -1,7 +1,7 @@
 .modal {
   /* padding: 20px; */
   background-color: var(--main-background-color);
-  width: 344px;
+  /* width: 344px; */
   border-radius: 15px;
   position: relative;
 }
