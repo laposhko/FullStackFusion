@@ -34,11 +34,14 @@
   .container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 32px;
   }
 
   .mainForm {
     width: 672px;
+    height: 736px;
     margin: 0;
   }
 

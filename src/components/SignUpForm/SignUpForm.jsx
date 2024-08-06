@@ -4,7 +4,7 @@ import sprite from "../../img/icons/sprite.svg";
 import clsx from "clsx";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
@@ -53,7 +53,13 @@ const SignUpForm = () => {
   };
 
   const handleFormSubmit = (data) => {
-    console.log(data);
+    dispatch(
+      signUp({
+        email: data.email,
+        password: data.password,
+      })
+    );
+    navigation("/tracker");
   };
 
   return (
@@ -126,7 +132,10 @@ const SignUpForm = () => {
       </div>
       <div className={style.linkContainer}>
         <p>
-          Already have account? <a href="/signin">Sign In</a>
+          Already have account?{" "}
+          <Link className={style.linkTo} to={"/signin"}>
+            Sign In
+          </Link>
         </p>
       </div>
     </form>

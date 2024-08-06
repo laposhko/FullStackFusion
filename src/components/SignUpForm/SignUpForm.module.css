@@ -83,7 +83,7 @@ form > *:not(:last-child) {
   font-size: 14px;
 }
 
-.linkContainer p a {
+.linkTo {
   color: var(--text-color);
   font-weight: 700;
   text-decoration: underline;
