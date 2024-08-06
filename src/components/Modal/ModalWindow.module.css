@@ -5,12 +5,12 @@
   border-radius: 15px;
   position: relative;
 }
-.closeIcon {
+/* .closeIcon {
   stroke: var(--button-gray);
   position: absolute;
   top: 20px;
   right: 20px;
-}
+} */
 
 .closeButton {
   position: absolute;
@@ -30,7 +30,7 @@
   width: 24px;
   height: 24px;
 
-  stroke: var(--dark);
+  stroke: var(--button-gray);
   transition: stroke var(--animation);
 }
 
