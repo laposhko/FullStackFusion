@@ -8,11 +8,11 @@ function UserPanel() {
 
   return (
     <div className={css.userBarWrapper}>
-      <h1 className={css.welcome}>
+      <h2 className={css.welcome}>
         Hello
         {/* <span className={css}>, {user.name}!</span> */}
         <span className={css.userName}>, User!</span>
-      </h1>
+      </h2>
       <UserBar />
     </div>
   );
