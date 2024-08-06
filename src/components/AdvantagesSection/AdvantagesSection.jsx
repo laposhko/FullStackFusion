@@ -22,7 +22,7 @@ import css from "./AdvantagesSection.module.css";
 import clsx from "clsx";
 
 export default function AdvantagesSection() {
-  const userQuantity = useSelector(selectUsersQuantity);
+  // const userQuantity = useSelector(selectUsersQuantity);
   const isLoading = useSelector(selectUsersIsLoading);
   const isError = useSelector(selectUsersIsError);
   const dispatch = useDispatch();
@@ -31,15 +31,14 @@ export default function AdvantagesSection() {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  // if (isError) {
-  //   return <div>Error loading user quantity</div>;
-  // }
+  if (isError) {
+    return <div>Error loading user quantity</div>;
+  }
 
-  // console.log(userQuantity);
   return (
     <div className={css.advantagesContainer}>
       <div className={css.customersBox}>
@@ -119,7 +118,8 @@ export default function AdvantagesSection() {
               className={clsx(
                 css.advantagesListText,
                 css.advantagesListTextFirst
-              )}>
+              )}
+            >
               Habit drive
             </p>
           </li>
