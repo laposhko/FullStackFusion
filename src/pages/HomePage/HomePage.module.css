@@ -1,0 +1,24 @@
+.homePage {
+  min-width: 320px;
+  max-width: 375px;
+  background-color: var(--main-background-color);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+}
+@media screen and (min-width: 768px) {
+  .homePage {
+    width: 704px;
+    max-width: min-content;
+    padding: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .homePage {
+    width: 1376px;
+    flex-direction: row;
+    gap: 32px;
+  }
+}

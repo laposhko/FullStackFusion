@@ -20,7 +20,7 @@ const getAllUsersSlice = createSlice({
     })
     .addCase(getAllUsers.rejected, (state) => {
         state.isLoading = false;
-        state.isLoading = true;
+        state.isError = true;
     })
 });
 

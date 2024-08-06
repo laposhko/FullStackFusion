@@ -1,0 +1,178 @@
+.advantagesContainer {
+  min-width: 320px;
+  height: 353px;
+  padding: 209px 16px 32px 16px;
+  border-radius: 30px;
+  background-image: url("../../img/HomePage/girl-with-bottle-mobile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+.customersBox {
+  width: 160px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border-radius: 30px;
+  background-color: var(--main-background-color);
+}
+.customersList {
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.customerItem {
+  margin-left: -13%;
+}
+.customerItem:first-child {
+  z-index: 3;
+}
+.customerItem:nth-child(2) {
+  z-index: 2;
+}
+.customerPhoto {
+  display: block;
+  width: 26.4px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.customerText {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--button-gray);
+}
+.happy {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--background-avocado-green);
+}
+.advantagesBox {
+  align-self: flex-end;
+  width: 168px;
+}
+.advantagesBoxList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.advantagesList {
+  padding: 9px 12px;
+  border-radius: 30px;
+  background-color: var(--button-gray);
+}
+.advantagesListGreen {
+  background-color: var(--background-avocado-green);
+}
+.advantagesListWhite {
+  background-color: var(--main-background-color);
+}
+.advantagesListText {
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--button-gray);
+}
+.advantagesListTextFirst::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--background-avocado-green);
+  border-radius: 50%;
+}
+.advantagesListTextFirst {
+  color: var(--main-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+@media screen and (min-resolution: 192dpi) and (min-width: 320px),
+  screen and (min-resolution: 2dppx) and (min-width: 320px),
+  screen and (min-device-pixel-ratio: 2) {
+  .advantagesContainer {
+    background-image: url("../../img/HomePage/girl-with-bottle-mobile@2x.jpg");
+  }
+}
+@media screen and (min-width: 768px) {
+  .advantagesContainer {
+    width: 704px;
+    height: 446px;
+    padding: 283px 32px 32px 32px;
+    background-image: url("../../img/HomePage/girl-with-bottle-tablet.jpg");
+    align-items: flex-start;
+    gap: 0;
+  }
+  .customersBox {
+    width: 237px;
+    padding: 10px 20px;
+  }
+  .customersList {
+    width: 110px;
+  }
+  .customerPhoto {
+    width: 47px;
+    height: 47px;
+  }
+  .customerText {
+    font-size: 15px;
+  }
+  .happy {
+    font-size: 15px;
+    color: var(--background-avocado-green);
+  }
+  .advantagesBox {
+    width: 242px;
+    margin-top: -15px;
+  }
+
+  .advantagesBoxList {
+    gap: 10px;
+  }
+  .advantagesList {
+    padding: 11px 16px;
+  }
+  .advantagesListText {
+    font-size: 12px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 320px),
+    screen and (min-resolution: 2dppx) and (min-width: 320px),
+    screen and (min-device-pixel-ratio: 2) {
+    .advantagesContainer {
+      background-image: url("../../img/HomePage/girl-with-bottle-tablet@2x.jpg");
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .advantagesContainer {
+    width: 672px;
+    height: 736px;
+    background-image: url("../../img/HomePage/girl-with-bottle-desktop.jpg");
+    padding: 537px 32px 64px 32px;
+  }
+
+  @media screen and (min-resolution: 192dpi) and (min-width: 320px),
+    screen and (min-resolution: 2dppx) and (min-width: 320px),
+    screen and (min-device-pixel-ratio: 2) {
+    .advantagesContainer {
+      background-image: url("../../img/HomePage/girl-with-bottle-desktop@2x.jpg");
+      background-size: cover;
+    }
+  }
+}
