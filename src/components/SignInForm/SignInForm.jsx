@@ -107,7 +107,7 @@ const SignInForm = () => {
             <div className={css.spanSignIn}>
               <p>
                 Don&apos;t have an account?{" "}
-                <Link className={style.linkTo} to={"/signup"}>
+                <Link className={css.linkTo} to={"/signup"}>
                 Sign Up
                 </Link>
               </p>
