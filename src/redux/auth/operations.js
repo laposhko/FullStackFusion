@@ -70,14 +70,3 @@ export const refresh = createAsyncThunk ('auth/refresh', async (token, thunkAPI)
 }
 );
 
-export const googleAuthorization = createAsyncThunk('auth/googleauth', async (_, thunkAPI) => {
- try {
-    const response = await axios.get('/users/get-oauth-url');
-    return response.data;
- } catch (error) {
-    toast.error(`Something went wrong in Google authorization: ${error.message}`);
-    thunkAPI.rejectWithValue(error.message);
- }
-
-});
-
