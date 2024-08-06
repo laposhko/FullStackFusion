@@ -16,9 +16,11 @@ const SignInPage = () => {
   }, []);
 
   return (
-    <div className={css.signInContainer}>
-      <SignInForm />
-      {!isMobile && <AdvantagesSection className={css.advantagesSection} />}
+    <div>
+      <div className={css.signInContainer}>
+        <SignInForm />
+        {!isMobile && <AdvantagesSection />}
+      </div>
     </div>
   );
 };

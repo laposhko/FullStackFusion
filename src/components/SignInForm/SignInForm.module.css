@@ -12,10 +12,12 @@
 }
 
 .signInForm {
-  flex: 0 0 50%;
+  display: flex;
   background-color: var(--main-background-color);
   border-radius: 30px;
   overflow: hidden;
+  width: 343px;
+  height: 780px;
 }
 
 .inputContainer {
