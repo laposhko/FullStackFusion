@@ -1,15 +1,20 @@
 import { useModalContext } from '../../context/useModalContext';
 
 import css from './DeleteWaterModal.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-
+// import {  useSelector } 
 // import { selectMonth, selectDate } from '../../redux/water/selectors';
 import {
-    deleteCard,
-  apiGetWaterMonth,
-  apiGetWaterDay,
+    deleteCard
+  
 } from '../../redux/water/operations';
+
+// import {
+   
+//   apiGetWaterMonth,
+//   apiGetWaterDay,
+// } from '../../redux/water/operations';
 
 
 
