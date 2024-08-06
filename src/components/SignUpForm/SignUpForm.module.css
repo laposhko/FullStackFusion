@@ -1,4 +1,5 @@
 .form {
+  width: 311px;
   display: flex;
   flex-direction: column;
   margin-top: 126px;
@@ -32,7 +33,7 @@ form > *:not(:last-child) {
   font-weight: 700;
 }
 
-.input input {
+.inputField {
   color: var(--light-gray-text-color);
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
@@ -41,9 +42,19 @@ form > *:not(:last-child) {
   outline: none;
 }
 
-.input input:hover,
-.input input:focus {
+.inputField:hover,
+.inputField:focus {
   color: var(--text-color);
+}
+
+.inputError {
+  color: var(--error-text);
+  border-color: var(--error-text);
+}
+
+.errorMessage {
+  color: var(--error-text);
+  font-size: 14px;
 }
 
 .formBtn {
@@ -76,4 +87,34 @@ form > *:not(:last-child) {
   color: var(--text-color);
   font-weight: 700;
   text-decoration: underline;
+}
+
+.svgIcon {
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    width: 436px;
+    margin: 171px auto 0 auto;
+  }
+
+  .formName {
+    font-size: 36px;
+  }
+
+  .inputContainer {
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .formBtn {
+    font-size: 16px;
+    padding: 18px 187px;
+  }
 }

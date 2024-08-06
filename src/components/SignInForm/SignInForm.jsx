@@ -3,17 +3,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import css from "./SignInForm.module.css";
-import Logo from "src/components/Logo/Logo";
+import Logo from "../../components/Logo/Logo";
+import sprite from "../../img/icons/sprite.svg";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -39,8 +38,7 @@ const SignInForm = () => {
       }
 
       localStorage.setItem("token", response.payload.token);
-
-      history.push("/tracker");
+      navigate("/tracker");
     } catch (error) {
       toast.error(error.message);
     }
@@ -55,8 +53,8 @@ const SignInForm = () => {
       <div className={css.signInForm}>
         <div className={css.formSection}>
           <Logo />
-          <h2 className={css.formTitle}>Sign In</h2>
           <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+            <h2 className={css.formTitle}>Sign In</h2>
             <div className={css.inputContainer}>
               <label htmlFor="email" className={css.formLabel}>
                 Email
@@ -70,32 +68,37 @@ const SignInForm = () => {
                   errors.email ? css["is-invalid"] : ""
                 }`}
               />
-              <p>{errors.email?.message}</p>
+              <p className={css.errorMessage}>{errors.email?.message}</p>
             </div>
 
-            <div className="inputContainer">
-              <label htmlFor="password" className="formLabel">
+            <div className={css.inputContainer}>
+              <label htmlFor="password" className={css.formLabel}>
                 Password
               </label>
 
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                placeholder="Enter your password"
-                {...register("password")}
-                className={`${css["form-control"]} ${
-                  errors.password ? css["is-invalid"] : ""
-                }`}
-              />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className={css.togglePassword}
-              >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-              </button>
-              {/* </div> */}
-              <p>{errors.password?.message}</p>
+              <div className={css.inputWrapper}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  placeholder="Enter your password"
+                  {...register("password")}
+                  className={`${css["form-control"]} ${
+                    errors.password ? css["is-invalid"] : ""
+                  }`}
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className={css.togglePassword}
+                >
+                  <svg className={css.svgIcon}>
+                    <use
+                      xlinkHref={`${sprite}#${showPassword ? "icon-eye" : "icon-eye-off"}`}
+                    ></use>
+                  </svg>
+                </button>
+              </div>
+              <p className={css.errorMessage}>{errors.password?.message}</p>
             </div>
 
             <button type="submit" className={css.btnform}>
@@ -110,7 +113,6 @@ const SignInForm = () => {
               </p>
             </div>
           </form>
-          {/* </div> */}
           <div className={css.imageSection}>{/* Place for an image */}</div>
         </div>
       </div>

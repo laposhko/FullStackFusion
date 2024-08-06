@@ -1,0 +1,31 @@
+.arrowDown {
+  width: 22px;
+  height: 22px;
+  fill: var(--main-background-color);
+  transition: transform 0.3s ease;
+}
+
+.arrowDownOpen {
+  transform: rotate(180deg);
+}
+
+.userBar {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  border-color: transparent;
+  gap: 10px;
+  background-color: var(--button-gray);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--main-background-color);
+  padding: 6px 12px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}

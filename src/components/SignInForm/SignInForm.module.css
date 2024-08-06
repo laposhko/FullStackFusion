@@ -31,6 +31,25 @@
   display: flex;
   align-items: center;
   position: relative;
+  width: 100%;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.svgIcon {
+  width: 18.33px;
+  height: 18.33px;
+  position: relative;
+  fill: currentColor;
 }
 
 .inputContainer .togglePassword {
@@ -55,7 +74,7 @@
 .formTitle {
   color: var(--button-gray);
   font-weight: 700;
-  font-size: 32px;
+  font-size: 14px;
   line-height: 1;
   letter-spacing: -0.01em;
   margin-bottom: 32px;
@@ -94,7 +113,7 @@
 
 .spanSignIn p {
   color: var(--light-gray-text-color);
-  opacity: 50%;
+  /* opacity: 50%; */
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
@@ -106,7 +125,7 @@
   gap: 5px;
   text-align: center;
   justify-content: center;
-  color: var(--text-color);
+  color: rgba(47, 47, 47, 0.5);
   font-size: 14px;
   font-weight: 700;
   line-height: 18px;
@@ -117,6 +136,7 @@
 .link {
   height: 18px;
   color: var(--text-color);
+  text-decoration: underline;
 }
 
 .btnform {
@@ -135,6 +155,7 @@
   margin-top: 32px;
   letter-spacing: -0.01em;
   padding: 16px 0;
+  transition: background-color 300ms ease-in;
 }
 
 .form input:hover,
