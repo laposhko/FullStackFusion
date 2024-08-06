@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import css from "./SignInForm.module.css";
 import Logo from "../../components/Logo/Logo";
@@ -107,9 +107,9 @@ const SignInForm = () => {
             <div className={css.spanSignIn}>
               <p>
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className={css.link}>
-                  Sign Up
-                </a>
+                <Link className={css.linkTo} to={"/signup"}>
+                Sign Up
+                </Link>
               </p>
             </div>
           </form>
