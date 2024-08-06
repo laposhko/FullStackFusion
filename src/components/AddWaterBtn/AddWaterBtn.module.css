@@ -1,0 +1,53 @@
+.btn {
+    display: flex;
+    gap: 10px;
+    width: 140px;
+    height: 46px;
+    padding: 20px 14px;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    letter-spacing: -0.01em;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.29;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    z-index: 2;
+    color: var(--main-background-color);
+    background-color: var(--button-gray);
+    transition:  150ms ease-in;
+  }
+
+  .icon {
+    stroke: var(--main-background-color);
+    transition:  150ms ease-in;
+    transform: rotate(45deg);
+  }
+
+  .btn:hover {
+    color: var(--background-avocado-green);
+  }
+
+  .btn:hover .icon {
+    stroke: var(--background-avocado-green);
+  }
+
+  @media screen and (min-width: 768px) {
+    .btn {
+      width: 178px;
+      height: 60px;
+      padding: 18px 30px;
+      right: 32px;
+      bottom: 64px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .btn {
+      padding: 20px 30px;
+    }
+  }
