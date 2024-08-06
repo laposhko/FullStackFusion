@@ -1,3 +1,15 @@
+import { NavLink } from "react-router-dom";
+import css from "./NotFoundPage.module.css";
+
 export default function NotFoundPage() {
-  <h1>not found</h1>;
+  return (
+    <div className={css.container}>
+      <p className={css.notFoundContent}>
+        Page not found. Return to <br />
+        <NavLink className={css.linkHome} to="/">
+          Home Page
+        </NavLink>
+      </p>
+    </div>
+  );
 }

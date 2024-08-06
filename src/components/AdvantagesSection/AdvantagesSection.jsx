@@ -39,7 +39,7 @@ export default function AdvantagesSection() {
   //   return <div>Error loading user quantity</div>;
   // }
 
-  console.log(userQuantity);
+  // console.log(userQuantity);
   return (
     <div className={css.advantagesContainer}>
       <div className={css.customersBox}>
