@@ -1,7 +1,7 @@
 import css from './LogOutModal.module.css';
-import { useModalContext } from '../../../context/useModalContext.jsx';
+import { useModalContext } from '../../context/useModalContext.jsx';
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../../redux/auth/operation.js';
+// import { logOut } from '../../../redux/auth/operation.js';
 
 import toast from 'react-hot-toast';
 

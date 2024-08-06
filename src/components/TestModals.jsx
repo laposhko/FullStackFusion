@@ -5,6 +5,7 @@ import sprite from '../img/icons/sprite.svg';
 
 import DeleteWaterModal from '../components/DeleteWaterModal/DeleteWaterModal.jsx';
 import css from './TestModals.module.css';
+import LogOutModal from './LogOutModal/LogOutModal.jsx';
 
 function WaterItem({id}) {
 
@@ -26,6 +27,18 @@ function WaterItem({id}) {
               <use xlinkHref={`${sprite}#icon-trash`}></use>
             </svg>
           </button>
+
+          <button
+            className={css.btn}
+            onClick={() => {
+              openModal(<LogOutModal onLogout={id} />);
+            }}
+          >
+            <svg className="icon icon-trash">
+              <use xlinkHref={`${sprite}#icon-trash`}></use>
+            </svg>
+          </button>
+
         </div>
     )
     }
