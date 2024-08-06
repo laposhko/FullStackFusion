@@ -1,7 +1,7 @@
 .modal {
-  padding: 20px;
-  background-color: beige;
-  width: 343px;
+  /* padding: 20px; */
+  background-color: var(--main-background-color);
+  width: 344px;
   border-radius: 15px;
   position: relative;
 }
@@ -26,7 +26,7 @@
   }
 }
 
-.iconClose {
+.closeIcon {
   width: 24px;
   height: 24px;
 
@@ -35,14 +35,14 @@
 }
 
 @media screen and (min-width: 768px) {
-  .iconClose {
+  .closeIcon {
       width: 28px;
       height: 28px;
   }
 }
 
-.closeButton:hover .iconClose,
-.closeButton:active .iconClose {
+.closeButton:hover .closeIcon,
+.closeButton:active .closeIcon {
   stroke: var(--accent);
 }
 
