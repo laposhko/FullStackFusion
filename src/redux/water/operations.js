@@ -1,11 +1,10 @@
-// необхідно додати базовий URL та перевірити шляхи
 // перевірити що повертає бекенд на кожній операції
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "http://localhost3000";
+axios.defaults.baseURL = 'https://aquatrackerapp.onrender.com'
 
 // import {
 
@@ -40,7 +39,7 @@ export const createCard = createAsyncThunk(
   "water/createcard",
   async (newCard, thunkAPI) => {
     try {
-      const response = await axios.post("water/addcard", newCard);
+      const response = await axios.post("/water", newCard);
       return response.data;
     } catch (error) {
       toast.error(`Something wrong in adding water card:${error.message}`);
@@ -51,9 +50,9 @@ export const createCard = createAsyncThunk(
 
 export const updateCard = createAsyncThunk(
   "water/update",
-  async (updatedCard, thunkAPI) => {
+  async (cardId, thunkAPI) => {
     try {
-      const response = await axios.post("water/updatecard", updateCard);
+      const response = await axios.post(`/water/${cardId}`);
       return response;
     } catch (error) {
       toast.error(`Something wrong in updating water card:${error.message}`);
@@ -64,9 +63,9 @@ export const updateCard = createAsyncThunk(
 
 export const deleteCard = createAsyncThunk(
   "water/deletecard",
-  async (id, thunkAPI) => {
+  async (cardId, thunkAPI) => {
     try {
-      const response = await axios.delete(`water/delete/${id}`);
+      const response = await axios.delete(`water/delete/${cardId}`);
       return response.data;
     } catch (error) {
       toast.error(`Something wrong in deleting water card:${error.message}`);
