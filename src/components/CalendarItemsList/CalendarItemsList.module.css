@@ -1,0 +1,7 @@
+.container_for_items {
+    display: flex;
+    flex-direction: raw;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+}
