@@ -1,7 +1,6 @@
-// при операції signIn бекенд по фото повертає лише accessToken. Потрібно щоб повертав інформацію про User, бо немає інформації для state.auth.user 
 
 import { createSlice } from "@reduxjs/toolkit";
-import { refresh, signIn, signOut, signUp } from "./operations";
+import { googleAuthorization, refresh, signIn, signOut, signUp } from "./operations";
 
 const authSlice = createSlice({
     name: 'auth',
@@ -71,6 +70,7 @@ const authSlice = createSlice({
         createdAt: null,
         updatedAt: null,
     };
+    state.googleAuthLink = null;
     state.token = null;
     state.isLoading = false;
     state.isError = false;

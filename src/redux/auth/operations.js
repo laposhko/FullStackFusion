@@ -1,13 +1,12 @@
 // необхідно додати базовий URL
 // додав тостери для помилок, щоб їх ідентифікувати. потрбіно?
-// в запиті refresh - пусте тіло з токеном. На фото з бекенду  - тілом має бути name i email, це потрібно перевірити на бекенді. 
-
+// в запиті refresh присвоювати рефреш токен ?
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://aquatrackerapp.onrender.com';
 
 export const setAuthHeader = (token) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -70,5 +69,4 @@ export const refresh = createAsyncThunk ('auth/refresh', async (token, thunkAPI)
     }
 }
 );
-
 
