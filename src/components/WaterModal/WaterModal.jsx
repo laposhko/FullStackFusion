@@ -2,7 +2,7 @@ import WaterForm from "./WaterForm/WaterForm.jsx";
 import { icons as sprite } from "../../img/sprite.svg";
 import css from "./WaterModal.module.css";
 
-const WaterModal = ({ isOpen, mode, onClose, water }) => {
+const WaterModal = ({ mode, onClose, water }) => {
   const title =
     mode === "add" ? (
       <h2 className={css.title}>Add Water</h2>
