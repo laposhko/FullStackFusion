@@ -1,0 +1,15 @@
+.waterInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 45.8px;
+}
+
+.waterList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}

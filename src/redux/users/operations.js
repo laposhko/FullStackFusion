@@ -1,3 +1,4 @@
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -16,3 +17,23 @@ export const getAllUsers = createAsyncThunk(
     }
   }
 );
+
+export const getCurrentUserInformation = createAsyncThunk('users/getcurrent', async (_, thunkAPI) =>{
+    try {
+        const response = await axios.get('/users/current');
+        return response.data;
+    } catch (error) {
+        toast.error(`Something wrong in current user information: ${error.message}`);
+        thunkAPI.rejectWithValue(error.message);
+    }
+});
+
+export const updateCurrentUser = createAsyncThunk('users/updateuser', async(updatedUser, thunkAPI) => {
+    try {
+        const response = await axios.patch('users/update', updatedUser);
+        return response;
+    } catch (error) {
+        toast.error(`Something wrong in updating current user information: ${error.message}`);
+        thunkAPI.rejectWithValue(error.message);
+    }
+});

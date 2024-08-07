@@ -83,15 +83,13 @@ form > *:not(:last-child) {
   font-size: 14px;
 }
 
-.linkContainer p a {
+.linkTo {
   color: var(--text-color);
   font-weight: 700;
   text-decoration: underline;
 }
 
 .svgIcon {
-  width: 20px;
-  height: 20px;
   display: none;
 }
 
@@ -116,5 +114,14 @@ form > *:not(:last-child) {
   .formBtn {
     font-size: 16px;
     padding: 18px 187px;
+  }
+  /* Add svg style */
+  .svgIcon {
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .form {
+    margin-top: 74px;
   }
 }

@@ -11,6 +11,7 @@
   overflow: hidden;
   z-index: 1;
   font-weight: 700;
+  background-color: var(--main-background-color);
   /* outline: 1px solid black; */
 }
 
@@ -43,4 +44,6 @@
   margin-right: 10px;
   fill: #323f4766;
   transition: color 0.3s linear;
+
+  /* transform: rotate(45deg); */
 }

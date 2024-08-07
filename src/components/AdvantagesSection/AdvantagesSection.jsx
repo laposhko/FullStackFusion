@@ -19,12 +19,23 @@ import clsx from "clsx";
 
 export default function AdvantagesSection() {
   const userQuantity = useSelector(selectUsersQuantity);
+  const isLoading = useSelector(selectUsersIsLoading);
+  const isError = useSelector(selectUsersIsError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
   const totalUsers = userQuantity?.data?.totalUsers || "";
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading user quantity</div>;
+  }
+
 
   return (
     <div className={css.advantagesContainer}>
@@ -105,7 +116,8 @@ export default function AdvantagesSection() {
               className={clsx(
                 css.advantagesListText,
                 css.advantagesListTextFirst
-              )}>
+              )}
+            >
               Habit drive
             </p>
           </li>

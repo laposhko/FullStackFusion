@@ -1,0 +1,11 @@
+.wrapper {
+  padding: 49px 0 40px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
