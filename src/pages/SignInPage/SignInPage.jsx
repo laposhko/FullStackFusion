@@ -4,10 +4,10 @@ import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSect
 import css from "./SignInPage.module.css";
 
 const SignInPage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth > 1440);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768);
+    setIsMobile(window.innerWidth > 1440);
   };
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const SignInPage = () => {
     <div>
       <div className={css.signInContainer}>
         <SignInForm />
-        {!isMobile && <AdvantagesSection />}
+        {isMobile && <AdvantagesSection />}
       </div>
     </div>
   );
