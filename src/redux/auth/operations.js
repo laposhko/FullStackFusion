@@ -34,7 +34,8 @@ export const signIn = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const response = await axios.post("/users/login", user);
-      setAuthHeader(response.data.accessToken);
+      setAuthHeader(response.data.data.accessToken);
+      return response.data.data;
     } catch (error) {
       toast.error(`Something went wrong in Sign In: ${error.message}`);
       thunkAPI.rejectWithValue(error.message);
