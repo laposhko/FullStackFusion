@@ -34,7 +34,7 @@ export const getWaterDayInfo = createAsyncThunk(
 );
 
 export const getWaterMonthInfo = createAsyncThunk(
-  "water/day",
+  "water/getwatermonthinfo",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/water/month");
@@ -72,7 +72,7 @@ export const updateCard = createAsyncThunk(
   async (cardId, thunkAPI) => {
     try {
       const response = await axios.post(`/water/${cardId}`);
-      return response;
+      return response.data;
     } catch (error) {
       toast.error(`Something wrong in updating water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
@@ -84,8 +84,7 @@ export const deleteCard = createAsyncThunk(
   "water/deletecard",
   async (cardId, thunkAPI) => {
     try {
-      const response = await axios.delete(`water/delete/${cardId}`);
-      return response.data;
+       await axios.delete(`water/delete/${cardId}`);
     } catch (error) {
       toast.error(`Something wrong in deleting water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
