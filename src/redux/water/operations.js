@@ -1,5 +1,3 @@
-// перевірити що повертає бекенд на кожній операції
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -14,14 +12,35 @@ axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
 //   } from './services';
 
-export const getCards = createAsyncThunk(
-  "water/getcards",
+export const getWaterDayInfo = createAsyncThunk(
+  "water/getwaterdayinfo",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/water");
+      const response = await axios.get("/water/day");
       return response.data;
     } catch (error) {
-      toast.error(`Something went wrong in getting cards:${error.message}`);
+      toast.error(`Something went wrong in getting Water day Info:${error.message}`);
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const fullReduxState = thunkAPI.getState();
+      const token = fullReduxState.auth.token;
+
+      return token !== null;
+    },
+  }
+);
+
+export const getWaterMonthInfo = createAsyncThunk(
+  "water/day",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/water/month");
+      return response.data;
+    } catch (error) {
+      toast.error(`Something went wrong in getting Month day Info:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
     }
   },

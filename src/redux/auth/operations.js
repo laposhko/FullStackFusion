@@ -1,6 +1,5 @@
 // необхідно додати базовий URL
 // додав тостери для помилок, щоб їх ідентифікувати. потрбіно?
-// в запиті refresh присвоювати рефреш токен ?
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -69,4 +68,35 @@ export const refresh = createAsyncThunk ('auth/refresh', async (token, thunkAPI)
     }
 }
 );
+
+export const requestResetEmail = createAsyncThunk ('auth/resetemai', async (userEmail, thunkAPI) => {
+try {
+    await axios.post('/users/request-reset-email');
+} catch (error) {
+    toast.error(`Something went wrong in reset email: ${error.message}`);
+        thunkAPI.rejectWithValue(error.message);
+}
+});
+
+export const googleAuthLink = createAsyncThunk('auth/googleauth', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get('/auth/get-oauth-url');
+        return response.data;
+    } catch (error) {
+        toast.error(`Something went wrong in google authorization: ${error.message}`);
+        thunkAPI.rejectWithValue(error.message);
+    }
+});
+
+export const resetPassword = createAsyncThunk('auth/resetpassword', async (bodyRequest, thunkAPI) => {
+try {
+await axios.post('users/reset-password', bodyRequest);
+} catch (error) {
+    toast.error(`Something went wrong in reset password: ${error.message}`);
+    thunkAPI.rejectWithValue(error.message);
+}
+
+})
+
+
 
