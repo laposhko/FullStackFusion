@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../redux/auth/operations";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 import css from "./SignInForm.module.css";
 
@@ -38,9 +38,14 @@ const SignInForm = () => {
           email: data.email,
           password: data.password,
         })
-      );
-
-      navigate("/tracker");
+      )
+        .unwrap()
+        .then(() => {
+          navigate("/tracker");
+        })
+        .catch(() => {
+          alert("The login details are invalid");
+        });
     } catch (error) {
       alert(error.message);
       // toast.error(error.message);
