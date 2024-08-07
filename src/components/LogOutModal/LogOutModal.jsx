@@ -1,14 +1,13 @@
-import css from './LogOutModal.module.css';
-import { useModalContext } from '../../context/useModalContext.jsx';
-import { useDispatch } from 'react-redux';
-// import { logOut } from '../../../redux/auth/operation.js';
+import css from "./LogOutModal.module.css";
+import { useModalContext } from "../../context/useModalContext.jsx";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../redux/auth/operations.js";
 
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const LogOutModal = () => {
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
-  
 
   return (
     <div className={css.modalContent}>
@@ -20,15 +19,15 @@ const LogOutModal = () => {
         <button
           className={css.logoutButton}
           onClick={() => {
-            dispatch(logOut());
+            dispatch(signOut());
             closeModal();
-            toast.success('You have successfully logged out');
+            toast.success("You have successfully logged out");
           }}
         >
           Log out
         </button>
         <button className={css.cancelButton} onClick={closeModal}>
-         Cancel
+          Cancel
         </button>
       </div>
     </div>
