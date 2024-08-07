@@ -1,7 +1,8 @@
-import css from "./UserBarPopover.module.css";
-import svg from "../../img/icons/sprite.svg";
-import { useModalContext } from "../../context/useModalContext";
-import UserSettingsModal from "../UserSettingsModal/UserSettingsModal";
+import css from './UserBarPopover.module.css';
+import svg from '../../img/icons/sprite.svg';
+import { useModalContext } from '../../context/useModalContext';
+import UserSettingsModal from '../UserSettingsModal/UserSettingsModal';
+import LogOutModal from '../LogOutModal/LogOutModal';
 function UserBarPopover() {
   const { openModal } = useModalContext();
 
@@ -33,8 +34,9 @@ function UserBarPopover() {
           <button
             className={css.popoverItem}
             type="button"
-            //function opening logout modal when it will be ready
-
+            onClick={() => {
+              openModal(<LogOutModal></LogOutModal>);
+            }}
             // onClick={handleOpenSignOut}
           >
             <svg className={css.icon}>
