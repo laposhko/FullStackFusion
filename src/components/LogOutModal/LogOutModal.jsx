@@ -20,10 +20,16 @@ const LogOutModal = () => {
         <button
           className={css.logoutButton}
           onClick={() => {
-            dispatch(signOut());
-            closeModal();
-            toast.success("You have successfully logged out");
-            navigation("/");
+            dispatch(signOut())
+              .unwrap()
+              .then(() => {
+                closeModal();
+                toast.success("You have successfully logged out");
+                navigation("/");
+              })
+              .catch(() => {
+                alert("Something wrong, please try again");
+              });
           }}
         >
           Log out

@@ -1,12 +1,12 @@
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useDispatch, useSelector } from "react-redux";
-import { icons as sprite } from "../../img/sprite.svg";
-import { createCard, updateCard } from "../../redux/water/operations";
-import { selectActiveDay } from "../../redux/selectors";
-import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay.js";
+// import { useDispatch, useSelector } from "react-redux";
+// import { icons as sprite } from "../../img/icons/sprite.svg";
+// import { createCard, updateCard } from "../../redux/water/operations";
+// import { selectActiveDay } from "../../redux/selectors";
+// import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay";
 import css from "./WaterForm.module.css";
 
 const schema = Yup.object().shape({
@@ -29,7 +29,7 @@ const getTimeFormat = () => {
   return timeFormatting;
 };
 
-export const WaterForm = ({ mode, onClose, water = {} }) => {
+const WaterForm = ({ mode, onClose, water = {} }) => {
   const {
     register,
     handleSubmit,
@@ -46,8 +46,8 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
     },
   });
   //цей селектор повинен додати Артем
-  const activeDay = useSelector(selectActiveDay);
-  const dispatch = useDispatch();
+  // const activeDay = useSelector(selectActiveDay);
+  // const dispatch = useDispatch();
 
   const handleClickMinus = () => {
     const current = getValues("waterValue");
@@ -60,28 +60,27 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
   };
 
   const onSubmit = () => {
-    const newData = {
-      localDate: convertDateFormatForActiveDay(activeDay),
-      waterValue: watch("waterValue"),
-      localTime: watch("localTime"),
-    };
-
-    try {
-      if (mode === "add") {
-        dispatch(createCard(newData));
-        toast.success(
-          `The amount of water consumed has been added successfully.`
-        );
-      } else if (mode === "edit") {
-        dispatch(updateCard({ _id: water._id, ...newData }));
-        toast.success(
-          "The amount of water consumed has been successfully updated."
-        );
-      }
-      onClose();
-    } catch (error) {
-      toast.error("Failed to save water data. Please try again.");
-    }
+    //   const newData = {
+    //     localDate: convertDateFormatForActiveDay(activeDay),
+    //     waterValue: watch("waterValue"),
+    //     localTime: watch("localTime"),
+    //   };
+    //   try {
+    //     if (mode === "add") {
+    //       dispatch(createCard(newData));
+    //       toast.success(
+    //         `The amount of water consumed has been added successfully.`
+    //       );
+    //     } else if (mode === "edit") {
+    //       dispatch(updateCard({ _id: water._id, ...newData }));
+    //       toast.success(
+    //         "The amount of water consumed has been successfully updated."
+    //       );
+    //     }
+    //     onClose();
+    //   } catch (error) {
+    //     toast.error("Failed to save water data. Please try again.");
+    //   }
   };
 
   const handleBlur = () => {
@@ -104,9 +103,9 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
           disabled={getValues("waterValue") === 50}
         >
           {/* //немає іконки мінус */}
-          <svg className={css.quantityIcon}>
+          {/* <svg className={css.quantityIcon}>
             <use xlinkHref={`${sprite}#icon-minus-40x40`}></use>
-          </svg>
+          </svg> */}
         </button>
         <span className={css.amountValue}>
           {watch("waterValue") >= 999
@@ -121,9 +120,9 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
           onClick={handleClickPlus}
           disabled={getValues("waterValue") === 1500}
         >
-          <svg className={css.quantityIcon}>
+          {/* <svg className={css.quantityIcon}>
             <use xlinkHref={`${sprite}#icon-plus-40x40`}></use>
-          </svg>
+          </svg> */}
         </button>
       </div>
 
@@ -173,3 +172,5 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
     </form>
   );
 };
+
+export default WaterForm;

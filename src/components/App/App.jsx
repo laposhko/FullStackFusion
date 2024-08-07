@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
-import Modals from "../Modal/ModalWindow";
 import Loader from "../Loader/Loader.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
@@ -35,7 +34,6 @@ export default function App() {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Modals />
     </Suspense>
   );
 }
