@@ -8,6 +8,8 @@ const WaterProgressBar = ({ dailyNorma }) => {
     (sum, waterItem) => sum + waterItem.volume,
     0
   );
+
+  console.log(totalVolume)
   const percentage = Math.round((totalVolume / dailyNorma) * 100);
 
   const showPercentage = percentage => {
