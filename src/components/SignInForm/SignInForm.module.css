@@ -10,7 +10,9 @@
   margin: 16px;
   background-color: var(--main-background-color);
 }
-
+.formSection {
+  position: relative;
+}
 .signInForm {
   display: flex;
   background-color: var(--main-background-color);
