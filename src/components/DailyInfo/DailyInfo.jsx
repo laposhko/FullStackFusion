@@ -1,5 +1,5 @@
 import ChooseDate from '../ChooseDate/ChooseDate';
-// import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
+import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 
 import css from '../DailyInfo/DailyInfo.module.css';
@@ -9,7 +9,7 @@ function DailyInfo() {
     <div className={css.wrapper}>
       <div className={css.infoWrapper}>
         <ChooseDate />
-        {/* <AddWaterBtn /> */}
+        <AddWaterBtn />
       </div>
       <WaterList />
     </div>
