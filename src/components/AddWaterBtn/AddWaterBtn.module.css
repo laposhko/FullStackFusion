@@ -1,0 +1,115 @@
+.btn {
+    display: flex;
+    gap: 10px;
+    width: 140px;
+    height: 46px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 30px;
+    letter-spacing: -0.01em;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .addBtnStyle1 {
+    padding: 20px 14px;
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    z-index: 2;
+    color: var(--main-background-color);
+    background-color: var(--button-gray);
+    transition:  150ms ease-in;
+  }
+
+  .addBtnStyle2 {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 20px 8px;
+    /* position: absolute;
+    left: 16px;
+    bottom: 32px; */
+    color: var(--button-gray);
+    background-color: transparent;
+  }
+
+  .icon {
+    transition:  150ms ease-in;
+    transform: rotate(45deg);
+  }
+
+  .addBtnStyle1 .icon {
+    stroke: var(--main-background-color);
+  }
+
+  .addBtnStyle2 .icon {
+    stroke: var(--button-gray);
+  }
+
+  .addBtnStyle1 .iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .addBtnStyle2 .iconWrapper {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: var(--background-avocado-green);
+    transition:  150ms ease-in;
+  }
+
+  .addBtnStyle1:hover {
+    color: var(--background-avocado-green);
+  }
+
+  .addBtnStyle1:hover .icon {
+    stroke: var(--background-avocado-green);
+  }
+
+  .addBtnStyle2:hover .icon {
+    stroke: var(--main-background-color);
+  }
+
+  .addBtnStyle2:hover .iconWrapper {
+    background-color: var(--button-gray);
+  }
+
+
+  @media screen and (min-width: 768px) {
+    .btn {
+      width: 178px;
+      height: 60px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .addBtnStyle1 {
+      padding: 18px 30px;
+      right: 32px;
+      bottom: 64px;
+    }
+
+    .addBtnStyle2 {
+      padding: 18px 24px;
+      /* left: 32px;
+      bottom: 64px; */
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .addBtnStyle1 {
+      padding: 20px 30px;
+    }
+
+    .addBtnStyle2 {
+      padding: 18px 24px;
+    }
+  }

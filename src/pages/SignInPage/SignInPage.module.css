@@ -1,0 +1,30 @@
+.signInContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.signInPage {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--main-background-color);
+}
+
+.leftSection {
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightSection {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-background-color);
+}

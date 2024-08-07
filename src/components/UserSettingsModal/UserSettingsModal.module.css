@@ -1,0 +1,21 @@
+.modal {
+  /* padding: 20px;
+  width: 343px;
+  background-color: aqua;
+  position: fixed-center;
+  top: 20px; */
+  width: 100%;
+  /* min-width: 320px; */
+  max-width: 375px;
+  padding: 40px 20px;
+  /* border-radius: 15px; */
+  /* box-sizing: border-box; */
+}
+.title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--text-color);
+}
