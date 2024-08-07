@@ -1,56 +1,65 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 6px;
     align-items: center;
     justify-content: center;
+    width: 28px;
+    height: 44px;
+
+    @media screen and (min-width: 768px) {
+        width: 38px;
+        height: 65px;
+        gap: 4px;
+    }
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 28px;
+    height: 28px;
     border-radius: 30px;
-    padding: 7px 15px 7px 15px;
+    padding: 5px, 9px, 5px, 9px;
     margin: 0;
-    background-color: rgba(50, 63, 71, 1);
     font-family: Poppins;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
-    line-height: 24px;
+    line-height: 18px;
     letter-spacing: -0.01em;
     text-align: center;
+    color: rgba(50, 63, 71, 1);
     
+    @media screen and (min-width:768px) {
+        width: 38px;
+        height: 38px;
+        padding: 7px, 15px, 7px, 15px;
+        font-size: 16px;
+        line-height: 24px;
+
+    }
 };
 
-.btn_text {
-    font-family: Poppins;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    text-align: center;
-    
-    
-}
 p {
     margin: 0;
 }
 
 .text {
-    width: 29px;
-    height: 23px;
     padding: 0px;
     color: rgba(47, 47, 47, 0.6);
     margin: 0;
     font-family: Poppins;
-font-size: 12px;
-font-weight: 400;
-line-height: 22.4px;
-text-align: center;
-justify-content: center;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 10px;
+    text-align: center;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 22px;
+    }
 }
 
 .active {
@@ -59,11 +68,11 @@ justify-content: center;
 }
 
 .not_reached_goal {
-background-color:rgba(50, 63, 71, 0.1);
+background-color:rgba(50, 63, 71, 0.2);
 }
 
 .reached_goal {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .today {

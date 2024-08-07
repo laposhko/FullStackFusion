@@ -1,11 +1,11 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap:15px;
-}
+    gap:24px;
 
-.title {
-margin: 0;
+    @media screen and (min-width: 768px) {
+        gap: 20px;
+    }
 }
 
 .upper_part_container {
@@ -13,12 +13,47 @@ margin: 0;
     justify-content: space-between;
 }
 
+.text_rightside {
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    min-width: 60px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+        font-size: 16px;
+        line-height: 24px;
+        min-width: 120px;
+    }
+    }
+
+.text_leftside {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+        font-size: 28px;
+        line-height: 32px;
+    }
+}
+
+
+
 .right_side_container {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 16px;
     align-items: center;
     justify-content: center;
+
+    @media screen and (min-width: 768px) {
+        gap: 20px;
+    }
 }
 
 .btn {
@@ -29,14 +64,19 @@ margin: 0;
     height: 18px;
     border-radius:  0;
     background-color: white;
+    color: rgba(50, 63, 71, 1);
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 24px;
 }
 
-.text {
-font-family: Poppins;
-font-size: 16px;
-font-weight: 700;
-line-height: 24px;
-letter-spacing: -0.01em;
-text-align: center;
+.svt_btn {
+    width: 20px;
+    height: 20px;
 
+    @media screen and (min-width: 768px) {
+        width: 24px;
+        height: 24px;
+    }
 }
+
