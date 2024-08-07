@@ -61,7 +61,7 @@ export const refresh = createAsyncThunk(
       const token = fullReduxState.auth.token;
       setAuthHeader(token);
       const response = await axios.post("/users/refresh");
-      return response.data;
+      return response.data.data;
     } catch (error) {
       toast.error(`Something went wrong in Refresh: ${error.message}`);
       thunkAPI.rejectWithValue(error.message);
