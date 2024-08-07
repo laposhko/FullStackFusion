@@ -1,13 +1,15 @@
+import * as Yup from "yup";
+import Logo from "../../components/Logo/Logo";
+import sprite from "../../img/icons/sprite.svg";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { signIn } from "../../redux/auth/operations";
+// import { toast } from "react-toastify";
+
 import css from "./SignInForm.module.css";
-import Logo from "../../components/Logo/Logo";
-import sprite from "../../img/icons/sprite.svg";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,16 +33,17 @@ const SignInForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await dispatch({ type: "auth/signIn", payload: data });
+      dispatch(
+        signIn({
+          email: data.email,
+          password: data.password,
+        })
+      );
 
-      if (response.error) {
-        throw new Error(response.error.message);
-      }
-
-      localStorage.setItem("token", response.payload.token);
       navigate("/tracker");
     } catch (error) {
-      toast.error(error.message);
+      alert(error.message);
+      // toast.error(error.message);
     }
   };
 
