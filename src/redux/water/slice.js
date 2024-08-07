@@ -41,7 +41,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.monthItems = action.payload.items;
-        state.monthTotalItems = action.payload.total;
+        state.monthTotalItems = action.payload.totalItems;
         state.monthWaterAmount = action.payload.waterAmount;
       })
       .addCase(getWaterMonthInfo.rejected, (state) => {
@@ -89,8 +89,6 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.dayItems = [];
-        state.dayTotalItems = [];
-        state.dayWaterAmount = [];
         state.monthItems = [];
         state.monthTotalItems = [];
         state.monthWaterAmount = [];
