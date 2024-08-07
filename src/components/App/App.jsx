@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
-import TestModalsPage from "../../pages/TestModalsPage";
 import Modals from "../Modal/ModalWindow";
 import Loader from "../Loader/Loader.jsx";
 
@@ -34,7 +33,6 @@ export default function App() {
           path="/tracker"
           element={<PrivateRoute component={<TrackerPage />} />}
         />
-        <Route path="/testModals" element={<TestModalsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Modals />
