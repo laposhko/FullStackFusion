@@ -1,9 +1,7 @@
-
 import css from "./LogOutModal.module.css";
 import { useModalContext } from "../../context/useModalContext.jsx";
 import { useDispatch } from "react-redux";
 import { signOut } from "../../redux/auth/operations.js";
-
 
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +22,8 @@ const LogOutModal = () => {
           onClick={() => {
             dispatch(signOut());
             closeModal();
-            navigation("/");
-
             toast.success("You have successfully logged out");
+            navigation("/");
           }}
         >
           Log out
