@@ -7,7 +7,7 @@ const SignInPage = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth > 1440);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth > 1440);
+    setIsMobile(window.innerWidth >= 1440);
   };
 
   useEffect(() => {

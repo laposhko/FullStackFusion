@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { selectUsersQuantity } from "../../redux/users/selectors.js";
+import {
+  selectUsersQuantity,
+  selectUsersIsLoading,
+  selectUsersIsError,
+} from "../../redux/users/selectors.js";
 import { getAllUsers } from "../../redux/users/operations.js";
 import imageCustomerGirlMob1x from "../../img/HomePage/male-memojis-first-girl-mobile.png";
 import imageCustomerGirlMob2x from "../../img/HomePage/male-memojis-first-girl-mobile@2x.png";
@@ -35,7 +39,6 @@ export default function AdvantagesSection() {
   if (isError) {
     return <div>Error loading user quantity</div>;
   }
-
 
   return (
     <div className={css.advantagesContainer}>
