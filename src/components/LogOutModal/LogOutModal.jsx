@@ -6,11 +6,12 @@ import { signOut } from "../../redux/auth/operations.js";
 
 
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const LogOutModal = () => {
   const { closeModal } = useModalContext();
   const dispatch = useDispatch();
-
+  const navigation = useNavigate();
   return (
     <div className={css.modalContent}>
       <div className={css.wrapperText}>
@@ -23,6 +24,8 @@ const LogOutModal = () => {
           onClick={() => {
             dispatch(signOut());
             closeModal();
+            navigation("/");
+
             toast.success("You have successfully logged out");
           }}
         >

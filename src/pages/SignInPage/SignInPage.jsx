@@ -11,6 +11,7 @@ const SignInPage = () => {
   };
 
   useEffect(() => {
+    setIsMobile(window.innerWidth >= 1440);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
