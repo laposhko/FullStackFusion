@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { refresh, signIn, signOut, signUp } from "./operations";
+import { googleAuthLink, refresh, requestResetEmail, resetPassword, signIn, signOut, signUp } from "./operations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -16,6 +16,7 @@ const authSlice = createSlice({
       createdAt: null,
       updatedAt: null,
     },
+    googleLink: null,
     token: null,
     isLoading: false,
     isLoggedIn: false,
@@ -71,7 +72,7 @@ const authSlice = createSlice({
           createdAt: null,
           updatedAt: null,
         };
-        state.googleAuthLink = null;
+        state.googleLink = null;
         state.token = null;
         state.isLoading = false;
         state.isError = false;
@@ -91,6 +92,44 @@ const authSlice = createSlice({
       .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
+        state.isError = true;
+      })
+      .addCase(requestResetEmail.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(requestResetEmail.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isError = false;
+      })
+      .addCase(requestResetEmail.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(googleAuthLink.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(googleAuthLink.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.googleLink = action.payload;
+      })
+      .addCase(googleAuthLink.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(resetPassword.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isLoggedIn = true;
+      })
+      .addCase(resetPassword.rejected, (state) => {
+        state.isLoading = false;
         state.isError = true;
       }),
 });

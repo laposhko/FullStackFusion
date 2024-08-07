@@ -1,25 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createCard, deleteCard, getCards, updateCard } from "./operations";
+import { createCard, deleteCard, getWaterDayInfo, getWaterMonthInfo, updateCard } from "./operations";
 import { signOut } from "../auth/operations";
 
 
 const waterSlice = createSlice({
     name: 'water',
     initialState: {
-        cards: [],
+        dayItems: [],
+        monthItems:[],
+        monthTotalItems:[],
+        monthWaterAmount: [],
         isLoading: false,
         isError: false,
     },
-    extraReducers: builder => builder.addCase(getCards.pending, (state) => {
+    extraReducers: builder => builder.addCase(getWaterDayInfo.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
     })
-    .addCase(getCards.fulfilled, (state, action) => {
+    .addCase(getWaterDayInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.cards = action.payload;
+        state.dayItems = action.payload;
     })
-    .addCase(getCards.rejected, (state) => {
+    .addCase(getWaterDayInfo.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+    })
+    .addCase(getWaterMonthInfo.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+    } )
+    .addCase(getWaterMonthInfo, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.monthItems = action.payload.items;
+        state.monthTotalItems = action.payload.total;
+        state.monthWaterAmount = action.payload.waterAmount;
+    })
+    .addCase(getWaterMonthInfo.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
     })
@@ -63,7 +81,12 @@ const waterSlice = createSlice({
     .addCase(signOut.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
-        state.cards = [];
+        state.dayItems = [];
+        state.dayTotalItems = [];
+        state.dayWaterAmount = [];
+        state.monthItems = [];
+        state.monthTotalItems = [];
+        state.monthWaterAmount = [];
     })
     .addCase(signOut.rejected, (state) => {
         state.isLoading = false;
