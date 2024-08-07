@@ -38,9 +38,14 @@ const SignInForm = () => {
           email: data.email,
           password: data.password,
         })
-      );
-
-      navigate("/tracker");
+      )
+        .unwrap()
+        .then(() => {
+          navigate("/tracker");
+        })
+        .catch(() => {
+          alert("The login details are invalid");
+        });
     } catch (error) {
       alert(error.message);
       // toast.error(error.message);

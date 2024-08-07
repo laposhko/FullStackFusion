@@ -12,6 +12,8 @@ const waterSlice = createSlice({
   name: "water",
   initialState: {
     dayItems: [],
+    dayWaterAmount: [],
+    dayTotal: null,
     monthItems: [],
     monthTotalItems: [],
     monthWaterAmount: [],
@@ -27,7 +29,9 @@ const waterSlice = createSlice({
       .addCase(getWaterDayInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.dayItems = action.payload;
+        state.dayItems = action.payload.items;
+        state.dayWaterAmount = action.payload.waterAmount;
+        state.dayTotal = action.payload.total;
       })
       .addCase(getWaterDayInfo.rejected, (state) => {
         state.isLoading = false;
@@ -41,7 +45,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.monthItems = action.payload.items;
-        state.monthTotalItems = action.payload.total;
+        state.monthTotalItems = action.payload.totalItems;
         state.monthWaterAmount = action.payload.waterAmount;
       })
       .addCase(getWaterMonthInfo.rejected, (state) => {
@@ -89,8 +93,8 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.dayItems = [];
-        state.dayTotalItems = [];
         state.dayWaterAmount = [];
+        state.dayTotal = [];
         state.monthItems = [];
         state.monthTotalItems = [];
         state.monthWaterAmount = [];
