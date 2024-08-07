@@ -13,11 +13,13 @@ function WaterItem() {
       </div>
       <div className={css.btnsWrapper}>
         <button className={css.btn}>
+          {/* add Onclick */}
           <svg className={css.svg}>
             <use href={`${svg}#icon-Vector`}></use>
           </svg>
         </button>
         <button className={css.btn}>
+          {/* add Onclick */}
           <svg className={css.svg}>
             <use href={`${svg}#icon-trash`}></use>
           </svg>
