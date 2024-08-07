@@ -3,17 +3,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = 'https://aquatrackerapp.onrender.com';
+axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
-export const getAllUsers = createAsyncThunk('users/getallusers', async(_, thunkAPI) => {
-try {
-    const response = await axios.get('/users/total');
-return response.data
-} catch (error) {
-    toast.error(`Something wrong in total users amount: ${error.message}`);
-    thunkAPI.rejectWithValue(error.message);
-}
-});
+export const getAllUsers = createAsyncThunk(
+  "users/getallusers",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/users/total");
+      return response.data;
+    } catch (error) {
+      toast.error(`Something wrong in total users amount: ${error.message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const getCurrentUserInformation = createAsyncThunk('users/getcurrent', async (_, thunkAPI) =>{
     try {
@@ -34,5 +37,3 @@ export const updateCurrentUser = createAsyncThunk('users/updateuser', async(upda
         thunkAPI.rejectWithValue(error.message);
     }
 });
-
-

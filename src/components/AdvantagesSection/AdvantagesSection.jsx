@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  selectUsersQuantity,
-  selectUsersIsLoading,
-  selectUsersIsError,
-} from "../../redux/users/selectors.js";
+import { selectUsersQuantity } from "../../redux/users/selectors.js";
 import { getAllUsers } from "../../redux/users/operations.js";
 import imageCustomerGirlMob1x from "../../img/HomePage/male-memojis-first-girl-mobile.png";
 import imageCustomerGirlMob2x from "../../img/HomePage/male-memojis-first-girl-mobile@2x.png";
@@ -22,7 +18,7 @@ import css from "./AdvantagesSection.module.css";
 import clsx from "clsx";
 
 export default function AdvantagesSection() {
-  // const userQuantity = useSelector(selectUsersQuantity);
+  const userQuantity = useSelector(selectUsersQuantity);
   const isLoading = useSelector(selectUsersIsLoading);
   const isError = useSelector(selectUsersIsError);
   const dispatch = useDispatch();
@@ -30,6 +26,7 @@ export default function AdvantagesSection() {
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
+  const totalUsers = userQuantity?.data?.totalUsers || "";
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,6 +35,7 @@ export default function AdvantagesSection() {
   if (isError) {
     return <div>Error loading user quantity</div>;
   }
+
 
   return (
     <div className={css.advantagesContainer}>
@@ -107,7 +105,7 @@ export default function AdvantagesSection() {
           </li>
         </ul>
         <p className={css.customerText}>
-          Our <span className={css.happy}>happy</span> customers
+          Our {totalUsers} <span className={css.happy}>happy</span> customers
         </p>
       </div>
 
