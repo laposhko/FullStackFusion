@@ -1,9 +1,9 @@
 import CalendarPagination from "../CalendarPagination/CalendarPagination";
-// import css from "../Calendar/Calendar.module.css";
+import css from '../Calendar/Calendar.module.css';
 
 const Calendar = () => {
   return (
-    <div>
+    <div className={css.container}>
       <CalendarPagination />
     </div>
   );

@@ -1,6 +1,6 @@
 import css from '../CalendarItem/CalendarItem.module.css'
 
-const lessThanFullNorm = (formatDate, day, dayResult, isActive, activeIndex) => {
+const lessThanFullNorm = (formatDate, dayResult, isActive) => {
     const date = new Date();
     const formattedDay =  String(date. getDate()). padStart(2,'0');
     const year = date.getFullYear();
@@ -17,7 +17,7 @@ const lessThanFullNorm = (formatDate, day, dayResult, isActive, activeIndex) => 
         return `${css.btn} ${css.active}`
     }
 
-
+    
     if(dayResult < 100) {
         return `${css.btn} ${css.not_reached_goal}`
     }
@@ -30,8 +30,8 @@ const lessThanFullNorm = (formatDate, day, dayResult, isActive, activeIndex) => 
 };
 
 
-const CalendarItem = ({formatDate, day, dayResult, isActive, activeIndex}) => {
-    const styles = lessThanFullNorm(formatDate, day, dayResult, isActive, activeIndex);
+const CalendarItem = ({formatDate, day, dayResult, isActive}) => {
+    const styles = lessThanFullNorm(formatDate, dayResult, isActive);
 
     return (<div  className={css.container}>
         <button  className={styles}>{day}</button>
