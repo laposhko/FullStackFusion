@@ -1,5 +1,5 @@
 // чи потрібні додаткові селектори?
-
+export const selectAuthState = state => state.auth;
 export const selectAuthUser = state =>  state.auth.user;
 export const selectAuthToken = state => state.auth.token;
 export const selectAuthIsLoading = state => state.auth.isLoading;
