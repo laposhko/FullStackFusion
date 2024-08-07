@@ -93,7 +93,9 @@ const SignInForm = () => {
                 >
                   <svg className={css.svgIcon}>
                     <use
-                      xlinkHref={`${sprite}#${showPassword ? "icon-eye" : "icon-eye-off"}`}
+                      xlinkHref={`${sprite}#${
+                        showPassword ? "icon-eye" : "icon-eye-off"
+                      }`}
                     ></use>
                   </svg>
                 </button>
@@ -108,7 +110,7 @@ const SignInForm = () => {
               <p>
                 Don&apos;t have an account?{" "}
                 <Link className={css.linkTo} to={"/signup"}>
-                Sign Up
+                  Sign Up
                 </Link>
               </p>
             </div>
