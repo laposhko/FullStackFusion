@@ -18,8 +18,8 @@ export const clearAuthHeader = () => {
 export const signUp = createAsyncThunk ('auth/signup', async (newUser, thunkAPI) => {
     try {
         const response = await axios.post('/users/register', newUser);
-        setAuthHeader(response.data.accessToken);
-        return response.data;
+        setAuthHeader(response.data.data.accessToken);
+        return response.data.data;
     } catch (error) {
         toast.error(`Something went wrong in Sign Up: ${error.message}`);
         thunkAPI.rejectWithValue(error.message);
@@ -30,6 +30,8 @@ export const signIn = createAsyncThunk('auth/signin', async (user, thunkAPI) => 
    try {
     const response = await axios.post('/users/login', user);
     setAuthHeader(response.data.accessToken);
+    console.log(response.data.data)
+    return response.data.data;
    } catch (error) {
     toast.error(`Something went wrong in Sign In: ${error.message}`);
     thunkAPI.rejectWithValue(error.message);
