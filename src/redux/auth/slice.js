@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { googleAuthLink, refresh, requestResetEmail, resetPassword, signIn, signOut, signUp } from "./operations";
+import { getCurrentUserInformation } from "../users/operations";
 
+
+getCurrentUserInformation
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -129,6 +132,20 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(resetPassword.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(getCurrentUserInformation.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(getCurrentUserInformation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isLoggedIn = true;
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUserInformation.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       }),
