@@ -1,9 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { googleAuthLink, refresh, requestResetEmail, resetPassword, signIn, signOut, signUp } from "./operations";
-import { getCurrentUserInformation } from "../users/operations";
+import {
+  googleAuthLink,
+  refresh,
+  requestResetEmail,
+  resetPassword,
+  signIn,
+  signOut,
+  signUp,
+  getCurrentUserInformation,
+} from "./operations";
+// import { getCurrentUserInformation } from "../users/operations";
 
-
-getCurrentUserInformation
+// getCurrentUserInformation;
 const authSlice = createSlice({
   name: "auth",
   initialState: {
