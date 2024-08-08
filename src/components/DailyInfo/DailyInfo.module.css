@@ -1,11 +1,20 @@
-.wrapper {
-  padding: 49px 0 40px;
-}
-
 .infoWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 24px;
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 49px 0 40px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 100%;
+    padding: 40px 0;
+    margin: 0 auto;
+  }
 }

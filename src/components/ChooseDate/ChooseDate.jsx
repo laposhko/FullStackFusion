@@ -5,8 +5,6 @@ import css from '../ChooseDate/ChooseDate.module.css';
 function ChooseDate() {
   const water = useSelector(selectDayItems);
 
-  console.log(water);
-
   return <h3 className={css.date}>Today</h3>;
 }
 
