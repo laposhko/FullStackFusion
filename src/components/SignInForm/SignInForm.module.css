@@ -48,10 +48,10 @@
 }
 
 .svgIcon {
-  width: 20px;
-  height: 20px;
-  position: relative;
-  fill: currentColor;
+  display: none;
+  display: block;
+  fill: none;
+  stroke: black;
 }
 
 .inputContainer .togglePassword {
