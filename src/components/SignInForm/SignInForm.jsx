@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../redux/auth/operations";
+import useToast from "../../hooks/useToast"; 
 
 import css from "./SignInForm.module.css";
 
@@ -14,6 +15,7 @@ const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { successToast, errorToast } = useToast(); 
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -32,22 +34,17 @@ const SignInForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      dispatch(
+      await dispatch(
         signIn({
           email: data.email,
           password: data.password,
         })
-      )
-        .unwrap()
-        .then(() => {
-          navigate("/tracker");
-        })
-        .catch(() => {
-          alert("The login details are invalid");
-        });
+      ).unwrap();
+
+      successToast("Successfully signed in!");
+      navigate("/tracker");
     } catch (error) {
-      alert(error.message);
-      // toast.error(error.message);
+      errorToast("The login details are invalid");
     }
   };
 
