@@ -1,5 +1,6 @@
 import WaterForm from "./WaterForm/WaterForm.jsx";
 import SvgIcon from "../../img/icons/sprite";
+import WaterForm from "../WaterForm/WaterForm";
 import css from "./WaterModal.module.css";
 
 const WaterModal = ({ mode, onClose, water }) => {
@@ -27,6 +28,7 @@ const WaterModal = ({ mode, onClose, water }) => {
           height={24}
         />
       </button>
+
       {title}
       {subtitle}
       <WaterForm mode={mode} onClose={onClose} water={water} />

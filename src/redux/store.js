@@ -15,9 +15,10 @@ import waterReducer from "./water/slice";
 import usersReducer from "./users/slice";
 
 const persistedAuthConfig = {
-    key: 'auth',
-    storage,
-    whitelist: ['token']
+  key: "auth",
+  version: 1,
+  storage,
+  whitelist: ['token']
 };
 
 const persistedAuthReducer = persistReducer(persistedAuthConfig, authReducer);
@@ -26,7 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     water: waterReducer,
-    users: usersReducer
+    users: usersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -34,7 +35,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-//   devTools: process.env.NODE_ENV === "development",
+  //   devTools: process.env.NODE_ENV === "development",
 });
 
 export const persistor = persistStore(store);

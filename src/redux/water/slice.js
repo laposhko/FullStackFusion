@@ -7,16 +7,25 @@ import {
   updateCard,
 } from "./operations";
 import { signOut } from "../auth/operations";
+import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay";
 
 const waterSlice = createSlice({
   name: "water",
   initialState: {
+    activeDay: convertDateIntoStringFormat(new Date),
     dayItems: [],
+    dayWaterAmount: [],
+    dayTotal: null,
     monthItems: [],
     monthTotalItems: [],
     monthWaterAmount: [],
     isLoading: false,
     isError: false,
+  },
+  reducers: {
+    setActiveDay (state, action) {
+      state.activeDay = action.payload;
+    }
   },
   extraReducers: (builder) =>
     builder
@@ -27,7 +36,9 @@ const waterSlice = createSlice({
       .addCase(getWaterDayInfo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.dayItems = action.payload;
+        state.dayItems = action.payload.items;
+        state.dayWaterAmount = action.payload.waterAmount;
+        state.dayTotal = action.payload.total;
       })
       .addCase(getWaterDayInfo.rejected, (state) => {
         state.isLoading = false;
@@ -41,7 +52,7 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.monthItems = action.payload.items;
-        state.monthTotalItems = action.payload.total;
+        state.monthTotalItems = action.payload.totalItems;
         state.monthWaterAmount = action.payload.waterAmount;
       })
       .addCase(getWaterMonthInfo.rejected, (state) => {
@@ -89,8 +100,8 @@ const waterSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.dayItems = [];
-        state.dayTotalItems = [];
         state.dayWaterAmount = [];
+        state.dayTotal = [];
         state.monthItems = [];
         state.monthTotalItems = [];
         state.monthWaterAmount = [];
@@ -103,4 +114,5 @@ const waterSlice = createSlice({
 
 const waterReducer = waterSlice.reducer;
 
+export const {setActiveDay} = waterSlice.actions;
 export default waterReducer;

@@ -7,6 +7,7 @@ function WaterList() {
       {/* <p>Empty 😥</p> */}
       <ul className={css.waterList}>
         <WaterItem />
+        <WaterItem />
       </ul>
     </div>
   );

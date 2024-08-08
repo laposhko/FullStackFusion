@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { googleAuthLink, refresh, requestResetEmail, resetPassword, signIn, signOut, signUp } from "./operations";
+import {
+  googleAuthLink,
+  refresh,
+  requestResetEmail,
+  resetPassword,
+  signIn,
+  signOut,
+  signUp,
+  getCurrentUserInformation,
+} from "./operations";
+// import { getCurrentUserInformation } from "../users/operations";
 
+// getCurrentUserInformation;
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -33,7 +44,7 @@ const authSlice = createSlice({
         state.isError = false;
         state.isLoading = false;
         state.isLoggedIn = true;
-        state.token = action.payload.token;
+        state.token = action.payload.accessToken;
         state.user = action.payload.user;
       })
       .addCase(signUp.rejected, (state) => {
@@ -87,7 +98,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.isError = false;
         state.isLoggedIn = true;
-        state.token = action.payload;
+        state.token = action.payload.refreshToken;
       })
       .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
@@ -129,6 +140,20 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(resetPassword.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(getCurrentUserInformation.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(getCurrentUserInformation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isLoggedIn = true;
+        state.user = action.payload;
+      })
+      .addCase(getCurrentUserInformation.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       }),

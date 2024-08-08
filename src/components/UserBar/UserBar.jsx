@@ -39,9 +39,10 @@ function UserBar() {
     <div ref={userBarRef}>
       <button type="button" className={css.userBar} onClick={toggleOpen}>
         {/* <span>{user.name}</span> */}
-        <span>User</span>
+        <span>{user.email}</span>
         <img
-          src="https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp"
+          // src="https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp"
+          src={user.avatar}
           alt="User avatar"
           className={css.avatar}
         />

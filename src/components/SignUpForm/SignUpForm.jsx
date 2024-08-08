@@ -1,6 +1,7 @@
-import SvgIcon from "../../img/icons/sprite";
 import * as Yup from "yup";
-import sprite from "../../img/icons/sprite.svg";
+import SvgIcon from "../../img/icons/sprite";
+import useToast from "../../hooks/useToast";
+import { Toaster } from "react-hot-toast";
 import clsx from "clsx";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,7 +32,10 @@ const SignUpForm = () => {
   const passwordId = useId();
   const repeatPasswordId = useId();
 
-  const [isVisible, setIsVisible] = useState(true);
+  const { successToast, errorToast } = useToast();
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isCheckVisible, setIsCheckVisible] = useState(false);
 
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -48,97 +52,121 @@ const SignUpForm = () => {
     return clsx(style.inputField, !!errorInput && style.inputError);
   };
 
+  const setIsCheckVisibleToggler = () => {
+    setIsCheckVisible(!isCheckVisible);
+  };
+
   const setVisibleToggler = () => {
     setIsVisible(!isVisible);
   };
 
   const handleFormSubmit = (data) => {
-    dispatch(
-      signUp({
-        email: data.email,
-        password: data.password,
-      })
-    );
-    navigation("/tracker");
+    try {
+      dispatch(
+        signUp({
+          email: data.email,
+          password: data.password,
+        })
+      );
+      successToast("Succesfull sign up");
+      navigation("/tracker");
+    } catch (error) {
+      errorToast("Error in sign up" || error.message);
+    }
   };
 
   return (
-    <form className={style.form} onSubmit={handleSubmit(handleFormSubmit)}>
-      <div className={style.formName}>Sign Up</div>
-      <div className={style.inputContainer}>
-        <div className={style.input}>
-          <label className={style.title} htmlFor={emailId}>
-            Email
-          </label>
-          <input
-            className={customStyler(errors.email)}
-            type="email"
-            {...register("email")}
-            id={emailId}
-          />
-          {errors.email && (
-            <p className={style.errorMessage}>{errors.email?.message}</p>
-          )}
-        </div>
-        <div className={style.input}>
-          <label className={style.title} htmlFor={passwordId}>
-            Password
-          </label>
-          <input
-            className={customStyler(errors.password)}
-            type="password"
-            {...register("password")}
-            id={passwordId}
-          />
-          <button type="button">
-            <SvgIcon
-              className={style.svgIcon}
-              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
-              width={20}
-              height={20}
+    <>
+      <Toaster position="top-right" />
+      <form className={style.form} onSubmit={handleSubmit(handleFormSubmit)}>
+        <div className={style.formName}>Sign Up</div>
+        <div className={style.inputContainer}>
+          <div className={style.input}>
+            <label className={style.title} htmlFor={emailId}>
+              Email
+            </label>
+            <input
+              className={customStyler(errors.email)}
+              type="email"
+              {...register("email")}
+              id={emailId}
             />
-          </button>
-          {errors.password && (
-            <p className={style.errorMessage}>{errors.password?.message}</p>
-          )}
+            {errors.email && (
+              <p className={style.errorMessage}>{errors.email?.message}</p>
+            )}
+          </div>
+          <div className={style.input}>
+            <label className={style.title} htmlFor={passwordId}>
+              Password
+            </label>
+            <div className={style.inputVisContainer}>
+              <input
+                className={customStyler(errors.password)}
+                type={isVisible ? "text" : "password"}
+                {...register("password")}
+                id={passwordId}
+              />
+              <button
+                onClick={setVisibleToggler}
+                className={style.iconBtn}
+                type="button"
+              >
+                <SvgIcon
+                  className={style.svgIcon}
+                  iconName={`${isVisible ? "icon-eye" : "icon-eye-off"}`}
+                  width={20}
+                  height={20}
+                />
+              </button>
+            </div>
+            {errors.password && (
+              <p className={style.errorMessage}>{errors.password?.message}</p>
+            )}
+          </div>
+          <div className={style.input}>
+            <label className={style.title} htmlFor={repeatPasswordId}>
+              Repeat Password
+            </label>
+            <div className={style.inputVisContainer}>
+              <input
+                className={customStyler(errors.repeatPassword)}
+                type={isCheckVisible ? "text" : "password"}
+                {...register("repeatPassword")}
+                id={repeatPasswordId}
+              />
+              <button
+                onClick={setIsCheckVisibleToggler}
+                className={style.iconBtn}
+                type="button"
+              >
+                <SvgIcon
+                  className={style.svgIcon}
+                  iconName={`${isCheckVisible ? "icon-eye" : "icon-eye-off"}`}
+                  width={20}
+                  height={20}
+                />
+              </button>
+            </div>
+            {errors.repeatPassword && (
+              <p className={style.errorMessage}>
+                {errors.repeatPassword?.message}
+              </p>
+            )}
+          </div>
         </div>
-        <div className={style.input}>
-          <label className={style.title} htmlFor={repeatPasswordId}>
-            Repeat Password
-          </label>
-          <input
-            className={customStyler(errors.repeatPassword)}
-            type="password"
-            {...register("repeatPassword")}
-            id={repeatPasswordId}
-          />
-          <button type="button">
-            <SvgIcon
-              className={style.svgIcon}
-              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
-              width={20}
-              height={20}
-            />
-          </button>
-          {errors.repeatPassword && (
-            <p className={style.errorMessage}>
-              {errors.repeatPassword?.message}
-            </p>
-          )}
+        <div className="submitBtn">
+          <button className={style.formBtn}>Sign Up</button>
         </div>
-      </div>
-      <div className="submitBtn">
-        <button className={style.formBtn}>Sign Up</button>
-      </div>
-      <div className={style.linkContainer}>
-        <p>
-          Already have account?{" "}
-          <Link className={style.linkTo} to={"/signin"}>
-            Sign In
-          </Link>
-        </p>
-      </div>
-    </form>
+        <div className={style.linkContainer}>
+          <p>
+            Already have account?{" "}
+            <Link className={style.linkTo} to={"/signin"}>
+              Sign In
+            </Link>
+          </p>
+        </div>
+      </form>
+    </>
   );
 };
 
