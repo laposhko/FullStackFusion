@@ -1,6 +1,6 @@
-import SvgIcon from "../../img/icons/sprite";
 import * as Yup from "yup";
-import sprite from "../../img/icons/sprite.svg";
+import SvgIcon from "../../img/icons/sprite";
+import useToast from "../../hooks/useToast";
 import clsx from "clsx";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -31,7 +31,10 @@ const SignUpForm = () => {
   const passwordId = useId();
   const repeatPasswordId = useId();
 
-  const [isVisible, setIsVisible] = useState(true);
+  const { successToast, errorToast } = useToast();
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [isCheckVisible, setIsCheckVisible] = useState(false);
 
   const dispatch = useDispatch();
   const navigation = useNavigate();
@@ -48,18 +51,27 @@ const SignUpForm = () => {
     return clsx(style.inputField, !!errorInput && style.inputError);
   };
 
+  const setIsCheckVisibleToggler = () => {
+    setIsCheckVisible(!isCheckVisible);
+  };
+
   const setVisibleToggler = () => {
     setIsVisible(!isVisible);
   };
 
   const handleFormSubmit = (data) => {
-    dispatch(
-      signUp({
-        email: data.email,
-        password: data.password,
-      })
-    );
-    navigation("/tracker");
+    try {
+      dispatch(
+        signUp({
+          email: data.email,
+          password: data.password,
+        })
+      );
+      successToast("Succesfull sign up");
+      navigation("/tracker");
+    } catch (error) {
+      errorToast("Error in sign up" || error.message);
+    }
   };
 
   return (
@@ -84,20 +96,26 @@ const SignUpForm = () => {
           <label className={style.title} htmlFor={passwordId}>
             Password
           </label>
-          <input
-            className={customStyler(errors.password)}
-            type="password"
-            {...register("password")}
-            id={passwordId}
-          />
-          <button type="button">
-            <SvgIcon
-              className={style.svgIcon}
-              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
-              width={20}
-              height={20}
+          <div className={style.inputVisContainer}>
+            <input
+              className={customStyler(errors.password)}
+              type={isVisible ? "text" : "password"}
+              {...register("password")}
+              id={passwordId}
             />
-          </button>
+            <button
+              onClick={setVisibleToggler}
+              className={style.iconBtn}
+              type="button"
+            >
+              <SvgIcon
+                className={style.svgIcon}
+                iconName={`${isVisible ? "icon-eye" : "icon-eye-off"}`}
+                width={20}
+                height={20}
+              />
+            </button>
+          </div>
           {errors.password && (
             <p className={style.errorMessage}>{errors.password?.message}</p>
           )}
@@ -106,20 +124,26 @@ const SignUpForm = () => {
           <label className={style.title} htmlFor={repeatPasswordId}>
             Repeat Password
           </label>
-          <input
-            className={customStyler(errors.repeatPassword)}
-            type="password"
-            {...register("repeatPassword")}
-            id={repeatPasswordId}
-          />
-          <button type="button">
-            <SvgIcon
-              className={style.svgIcon}
-              iconName={`${sprite}#${isVisible ? "icon-eye" : "icon-eye-off"}`}
-              width={20}
-              height={20}
+          <div className={style.inputVisContainer}>
+            <input
+              className={customStyler(errors.repeatPassword)}
+              type={isCheckVisible ? "text" : "password"}
+              {...register("repeatPassword")}
+              id={repeatPasswordId}
             />
-          </button>
+            <button
+              onClick={setIsCheckVisibleToggler}
+              className={style.iconBtn}
+              type="button"
+            >
+              <SvgIcon
+                className={style.svgIcon}
+                iconName={`${isCheckVisible ? "icon-eye" : "icon-eye-off"}`}
+                width={20}
+                height={20}
+              />
+            </button>
+          </div>
           {errors.repeatPassword && (
             <p className={style.errorMessage}>
               {errors.repeatPassword?.message}
