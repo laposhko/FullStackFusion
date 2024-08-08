@@ -1,13 +1,12 @@
 import * as Yup from "yup";
 import Logo from "../../components/Logo/Logo";
-import sprite from "../../img/icons/sprite.svg";
+import SvgIcon from "../../img/icons/sprite"; 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../redux/auth/operations";
-// import { toast } from "react-toastify";
 
 import css from "./SignInForm.module.css";
 
@@ -99,13 +98,12 @@ const SignInForm = () => {
                   onClick={togglePasswordVisibility}
                   className={css.togglePassword}
                 >
-                  <svg className={css.svgIcon}>
-                    <use
-                      xlinkHref={`${sprite}#${
-                        showPassword ? "icon-eye" : "icon-eye-off"
-                      }`}
-                    ></use>
-                  </svg>
+                  <SvgIcon
+                    className={css.svgIcon}
+                    iconName={showPassword ? "icon-eye" : "icon-eye-off"}
+                    width={20}
+                    height={20}
+                  />
                 </button>
               </div>
               <p className={css.errorMessage}>{errors.password?.message}</p>
@@ -123,7 +121,6 @@ const SignInForm = () => {
               </p>
             </div>
           </form>
-          <div className={css.imageSection}>{/* Place for an image */}</div>
         </div>
       </div>
     </div>
