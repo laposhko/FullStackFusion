@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import SvgIcon from "../../img/icons/sprite";
 import { createCard, updateCard } from "../../redux/water/operations";
-import { selectActiveDay } from "../../redux/selectors";
+import { selectActiveDay } from "../../redux/water/selectors";
 import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay.js";
 import css from "./WaterForm.module.css";
 
