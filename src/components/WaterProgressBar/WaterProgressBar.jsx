@@ -1,21 +1,31 @@
-import { useSelector } from 'react-redux';
-import { selectDayItems } from '../../redux/water/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { dayWaterAmount } from '../../redux/water/selectors';
+import { selectAuthUser } from "../../redux/auth/selectors";
+import { getWaterDayInfo } from '../../redux/water/operations';
+import { getCurrentUserInformation } from '../../redux/auth/operations'; 
 import css from './WaterProgressBar.module.css';
 
-const WaterProgressBar = ({ dailyNorma }) => {
-  const todayWaterArray = useSelector(selectDayItems);
-  const totalVolume = todayWaterArray.reduce(
-    (sum, waterItem) => sum + waterItem.volume,
-    0
-  );
+const WaterProgressBar = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectAuthUser);
+  const totalDayWater = useSelector(dayWaterAmount);
 
-  console.log(totalVolume)
-  const percentage = Math.round((totalVolume / dailyNorma) * 100);
+  useEffect(() => {
+    dispatch(getCurrentUserInformation());
+    dispatch(getWaterDayInfo());
+  }, [dispatch]);
 
+  const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
+  console.log(dailyNorma);
+  
+  
+  const percentage = Math.round(((totalDayWater/1000) / dailyNorma) * 100);
+  
   const showPercentage = percentage => {
     return (
-      (percentage >= 10 && percentage <= 39) ||
-      (percentage >= 57 && percentage <= 85)
+      (percentage >= 14 && percentage <= 39) ||
+      (percentage >= 64 && percentage <= 85)
     );
   };
 
@@ -27,6 +37,7 @@ const WaterProgressBar = ({ dailyNorma }) => {
           {showPercentage(percentage) && (
             <span className={css.progressLabel}>{percentage}%</span>
           )}
+          <span className={css.round}></span>
         </div>
       </div>
       <div className={css.labels}>
