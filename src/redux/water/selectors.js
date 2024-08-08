@@ -1,6 +1,7 @@
 // які ще селектори додати?
 
-export const waterState = state => state.water;
+export const selectWaterState = state => state.water;
+export const selectActiveDay = state => state.water.activeDay;
 export const selectDayItems = state => state.water.dayItems;
 export const selectMonthItems = state => state.water.monthItems;
 export const selectMonthTotalItems = state => state.water.monthTotalItems;

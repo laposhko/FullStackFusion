@@ -1,11 +1,11 @@
+import { useDispatch } from 'react-redux';
+import { convertDateIntoStringFormat } from '../../helpers/convertDateFormatForActiveDay';
 import css from '../CalendarItem/CalendarItem.module.css'
+import { setActiveDay } from '../../redux/water/slice';
 
 const lessThanFullNorm = (formatDate, dayResult, isActive) => {
-    const date = new Date();
-    const formattedDay =  String(date. getDate()). padStart(2,'0');
-    const year = date.getFullYear();
-    const formattedMonth = String(date. getMonth() + 1). padStart(2, '0');
-    const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
+    const formattedDate = convertDateIntoStringFormat(new Date());
+
     if(formattedDate == formatDate ){
         if(isActive) {
             return `${css.btn} ${css.active}`
@@ -30,11 +30,17 @@ const lessThanFullNorm = (formatDate, dayResult, isActive) => {
 };
 
 
+
 const CalendarItem = ({formatDate, day, dayResult, isActive}) => {
     const styles = lessThanFullNorm(formatDate, dayResult, isActive);
+    const dispatch = useDispatch();
 
-    return (<div  className={css.container}>
-        <button  className={styles}>{day}</button>
+    const handleClick = (e) => {
+        dispatch(setActiveDay(e.target.value));
+    };
+
+    return (<div  className={css.container} >
+        <button value={formatDate} className={styles} onClick={(e) => handleClick(e)}>{day}</button>
         <p className={css.text}>{dayResult}%</p>
     </div>)
 };

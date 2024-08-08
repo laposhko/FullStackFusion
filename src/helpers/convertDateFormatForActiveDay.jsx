@@ -11,4 +11,13 @@ export function convertDateFormatForActiveDay(dateString) {
   const formattedDate = `${paddedDay}.${paddedMonth}.${year}`;
 
   return formattedDate;
+};
+
+
+export function convertDateIntoStringFormat(dateNow) {
+  const formattedDay =  String(dateNow. getDate()). padStart(2,'0');
+  const year = dateNow.getFullYear();
+  const formattedMonth = String(dateNow. getMonth() + 1). padStart(2, '0');
+  const formattedDate = `${year}-${formattedMonth}-${formattedDay}`;
+  return formattedDate;
 }
