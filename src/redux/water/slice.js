@@ -7,10 +7,12 @@ import {
   updateCard,
 } from "./operations";
 import { signOut } from "../auth/operations";
+import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay";
 
 const waterSlice = createSlice({
   name: "water",
   initialState: {
+    activeDay: convertDateIntoStringFormat(new Date),
     dayItems: [],
     dayWaterAmount: [],
     dayTotal: null,
@@ -19,6 +21,11 @@ const waterSlice = createSlice({
     monthWaterAmount: [],
     isLoading: false,
     isError: false,
+  },
+  reducers: {
+    setActiveDay (state, action) {
+      state.activeDay = action.payload;
+    }
   },
   extraReducers: (builder) =>
     builder
@@ -107,4 +114,5 @@ const waterSlice = createSlice({
 
 const waterReducer = waterSlice.reducer;
 
+export const {setActiveDay} = waterSlice.actions;
 export default waterReducer;
