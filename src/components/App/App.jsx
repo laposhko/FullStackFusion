@@ -3,8 +3,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-// import { getCurrentUserInformation } from "../../redux/users/operations.js";
-// import { useDispatch } from "react-redux";
+import { getCurrentUserInformation } from "../../redux/users/operations.js";
+import { useDispatch } from "react-redux";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -14,10 +14,12 @@ const NotFoundPage = lazy(() =>
 );
 
 export default function App() {
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getCurrentUserInformation());
-  // }, [dispatch]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUserInformation());
+  }, [dispatch]);
+  
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
