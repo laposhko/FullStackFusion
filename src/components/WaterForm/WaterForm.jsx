@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
-import { icons as sprite } from "../../img/sprite.svg";
+import SvgIcon from "../../img/icons/sprite";
 import { createCard, updateCard } from "../../redux/water/operations";
 import { selectActiveDay } from "../../redux/selectors";
 import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay.js";
@@ -45,7 +45,7 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
       localTime: water.time || getTimeFormat(),
     },
   });
-  //цей селектор повинен додати Артем
+
   const activeDay = useSelector(selectActiveDay);
   const dispatch = useDispatch();
 
@@ -103,10 +103,12 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
           onClick={handleClickMinus}
           disabled={getValues("waterValue") === 50}
         >
-          {/* //немає іконки мінус */}
-          <svg className={css.quantityIcon}>
-            <use xlinkHref={`${sprite}#icon-minus-40x40`}></use>
-          </svg>
+          <SvgIcon
+            className={css.quantityIcon}
+            iconName="icon-minus"
+            width={43}
+            height={43}
+          ></SvgIcon>
         </button>
         <span className={css.amountValue}>
           {watch("waterValue") >= 999
@@ -121,9 +123,12 @@ export const WaterForm = ({ mode, onClose, water = {} }) => {
           onClick={handleClickPlus}
           disabled={getValues("waterValue") === 1500}
         >
-          <svg className={css.quantityIcon}>
-            <use xlinkHref={`${sprite}#icon-plus-40x40`}></use>
-          </svg>
+          <SvgIcon
+            className={css.quantityIconPlus}
+            iconName="icon-close"
+            width={43}
+            height={43}
+          />
         </button>
       </div>
 
