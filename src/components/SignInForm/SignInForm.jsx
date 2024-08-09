@@ -3,7 +3,7 @@ import SvgIcon from "../../img/icons/sprite";
 import useToast from "../../hooks/useToast";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/auth/operations";
@@ -107,6 +107,9 @@ const SignInForm = () => {
           )}
         </div>
       </div>
+                      <NavLink className={css.resetPassword} to="/resetPassword">
+          I don't remember the password
+        </NavLink>
       <div className={css.submitContainer}>
         <button className={css.submitButton}>Sign In</button>
       </div>
@@ -117,6 +120,7 @@ const SignInForm = () => {
             Sign Up
           </Link>
         </p>
+
       </div>
     </form>
   );
