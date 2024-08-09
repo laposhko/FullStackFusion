@@ -1,11 +1,12 @@
 import CalendarItemsList from "../CalendarItemsList/CalendardItemsList";
 import css from "../CalendarPagination/CalendarPagination.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectMonthItems } from "../../redux/water/selectors.js";
-import { selectCurrentUser } from "../../redux/users/selectors.js";
 import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay.jsx";
+import { getWaterMonthInfo } from "../../redux/water/operations.js";
+import { selectAuthUser } from "../../redux/auth/selectors.js";
 
 
 const months = [
@@ -24,9 +25,15 @@ const months = [
 ];
 
 const CalendarPagination = () => {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(getWaterMonthInfo());
+  }, [dispatch]);
+  
   const cards = useSelector(selectMonthItems);
-  const userInfo = useSelector(selectCurrentUser);
-  const dailyWaterNorm = userInfo.dailyWaterNorm*1000;
+  const userInfo = useSelector(selectAuthUser);
+  const dailyWaterNorm = Number(userInfo.user.dailyWaterNorm)*1000;
   const [date, setDate] = useState(new Date());
 
   const increaseDate = (currentDate) => {
@@ -49,7 +56,7 @@ const CalendarPagination = () => {
   const arrOfDays = [];
   for (let i = 1; i <= daysOfMonth; i += 1) {
     const formattedDate = convertDateIntoStringFormat(new Date(year, monthIndex, i));
-  
+    
     const userPerDayWater = cards.reduce((acc, card) => {
       if (card.date.includes(formattedDate)) {
         acc += card.volume;
@@ -58,7 +65,6 @@ const CalendarPagination = () => {
     }, 0);
 
     const userPercentage = Math.round((userPerDayWater / dailyWaterNorm) * 100);
-
     const userNorm = userPerDayWater > dailyWaterNorm ? "100" : userPercentage;
 
     arrOfDays.push({

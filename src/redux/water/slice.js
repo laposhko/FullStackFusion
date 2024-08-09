@@ -38,12 +38,12 @@ const waterSlice = createSlice({
         state.isError = false;
         state.dayItems = action.payload.items;
 
-        // state.dayWaterAmount = action.payload.waterAmount.dayAmount;
-        if (action.payload.data.waterAmount && action.payload.data.waterAmount.length > 0) {
-          state.dayWaterAmount = action.payload.data.waterAmount[0].dayAmount;
-      } else {
-          state.dayWaterAmount = 0; 
-      }
+        state.dayWaterAmount = action.payload.waterAmount;
+      //   if (action.payload.data.waterAmount && action.payload.data.waterAmount.length > 0) {
+      //     state.dayWaterAmount = action.payload.data.waterAmount[0].dayAmount;
+      // } else {
+      //     state.dayWaterAmount = 0; 
+      // }
 
         state.dayTotal = action.payload.total;
       })
