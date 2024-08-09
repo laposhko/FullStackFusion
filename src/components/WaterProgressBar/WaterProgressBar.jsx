@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { dayWaterAmount } from '../../redux/water/selectors';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { dayWaterAmount } from "../../redux/water/selectors";
 import { selectAuthUser } from "../../redux/auth/selectors";
-import { getWaterDayInfo } from '../../redux/water/operations';
-import { getCurrentUserInformation } from '../../redux/auth/operations'; 
-import css from './WaterProgressBar.module.css';
+import { getWaterDayInfo } from "../../redux/water/operations";
+import { getCurrentUserInformation } from "../../redux/auth/operations";
+import css from "./WaterProgressBar.module.css";
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();
@@ -17,12 +17,11 @@ const WaterProgressBar = () => {
   }, [dispatch]);
 
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
-  console.log(dailyNorma);
-  
-  
-  const percentage = Math.round(((totalDayWater/1000) / dailyNorma) * 100);
-  
-  const showPercentage = percentage => {
+  // console.log(dailyNorma);
+
+  const percentage = Math.round((totalDayWater / 1000 / dailyNorma) * 100);
+
+  const showPercentage = (percentage) => {
     return (
       (percentage >= 14 && percentage <= 39) ||
       (percentage >= 64 && percentage <= 85)

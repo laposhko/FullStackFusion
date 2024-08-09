@@ -1,4 +1,4 @@
-import WaterForm from "../WaterModal/WaterModal";
+import WaterForm from "../WaterForm/WaterForm";
 import SvgIcon from "../../img/icons/sprite";
 import css from "./WaterModal.module.css";
 
