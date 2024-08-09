@@ -8,18 +8,22 @@ import css from "./WaterProgressBar.module.css";
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectAuthUser);
-  const totalDayWater = useSelector(dayWaterAmount);
 
   useEffect(() => {
     dispatch(getCurrentUserInformation());
     dispatch(getWaterDayInfo());
   }, [dispatch]);
 
+  const user = useSelector(selectAuthUser);
+  const waterAmount = useSelector(dayWaterAmount);
+  
+  const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
+  // console.log(dayAmount)
+  
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
   // console.log(dailyNorma);
 
-  const percentage = Math.round((totalDayWater / 1000 / dailyNorma) * 100);
+  const percentage = Math.round((dayAmount / 1000 / dailyNorma) * 100);
 
   const showPercentage = (percentage) => {
     return (
