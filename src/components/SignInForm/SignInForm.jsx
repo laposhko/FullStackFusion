@@ -107,7 +107,7 @@ const SignInForm = () => {
           )}
         </div>
       </div>
-                      <NavLink className={css.resetPassword} to="/resetPassword">
+        <NavLink className={css.resetPassword} to="/resetPassword">
           I don't remember the password
         </NavLink>
       <div className={css.submitContainer}>
