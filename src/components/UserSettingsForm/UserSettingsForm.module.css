@@ -4,6 +4,16 @@
   flex-direction: column;
   gap: 20px;
 }
+@media screen and (min-width: 1440px) {
+  .inputsContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 700px;
+    width: 50%;
+    gap: 20px;
+  }
+}
 .uploadImgContainer {
   height: 103px;
   display: flex;
@@ -105,6 +115,22 @@
 
 .radiobuttonText {
   margin-left: 25px;
+}
+.formulas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formulaBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+@media screen and (min-width: 768px) {
+  .formulas {
+    flex-direction: row;
+    gap: 28px;
+  }
 }
 
 .formulaLabel {

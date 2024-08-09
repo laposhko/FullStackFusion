@@ -85,7 +85,7 @@ export const getCurrentUserInformation = createAsyncThunk(
       const savedToken = state.auth.token;
       setAuthHeader(savedToken);
       const response = await axios.get("/users/current");
-      return response.data.data;
+      return response.data.data.user;
     } catch (error) {
       toast.error(
         `Something wrong in current user information: ${error.message}`

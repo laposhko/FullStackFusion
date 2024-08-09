@@ -1,6 +1,5 @@
-// import WaterForm from "./WaterForm/WaterForm.jsx";
+import WaterForm from "../WaterModal/WaterModal";
 import SvgIcon from "../../img/icons/sprite";
-import WaterForm from "../WaterForm/WaterForm";
 import css from "./WaterModal.module.css";
 
 const WaterModal = ({ mode, onClose, water }) => {
