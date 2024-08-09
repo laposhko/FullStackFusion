@@ -1,3 +1,4 @@
+
 import { lazy, Suspense, useEffect } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
@@ -10,7 +11,7 @@ const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
-  import("../../pages/NotFoundPage/NotFoundPage")
+  import('../../pages/NotFoundPage/NotFoundPage')
 );
 
 export default function App() {
