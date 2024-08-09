@@ -16,7 +16,12 @@ const NotFoundPage = lazy(() =>
 const ResetPassword = lazy(() =>
   import("../../pages/ResetPassword/ResetPassword")
 );
+const ChangePasswordPage = lazy(() =>
+  import("../../pages/ChangePasswordPage/ChangePasswordPage.jsx")
+);
 import Modals from "../Modal/ModalWindow";
+import css from "./App.module.css";
+
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,6 +32,7 @@ export default function App() {
     <>
       <Toaster
         toastOptions={{
+          className: css.toastCssStyles,
           duration: 4000,
           style: {
             marginTop: "24px",
@@ -57,6 +63,10 @@ export default function App() {
           <Route
             path="/resetPassword"
             element={<RestrictedRoute component={<ResetPassword />} />}
+          />
+          <Route
+            path="/changePasswordPage"
+            element={<RestrictedRoute component={<ChangePasswordPage />} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
