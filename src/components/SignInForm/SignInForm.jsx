@@ -4,6 +4,8 @@ import SvgIcon from "../../img/icons/sprite";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../redux/auth/operations";
@@ -32,7 +34,7 @@ const SignInForm = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     try {
       await dispatch(
         signIn({
@@ -93,19 +95,20 @@ const SignInForm = () => {
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className={css.togglePassword}
-                >
-                  <SvgIcon
-                    className={css.svgIcon}
-                    iconName={showPassword ? "icon-eye" : "icon-eye-off"}
-                    width={20}
-                    height={20}
-                  />
+                  className={css.togglePassword}>
+                  <svg className={css.svgIcon}>
+                    <use
+                      xlinkHref={`${sprite}#${
+                        showPassword ? "icon-eye" : "icon-eye-off"
+                      }`}></use>
+                  </svg>
                 </button>
               </div>
               <p className={css.errorMessage}>{errors.password?.message}</p>
             </div>
-
+            <NavLink className={css.resetPassword} to="/resetPassword">
+              I don&apos;t remember the password
+            </NavLink>
             <button type="submit" className={css.btnform}>
               Sign In
             </button>
