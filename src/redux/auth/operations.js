@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
-export const setAuthHeader = (token) => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
@@ -101,13 +101,28 @@ export const getCurrentUserInformation = createAsyncThunk(
   }
 );
 export const requestResetEmail = createAsyncThunk(
-  "auth/resetemai",
+  "auth/resetemail",
   async (userEmail, thunkAPI) => {
     try {
       await axios.post("/users/request-reset-email", userEmail);
+      toast.success(
+        `A password reset link has been sent to ${userEmail.email}. Please check your email.`
+      );
     } catch (error) {
-      toast.error(`Something went wrong in reset email: ${error.message}`);
-      thunkAPI.rejectWithValue(error.message);
+      if (error.response) {
+        if (error.response.status === 404) {
+          toast.error("The email address is incorrect. Please try again.");
+        } else if (error.response.status === 500) {
+          toast.error(
+            "Something went wrong on the server. Please try again later."
+          );
+        } else {
+          toast.error(`Something went wrong: ${error.message}`);
+        }
+      } else {
+        toast.error(`Network error: ${error.message}`);
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

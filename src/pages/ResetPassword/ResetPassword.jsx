@@ -1,8 +1,9 @@
-import React from "react";
 import Logo from "../../components/Logo/Logo.jsx";
 import css from "./ResetPassword.module.css";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { requestResetEmail } from "../../redux/auth/operations.js";
+import { useDispatch } from "react-redux";
 
 let resetPasswordEmailSchema = yup.object().shape({
   email: yup
@@ -13,11 +14,12 @@ let resetPasswordEmailSchema = yup.object().shape({
 });
 
 export default function ResetPassword() {
-  function handleResetPassword(values, actions) {
-    console.log(values);
+  const dispatch = useDispatch();
 
+  const handleResetPassword = async (values, actions) => {
+    dispatch(requestResetEmail(values));
     actions.resetForm();
-  }
+  };
 
   return (
     <div className={css.resetPasswordContainer}>
