@@ -9,6 +9,7 @@ import { selectActiveDay } from "../../redux/water/selectors";
 import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay";
 import { toast } from "react-toastify";
 import css from "./WaterForm.module.css";
+import { act } from "react";
 
 const schema = Yup.object().shape({
   waterValue: Yup.number()
@@ -60,11 +61,17 @@ const WaterForm = ({ mode, onClose, water = {} }) => {
   };
 
   const onSubmit = () => {
+    // const newData = {
+    //   localDate: convertDateFormatForActiveDay(activeDay),
+    //   waterValue: watch("waterValue"),
+    //   localTime: watch("localTime"),
+    // };
+    console.log(watch("localTime"));
     const newData = {
-      localDate: convertDateFormatForActiveDay(activeDay),
-      waterValue: watch("waterValue"),
-      localTime: watch("localTime"),
+      volume: watch("waterValue"),
+      date: `${activeDay} ${watch("localTime")}`,
     };
+
     try {
       if (mode === "add") {
         dispatch(createCard(newData));

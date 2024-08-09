@@ -12,7 +12,7 @@ export default function AddWaterBtn({ className }) {
         className={clsx(style.btn, className)}
         type="button"
         onClick={() => {
-          openModal(<WaterModal></WaterModal>);
+          openModal(<WaterModal mode="add"></WaterModal>);
         }}
       >
         <div className={style.iconWrapper}>
