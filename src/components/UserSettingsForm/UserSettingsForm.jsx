@@ -58,47 +58,47 @@ export default function UserSettingsForm() {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  const convertToBinaryString = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-      reader.readAsBinaryString(file);
-    });
-  };
+  // const convertToBinaryString = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = (error) => reject(error);
+  //     reader.readAsBinaryString(file);
+  //   });
+  // };
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
 
     console.log(file);
     if (file) {
+      setSelectedImage(URL.createObjectURL(file));
       setValue("avatar", file);
-
-      const reader = new FileReader();
-
-      // reader.onloadend = () => {
-      //   const base64String = reader.result
-      //     .replace("data:", "")
-      //     .replace(/^.+,/, "");
-      //   console.log(base64String);
-      // };
-      // const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-
-      // Assuming you're sending the image as part of a JSON payload
-      // const payload = {
-      //   image: base64String,
-      // };
-      // const binaryString = await convertToBinaryString(file);
-      // console.log(binaryString);
-      // console.log(URL.createObjectURL(file));
-      // setValue("avatar", binaryString);
-
-      reader.onloadend = () => {
-        setSelectedImage(reader.result);
-        console.log(reader.result);
-      };
-      reader.readAsDataURL(file);
     }
   };
+  // const reader = new FileReader();
+
+  // reader.onloadend = () => {
+  //   const base64String = reader.result
+  //     .replace("data:", "")
+  //     .replace(/^.+,/, "");
+  //   console.log(base64String);
+  // };
+  // const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+
+  // Assuming you're sending the image as part of a JSON payload
+  // const payload = {
+  //   image: base64String,
+  // };
+  // const binaryString = await convertToBinaryString(file);
+  // console.log(binaryString);
+  // console.log(URL.createObjectURL(file));
+  // setValue("avatar", binaryString);
+
+  //   reader.onloadend = () => {
+  //     setSelectedImage(reader.result);
+  //     console.log(reader.result);
+  //   };
+  //   reader.readAsDataURL(file);
 
   const avatar = selectedImage
     ? selectedImage
@@ -112,6 +112,7 @@ export default function UserSettingsForm() {
       formData.append("name", data.name);
     }
     if (data.avatar) {
+      console.log(data.avatar);
       formData.append("avatar", data.avatar);
     }
     if (data.gender) {
@@ -130,67 +131,64 @@ export default function UserSettingsForm() {
       console.log(key, value);
     });
     dispatch(updateCurrentUser(formData));
-    // formData.append("name", data.name);
-    // formData.append("avatar", data.image[0]); // Access the first file (in case of multiple files)
-
-    // Dispatch to Redux or handle the form data as needed
-    // dispatch(updateForm(formData));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <div className={css.uploadImgContainer} onClick={handleClick}>
-          <img className={css.avatar} src={avatar} alt="avatar" />
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-            // {...register("avatar")}
-          />
-          <p className={css.uploadBtn}>
-            <FiUpload />
-            <span> Upload a photo</span>
-          </p>
-        </div>
-        <div className={css.inputsContainer}>
-          <div className={css.inputContainer}>
-            <label htmlFor="gender" className={css.inputName}>
-              Your gender identity
+    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      {/* IMG UPLOAD CONTAINER */}
+      <div className={css.uploadImgContainer} onClick={handleClick}>
+        <img className={css.avatar} src={avatar} alt="avatar" />
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleImageChange}
+          // {...register("avatar")}
+        />
+        <p className={css.uploadBtn}>
+          <FiUpload />
+          <span> Upload a photo</span>
+        </p>
+      </div>
+
+      <div className={css.inputsContainer}>
+        {/* GENDER */}
+        <div className={css.inputContainer}>
+          <label htmlFor="gender" className={css.inputName}>
+            Your gender identity
+          </label>
+          <div className={css.radiobuttons}>
+            <label className={css.radiobuttonsLabel}>
+              <input
+                id="gender"
+                {...register("gender")}
+                type="radio"
+                value="woman"
+                className={css.radioInput}
+                defaultChecked={user.gender === "woman"}
+              />
+              <span className={css.customRadio}></span>
+              <span className={css.radiobuttonText}>Woman</span>
             </label>
-            <div className={css.radiobuttons}>
-              <label className={css.radiobuttonsLabel}>
-                <input
-                  id="gender"
-                  {...register("gender")}
-                  type="radio"
-                  value="woman"
-                  className={css.radioInput}
-                  defaultChecked={user.gender === "woman"}
-                />
-                <span className={css.customRadio}></span>
-                <span className={css.radiobuttonText}>Woman</span>
-              </label>
-              <label className={css.radiobuttonsLabel}>
-                <input
-                  id="gender"
-                  {...register("gender")}
-                  type="radio"
-                  value="man"
-                  className={css.radioInput}
-                  defaultChecked={user.gender === "man"}
-                />
-                <span className={css.customRadio}></span>
-                <span className={css.radiobuttonText}>Man</span>
-              </label>
-            </div>
+            <label className={css.radiobuttonsLabel}>
+              <input
+                id="gender"
+                {...register("gender")}
+                type="radio"
+                value="man"
+                className={css.radioInput}
+                defaultChecked={user.gender === "man"}
+              />
+              <span className={css.customRadio}></span>
+              <span className={css.radiobuttonText}>Man</span>
+            </label>
           </div>
-          <div className={css.inputContainer}>
-            <label htmlFor="name" className={css.inputName}>
-              Your name
-            </label>
+        </div>
+        {/* USER INFO */}
+        <div className={css.inputContainer}>
+          <label htmlFor="name" className={css.inputName}>
+            Your name
             <input
               className={css.inputField}
               id="name"
@@ -198,11 +196,9 @@ export default function UserSettingsForm() {
               placeholder={user.name}
               {...register("name", {})}
             />
-          </div>
-          <div className={css.inputContainer}>
-            <label htmlFor="email" className={css.inputName}>
-              Email
-            </label>
+          </label>
+          <label htmlFor="email" className={css.inputName}>
+            Email
             <input
               className={css.inputField}
               id="email"
@@ -210,36 +206,41 @@ export default function UserSettingsForm() {
               placeholder={user.email}
               {...register("email", {})}
             />
-          </div>
-          <div className={css.inputContainer}>
-            <h5 className={css.inputName}>My daily norma</h5>
-            <div className={css.formulas}>
-              <div className={css.formulaBlock}>
-                <h6 className={css.formulaLabel}>For woman</h6>
-                <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
-              </div>
-              <div className={css.formulaBlock}>
-                <h6 className={css.formulaLabel}>For man</h6>
-                <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
-              </div>
-            </div>
+          </label>
+        </div>
 
-            <p className={css.formulasDescription}>
-              <span className={css.accentColor}>*</span> V is the volume of the
-              water norm in liters per day, M is your body weight, T is the time
-              of active sports, or another type of activity commensurate in
-              terms of loads (in the absence of these, you must set 0)
-            </p>
-            <span className={css.note}>
-              <span className={css.accentColor}>
-                <BsExclamationLg style={{ fontSize: "18px" }} />
-              </span>
-              Active time in hours
-            </span>
+        {/* FORMULAS */}
+        <div className={css.inputContainer}>
+          <h5 className={css.inputName}>My daily norma</h5>
+          <div className={css.formulas}>
+            <div className={css.formulaBlock}>
+              <h6 className={css.formulaLabel}>For woman</h6>
+              <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+            </div>
+            <div className={css.formulaBlock}>
+              <h6 className={css.formulaLabel}>For man</h6>
+              <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+            </div>
           </div>
-          {/* <div className={css.waterCalculatorContainer}> */}
-          <div className={css.inputContainer}>
-            <label htmlFor="weight">Your weight in kilograms:</label>
+
+          <p className={css.formulasDescription}>
+            <span className={css.accentColor}>*</span> V is the volume of the
+            water norm in liters per day, M is your body weight, T is the time
+            of active sports, or another type of activity commensurate in terms
+            of loads (in the absence of these, you must set 0)
+          </p>
+          <span className={css.note}>
+            <span className={css.accentColor}>
+              <BsExclamationLg style={{ fontSize: "18px" }} />
+            </span>
+            Active time in hours
+          </span>
+        </div>
+
+        {/* CALCULATOR */}
+        <div className={css.inputContainer}>
+          <label htmlFor="weight" className={css.calculatorField}>
+            Your weight in kilograms:
             <input
               className={css.inputField}
               id="weight"
@@ -250,11 +251,10 @@ export default function UserSettingsForm() {
               }}
               {...register("weight", {})}
             />
-          </div>
-          <div className={css.inputContainer}>
-            <label htmlFor="activity">
-              The time of active participation in sports:
-            </label>
+          </label>
+
+          <label htmlFor="activity" className={css.calculatorField}>
+            The time of active participation in sports:
             <input
               className={css.inputField}
               id="activity"
@@ -265,9 +265,12 @@ export default function UserSettingsForm() {
               }}
               {...register("dailyActivity", {})}
             />
-          </div>
-          {/* </div> */}
-          <div className={css.inputContainer}>
+          </label>
+        </div>
+
+        {/* WATER AMOUNT */}
+        <div className={css.inputContainer}>
+          <div className={css.calculatorField}>
             <p>The required amount of water in liters per day:</p>
             <span className={css.waterAmount}>
               {userWeight + activityTime}
@@ -275,22 +278,21 @@ export default function UserSettingsForm() {
             </span>
           </div>
 
-          <div className={css.inputContainer}>
-            <label htmlFor="water" className={css.inputName}>
-              Write down how much water you will drink:
-            </label>
+          <label htmlFor="water" className={css.inputName}>
+            Write down how much water you will drink:
             <input
               className={css.inputField}
               id="water"
               type="text"
               {...register("dailyWaterNorm", {})}
             />
-          </div>
-          <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
-            Save
-          </button>
+          </label>
         </div>
-      </form>
-    </div>
+
+        <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
+          Save
+        </button>
+      </div>
+    </form>
   );
 }
