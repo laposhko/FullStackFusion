@@ -36,16 +36,10 @@
   color: var(--button-gray);
   background-color: var(--background-avocado-green);
   border-radius: 30px;
+  transition: background-color 0.3s linear;
 }
 .linkTry:hover {
   background-color: var(--accent-darkgreen-color);
-}
-.disabled {
-  background-color: transparent;
-  border: none;
-  pointer-events: none;
-  opacity: 20%;
-  cursor: not-allowed;
 }
 .linkSignIn {
   text-align: center;
@@ -58,6 +52,7 @@
   border: 1px solid var(--button-gray);
   background-color: transparent;
   border-radius: 30px;
+  transition: border 0.3s linear, color 0.3s linear;
 }
 .linkSignIn:hover {
   border: 1px solid var(--accent-darkgreen-color);
@@ -67,7 +62,6 @@
 @media screen and (min-width: 768px) {
   .welcomeContainer {
     width: 704px;
-    /* height: 446px; */
     padding: 106px 93px 50px 64px;
   }
   .subtitle {
