@@ -7,6 +7,9 @@ import SvgIcon from "../../img/icons/sprite";
 import { useState, useRef } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
+import { FiUpload } from "react-icons/fi";
+import { BsExclamationLg } from "react-icons/bs";
+
 export default function UserSettingsForm() {
   const [activityTime, setActivityTime] = useState(0);
   const [userWeight, setUserWeight] = useState(0);
@@ -36,6 +39,8 @@ export default function UserSettingsForm() {
       const reader = new FileReader();
       reader.onloadend = () => {
         console.log(reader.result);
+        register("avatar");
+
         setSelectedImage(reader.result);
         console.log(selectedImage);
       };
@@ -76,14 +81,17 @@ export default function UserSettingsForm() {
             ref={fileInputRef}
             style={{ display: "none" }}
             onChange={handleImageChange}
+            // {...register("avatar")}
           />
           <button className={css.uploadBtn}>
-            <SvgIcon
+            <FiUpload />
+
+            {/* <SvgIcon
               className={css.uploadIcon}
               iconName="icon-upload"
               width={18}
               height={18}
-            ></SvgIcon>
+            ></SvgIcon> */}
             <span> Upload a photo</span>
           </button>
         </div>
@@ -153,8 +161,11 @@ export default function UserSettingsForm() {
             of active sports, or another type of activity commensurate in terms
             of loads (in the absence of these, you must set 0)
           </p>
-          <span>
-            <span className={css.accentColor}>!</span> Active time in hours
+          <span className={css.note}>
+            <span className={css.accentColor}>
+              <BsExclamationLg style={{ fontSize: "18px" }} />
+            </span>
+            Active time in hours
           </span>
         </div>
         {/* <div className={css.waterCalculatorContainer}> */}

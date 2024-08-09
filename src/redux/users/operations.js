@@ -17,29 +17,29 @@ export const getAllUsers = createAsyncThunk(
   }
 );
 
-export const getCurrentUserInformation = createAsyncThunk(
-  "users/getcurrent",
-  async (_, thunkAPI) => {
-    try {
-      const state = thunkAPI.getState();
-      const savedToken = state.auth.token;
-      setAuthHeader(savedToken);
-      const response = await axios.get("/users/current");
-      return response.data.data;
-    } catch (error) {
-      toast.error(
-        `Something wrong in current user information: ${error.message}`
-      );
-      thunkAPI.rejectWithValue(error.message);
-    }
-  },
-  {
-    condition(_, thunkAPI) {
-      const state = thunkAPI.getState();
-      return state.auth.token !== null;
-    },
-  }
-);
+// export const getCurrentUserInformation = createAsyncThunk(
+//   "users/getcurrent",
+//   async (_, thunkAPI) => {
+//     try {
+//       const state = thunkAPI.getState();
+//       const savedToken = state.auth.token;
+//       setAuthHeader(savedToken);
+//       const response = await axios.get("/users/current");
+//       return response.data.data;
+//     } catch (error) {
+//       toast.error(
+//         `Something wrong in current user information: ${error.message}`
+//       );
+//       thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+//   {
+//     condition(_, thunkAPI) {
+//       const state = thunkAPI.getState();
+//       return state.auth.token !== null;
+//     },
+//   }
+// );
 
 export const updateCurrentUser = createAsyncThunk(
   "users/updateuser",

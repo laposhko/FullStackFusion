@@ -8,3 +8,5 @@ export const selectMonthTotalItems = state => state.water.monthTotalItems;
 export const selectMonthWaterAmount = state => state.water.monthWaterAmount;
 export const selectIsLoading = state => state.water.isLoading;
 export const selectIsError = state => state.water.isError;
+
+export const dayWaterAmount = state => state.water.dayWaterAmount;

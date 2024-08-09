@@ -1,5 +1,6 @@
 .modal {
   /* padding: 20px; */
+  margin: 80px 16px;
   background-color: var(--main-background-color);
   /* width: 344px; */
   border-radius: 15px;

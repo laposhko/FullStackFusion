@@ -1,5 +1,6 @@
+import WaterForm from "./WaterForm/WaterForm.jsx";
+import SvgIcon from "../../img/icons/sprite";
 import WaterForm from "../WaterForm/WaterForm";
-// import { icons as sprite } from "../../img/icons/sprite.svg";
 import css from "./WaterModal.module.css";
 
 const WaterModal = ({ mode, onClose, water }) => {
@@ -19,11 +20,15 @@ const WaterModal = ({ mode, onClose, water }) => {
 
   return (
     <div className={css.wrapModal}>
-      {/* <button type="button" className={css.closeBtn} onClick={onClose}>
-        <svg className={css.closeIcon}>
-          <use xlinkHref={`${sprite}#icon-close`}></use>
-        </svg>
-      </button> */}
+      <button type="button" className={css.closeBtn} onClick={onClose}>
+        <SvgIcon
+          className={css.closeIcon}
+          iconName="icon-close"
+          width={24}
+          height={24}
+        />
+      </button>
+
       {title}
       {subtitle}
       <WaterForm mode={mode} onClose={onClose} water={water} />

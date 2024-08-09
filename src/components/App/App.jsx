@@ -1,14 +1,15 @@
-import { lazy, Suspense, useEffect } from 'react';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import RestrictedRoute from '../RestrictedRoute/RestrictedRoute';
-import { Routes, Route } from 'react-router-dom';
-import Loader from '../Loader/Loader.jsx';
-import { getCurrentUserInformation } from '../../redux/users/operations.js';
-import { useDispatch } from 'react-redux';
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const SignUpPage = lazy(() => import('../../pages/SignUpPage/SignUpPage'));
-const SignInPage = lazy(() => import('../../pages/SignInPage/SignInPage'));
-const TrackerPage = lazy(() => import('../../pages/TrackerPage/TrackerPage'));
+
+import { lazy, Suspense, useEffect } from "react";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
+import { Routes, Route } from "react-router-dom";
+import Loader from "../Loader/Loader.jsx";
+import { getCurrentUserInformation } from "../../redux/auth/operations.js";
+import { useDispatch } from "react-redux";
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
+const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
+const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
