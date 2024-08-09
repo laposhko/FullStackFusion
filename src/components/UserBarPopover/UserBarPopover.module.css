@@ -11,7 +11,7 @@
   overflow: hidden;
   z-index: 1;
   font-weight: 700;
-  /* outline: 1px solid black; */
+  background-color: var(--main-background-color);
 }
 
 .wrapperItem {
@@ -34,13 +34,16 @@
 }
 
 .popoverItem:hover .icon {
-  fill: var(--text-color);
+  stroke: var(--text-color);
 }
 
 .icon {
   width: 16px;
   height: 16px;
   margin-right: 10px;
-  fill: #323f4766;
-  transition: color 0.3s linear;
+  fill: var(--main-background-color);
+  stroke: #323f4766;
+  transition: stroke 0.3s linear;
+
+  /* transform: rotate(45deg); */
 }

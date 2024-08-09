@@ -44,7 +44,6 @@ const ModalWindow = ({
       }}
     >
       {/* <div className={css.modal}> </div>*/}
-
       <button onClick={onRequestClose} className={css.closeButton}>
         <SvgIcon
           className={css.closeIcon}

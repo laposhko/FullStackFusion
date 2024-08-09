@@ -1,0 +1,120 @@
+.waterProgressBar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 120px;
+    z-index: 3;
+    width: 198px;
+    height: 70px;
+    padding: 12px;
+    border-radius: 15px;
+    background-color: var(--main-background-color);
+  }
+  
+  .today {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 14px;
+  }
+  
+  .progressContainer {
+    
+    width: 174px;
+    height: 6px;
+    border-radius: 9px;
+    overflow: visible;
+    background-color: var(--secondary-background-color);
+  }
+  
+  .progressBar {
+    position: relative;
+    background-color: var(--background-avocado-green);
+    height: 100%;
+    border-radius: 9px;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .progressLabel {
+    position: absolute;
+    top: 18px;
+    right: -4px;
+    white-space: nowrap;
+    font-size: 8px;
+    font-weight: normal;
+    line-height: 1;
+    transition: position 0.5s ease-in-out;
+    color: var(--background-avocado-green);
+  }
+
+  .round {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid;
+    border-radius: 100%;
+    transition: position 0.5s ease-in-out;
+    border-color: var(--background-avocado-green);
+    background-color: var(--main-background-color);
+  }
+  
+  .labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .label {
+    font-size: 10px;
+    font-weight: normal;
+    color: var(--light-gray-text-color);
+  }
+  
+  @media screen and (min-width: 768px) {
+    .waterProgressBar {
+        bottom: 150px;
+        width: 295px;
+        height: 106px;
+        padding: 20px;
+    }
+
+    .today {
+        margin-bottom: 6px;
+        font-size: 15px;
+        line-height: 1.5;
+        height: 23px;
+      }
+
+    .progressContainer {
+        width: 255px;
+        height: 8px;
+      }
+
+    .progressLabel {
+        top: 16px;
+        right: -4px;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 1.8;
+      }
+
+    .labels {
+        margin-top: 6px;
+      }
+
+    .label {
+        font-size: 12px;
+        line-height: 1.9;
+      }
+  }
+
+  @media screen and (min-width: 1440px) {
+    .waterProgressBar {
+        bottom: 180px;
+        width: 295px;
+        height: 106px;
+        padding: 20px;
+      }
+  }

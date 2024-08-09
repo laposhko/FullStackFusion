@@ -1,19 +1,23 @@
+import * as Yup from "yup";
+import Logo from "../../components/Logo/Logo";
+import SvgIcon from "../../img/icons/sprite"; 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../../redux/auth/operations";
+import useToast from "../../hooks/useToast"; 
+
 import css from "./SignInForm.module.css";
-import Logo from "../../components/Logo/Logo";
-import sprite from "../../img/icons/sprite.svg";
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { successToast, errorToast } = useToast(); 
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -32,16 +36,17 @@ const SignInForm = () => {
 
   const onSubmit = async data => {
     try {
-      const response = await dispatch({ type: "auth/signIn", payload: data });
+      await dispatch(
+        signIn({
+          email: data.email,
+          password: data.password,
+        })
+      ).unwrap();
 
-      if (response.error) {
-        throw new Error(response.error.message);
-      }
-
-      localStorage.setItem("token", response.payload.token);
+      successToast("Successfully signed in!");
       navigate("/tracker");
     } catch (error) {
-      toast.error(error.message);
+      errorToast("The login details are invalid");
     }
   };
 
@@ -110,13 +115,12 @@ const SignInForm = () => {
             <div className={css.spanSignIn}>
               <p>
                 Don&apos;t have an account?{" "}
-                <a href="/signup" className={css.link}>
+                <Link className={css.linkTo} to={"/signup"}>
                   Sign Up
-                </a>
+                </Link>
               </p>
             </div>
           </form>
-          <div className={css.imageSection}>{/* Place for an image */}</div>
         </div>
       </div>
     </div>

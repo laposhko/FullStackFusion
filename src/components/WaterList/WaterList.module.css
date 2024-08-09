@@ -1,0 +1,58 @@
+.waterInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.waterList {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  overflow: visible;
+  list-style-type: none;
+}
+
+.empty {
+  margin: auto;
+  padding: 46px;
+  font-size: 1.3rem;
+  color: var(--text-color);
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333e48;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #2a323b;
+}
+
+::-ms-scrollbar {
+  height: 8px;
+}
+
+::-ms-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-ms-scrollbar-thumb {
+  background-color: #333e48;
+  border-radius: 10px;
+}

@@ -30,16 +30,16 @@ export default function AdvantagesSection() {
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
+  const totalUsers = userQuantity?.data?.totalUsers || "";
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  // if (isError) {
-  //   return <div>Error loading user quantity</div>;
-  // }
+  if (isError) {
+    return <div>Error loading user quantity</div>;
+  }
 
-  console.log(userQuantity);
   return (
     <div className={css.advantagesContainer}>
       <div className={css.customersBox}>
@@ -108,7 +108,7 @@ export default function AdvantagesSection() {
           </li>
         </ul>
         <p className={css.customerText}>
-          Our <span className={css.happy}>happy</span> customers
+          Our {totalUsers} <span className={css.happy}>happy</span> customers
         </p>
       </div>
 
@@ -119,7 +119,8 @@ export default function AdvantagesSection() {
               className={clsx(
                 css.advantagesListText,
                 css.advantagesListTextFirst
-              )}>
+              )}
+            >
               Habit drive
             </p>
           </li>

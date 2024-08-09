@@ -1,11 +1,8 @@
-// необхідно додати базовий URL та перевірити шляхи
-// перевірити що повертає бекенд на кожній операції
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-axios.defaults.baseURL = "http://localhost3000";
+axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
 // import {
 
@@ -15,14 +12,35 @@ axios.defaults.baseURL = "http://localhost3000";
 
 //   } from './services';
 
-export const getCards = createAsyncThunk(
-  "water/getcards",
+export const getWaterDayInfo = createAsyncThunk(
+  "water/getwaterdayinfo",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/water");
-      return response.data;
+      const response = await axios.get("/water/day");
+      return response.data.data;
     } catch (error) {
-      toast.error(`Something went wrong in getting cards:${error.message}`);
+      toast.error(`Something went wrong in getting Water day Info:${error.message}`);
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const fullReduxState = thunkAPI.getState();
+      const token = fullReduxState.auth.token;
+
+      return token !== null;
+    },
+  }
+);
+
+export const getWaterMonthInfo = createAsyncThunk(
+  "water/getwatermonthinfo",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/water/month");
+      return response.data.data;
+    } catch (error) {
+      toast.error(`Something went wrong in getting Month day Info:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -40,8 +58,8 @@ export const createCard = createAsyncThunk(
   "water/createcard",
   async (newCard, thunkAPI) => {
     try {
-      const response = await axios.post("water/addcard", newCard);
-      return response.data;
+      const response = await axios.post("/water", newCard);
+      return response.data.data;
     } catch (error) {
       toast.error(`Something wrong in adding water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
@@ -51,10 +69,10 @@ export const createCard = createAsyncThunk(
 
 export const updateCard = createAsyncThunk(
   "water/update",
-  async (updatedCard, thunkAPI) => {
+  async (cardId, thunkAPI) => {
     try {
-      const response = await axios.post("water/updatecard", updateCard);
-      return response;
+      const response = await axios.post(`/water/${cardId}`);
+      return response.data.data;
     } catch (error) {
       toast.error(`Something wrong in updating water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);
@@ -64,10 +82,9 @@ export const updateCard = createAsyncThunk(
 
 export const deleteCard = createAsyncThunk(
   "water/deletecard",
-  async (id, thunkAPI) => {
+  async (cardId, thunkAPI) => {
     try {
-      const response = await axios.delete(`water/delete/${id}`);
-      return response.data;
+       await axios.delete(`water/delete/${cardId}`);
     } catch (error) {
       toast.error(`Something wrong in deleting water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);

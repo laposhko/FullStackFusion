@@ -1,22 +1,31 @@
-import { lazy } from "react";
+
+import { lazy, Suspense, useEffect } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
-import TestModalsPage from "../../pages/TestModalsPage";
+import Loader from "../Loader/Loader.jsx";
+import { getCurrentUserInformation } from "../../redux/auth/operations.js";
+import { useDispatch } from "react-redux";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
 const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
-  import("../../pages/NotFoundPage/NotFoundPage")
+  import('../../pages/NotFoundPage/NotFoundPage')
 );
 const ResetPassword = lazy(() =>
   import("../../pages/ResetPassword/ResetPassword")
 );
 import Modals from "../Modal/ModalWindow";
+
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUserInformation());
+  }, [dispatch]);
+
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route
           path="/"
@@ -45,7 +54,6 @@ export default function App() {
         <Route
           path="/testModals"
           element={<TestModalsPage></TestModalsPage>}></Route>
-        /resetPassword
         <Route
           path="/resetPassword"
           element={
@@ -54,7 +62,6 @@ export default function App() {
           }></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <Modals></Modals>
-    </>
+    </Suspense>
   );
 }

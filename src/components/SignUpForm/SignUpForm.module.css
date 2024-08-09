@@ -2,7 +2,7 @@
   width: 311px;
   display: flex;
   flex-direction: column;
-  margin-top: 126px;
+  padding-top: 70px;
 }
 
 form > *:not(:last-child) {
@@ -33,7 +33,13 @@ form > *:not(:last-child) {
   font-weight: 700;
 }
 
+.inputVisContainer {
+  position: relative;
+  width: 311px;
+}
+
 .inputField {
+  width: 100%;
   color: var(--light-gray-text-color);
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
@@ -83,22 +89,25 @@ form > *:not(:last-child) {
   font-size: 14px;
 }
 
-.linkContainer p a {
+.linkTo {
   color: var(--text-color);
   font-weight: 700;
   text-decoration: underline;
 }
 
+.iconBtn {
+  display: none;
+}
+
 .svgIcon {
-  width: 20px;
-  height: 20px;
   display: none;
 }
 
 @media screen and (min-width: 768px) {
   .form {
     width: 436px;
-    margin: 171px auto 0 auto;
+    margin: 0 auto 0 auto;
+    padding-top: 171px;
   }
 
   .formName {
@@ -109,6 +118,11 @@ form > *:not(:last-child) {
     gap: 20px;
   }
 
+  .inputVisContainer {
+    position: relative;
+    width: 436px;
+  }
+
   .title {
     font-size: 16px;
   }
@@ -116,5 +130,28 @@ form > *:not(:last-child) {
   .formBtn {
     font-size: 16px;
     padding: 18px 187px;
+  }
+
+  .iconBtn {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-color: transparent;
+  }
+
+  .svgIcon {
+    display: block;
+    fill: none;
+    stroke: black;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .form {
+    padding-top: 74px;
   }
 }

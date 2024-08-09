@@ -1,3 +1,10 @@
+.signInContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
 .signInPage {
   display: flex;
   width: 100%;
