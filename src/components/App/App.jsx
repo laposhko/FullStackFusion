@@ -10,6 +10,9 @@ const TrackerPage = lazy(() => import("../../pages/TrackerPage/TrackerPage"));
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
+const ResetPassword = lazy(() =>
+  import("../../pages/ResetPassword/ResetPassword")
+);
 import Modals from "../Modal/ModalWindow";
 export default function App() {
   return (
@@ -19,40 +22,36 @@ export default function App() {
           path="/"
           element={
             <RestrictedRoute
-              component={<HomePage></HomePage>}
-            ></RestrictedRoute>
-          }
-        ></Route>
+              component={<HomePage></HomePage>}></RestrictedRoute>
+          }></Route>
         <Route
           path="/signup"
           element={
             <RestrictedRoute
-              component={<SignUpPage></SignUpPage>}
-            ></RestrictedRoute>
-          }
-        ></Route>
+              component={<SignUpPage></SignUpPage>}></RestrictedRoute>
+          }></Route>
         <Route
           path="/signin"
           element={
             <RestrictedRoute
-              component={<SignInPage></SignInPage>}
-            ></RestrictedRoute>
-          }
-        ></Route>
+              component={<SignInPage></SignInPage>}></RestrictedRoute>
+          }></Route>
         <Route
           path="/tracker"
           element={
             <PrivateRoute
-              component={<TrackerPage></TrackerPage>}
-            ></PrivateRoute>
-          }
-        ></Route>
-
+              component={<TrackerPage></TrackerPage>}></PrivateRoute>
+          }></Route>
         <Route
           path="/testModals"
-          element={<TestModalsPage></TestModalsPage>}
-        ></Route>
-
+          element={<TestModalsPage></TestModalsPage>}></Route>
+        /resetPassword
+        <Route
+          path="/resetPassword"
+          element={
+            <RestrictedRoute
+              component={<ResetPassword></ResetPassword>}></RestrictedRoute>
+          }></Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Modals></Modals>

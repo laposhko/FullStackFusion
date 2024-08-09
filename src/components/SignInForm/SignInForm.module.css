@@ -152,7 +152,7 @@
   font-weight: 700;
   line-height: 1.29;
   cursor: pointer;
-  margin-top: 32px;
+  margin-top: 18px;
   letter-spacing: -0.01em;
   padding: 16px 0;
   transition: background-color 300ms ease-in;
@@ -177,7 +177,18 @@
 .btnform:disabled:focus {
   transform: scale(1);
 }
-
+.resetPassword {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--button-gray);
+  text-decoration: underline;
+}
+.resetPassword:hover {
+  color: var(--accent-darkgreen-color);
+}
 @media (min-width: 768px) {
   .formSection {
     padding: 32px;
@@ -198,6 +209,9 @@
     min-width: 436px;
     height: auto;
     padding: 227px 102px;
+  }
+  .resetPassword {
+    font-size: 13px;
   }
 }
 
