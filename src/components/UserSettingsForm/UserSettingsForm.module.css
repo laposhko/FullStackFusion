@@ -46,6 +46,7 @@
     width: calc(100% / 2 - 40px);
     height: 594px;
     justify-content: center;
+    margin-bottom: 0;
     /* align-items: flex-start; */
   }
   .inputContainer {

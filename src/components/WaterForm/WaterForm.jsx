@@ -31,7 +31,8 @@ const getTimeFormat = () => {
   return timeFormatting;
 };
 
-const WaterForm = ({ mode, onClose, water = {} }) => {
+const WaterForm = ({ mode, onClose, water }) => {
+  console.log(water);
   const {
     register,
     handleSubmit,
@@ -71,7 +72,8 @@ const WaterForm = ({ mode, onClose, water = {} }) => {
       volume: watch("waterValue"),
       date: `${activeDay} ${watch("localTime")}`,
     };
-
+    console.log(water._id);
+    console.log(newData);
     try {
       if (mode === "add") {
         dispatch(createCard(newData));
@@ -79,6 +81,7 @@ const WaterForm = ({ mode, onClose, water = {} }) => {
           `The amount of water consumed has been added successfully.`
         );
       } else if (mode === "edit") {
+        console.log({ _id: water._id, ...newData });
         dispatch(updateCard({ _id: water._id, ...newData }));
         toast.success(
           "The amount of water consumed has been successfully updated."

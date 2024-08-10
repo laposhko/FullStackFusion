@@ -7,16 +7,16 @@ import { getCurrentUserInformation } from "../../redux/auth/operations";
 import css from "./WaterProgressBar.module.css";
 
 const WaterProgressBar = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCurrentUserInformation());
-    dispatch(getWaterDayInfo());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getCurrentUserInformation());
+  //   dispatch(getWaterDayInfo());
+  // }, [dispatch]);
 
   const user = useSelector(selectAuthUser);
   const waterAmount = useSelector(dayWaterAmount);
-  console.log(waterAmount);
+  // console.log(waterAmount);
   const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
   // console.log(dayAmount)
 

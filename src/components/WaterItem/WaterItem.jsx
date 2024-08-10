@@ -10,29 +10,30 @@ import {
   dayWaterAmount,
   selectActiveDay,
   selectWaterState,
+  selectDayItems,
 } from "../../redux/water/selectors";
 
-function WaterItem() {
+function WaterItem(data) {
   const { openModal } = useModalContext();
-  const waterAmount = useSelector(dayWaterAmount);
-
-  const water = useSelector(selectWaterState);
+  // console.log(waterAmount);
+  // const water = useSelector(selectWaterState);
 
   // const time = useSelector(selectActiveDay);
 
   // console.log(water);
 
   return (
-    <div className={css.waterItem}>
+    <li className={css.waterItem}>
       <svg className={css.icon}>
         <use href={`${svg}#icon-trash`}></use>
       </svg>
       <div className={css.info}>
-        <p className={css.infoMl}>
+        {data && <p className={css.infoMl}>{data.data.volume} ml</p>}
+        {/* <p className={css.infoMl}>
           {waterAmount != null && waterAmount != 0
             ? `${waterAmount} ml`
             : "0 ml"}
-        </p>
+        </p> */}
 
         <p className={css.infoTime}>10:06 PM</p>
       </div>
@@ -40,7 +41,7 @@ function WaterItem() {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<WaterModal mode="edit" />);
+            openModal(<WaterModal mode="edit" water={data.data} />);
           }}
         >
           <svg className={css.svg}>
@@ -50,7 +51,7 @@ function WaterItem() {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<DeleteWaterModal />);
+            openModal(<DeleteWaterModal cardId={data.data._id} />);
           }}
         >
           <svg className={css.svg}>
@@ -58,7 +59,7 @@ function WaterItem() {
           </svg>
         </button>
       </div>
-    </div>
+    </li>
   );
 }
 
