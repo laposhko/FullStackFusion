@@ -16,14 +16,17 @@ const WaterProgressBar = () => {
 
   const user = useSelector(selectAuthUser);
   const waterAmount = useSelector(dayWaterAmount);
-  
+  console.log(waterAmount);
   const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
   // console.log(dayAmount)
-  
+
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
   // console.log(dailyNorma);
 
-  const percentage = Math.min(100, Math.round((dayAmount / 1000 / dailyNorma) * 100));
+  const percentage = Math.min(
+    100,
+    Math.round((dayAmount / 1000 / dailyNorma) * 100)
+  );
   // console.log(percentage)
 
   const showPercentage = (percentage) => {

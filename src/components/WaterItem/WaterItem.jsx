@@ -1,22 +1,22 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import svg from '../../img/icons/sprite.svg';
-import css from '../WaterItem/WaterItem.module.css';
+import svg from "../../img/icons/sprite.svg";
+import css from "../WaterItem/WaterItem.module.css";
 
-import { useModalContext } from '../../context/useModalContext';
-import WaterModal from '../WaterModal/WaterModal';
-import DeleteWaterModal from '../DeleteWaterModal/DeleteWaterModal';
+import { useModalContext } from "../../context/useModalContext";
+import WaterModal from "../WaterModal/WaterModal";
+import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 import {
   dayWaterAmount,
   selectActiveDay,
   selectWaterState,
-} from '../../redux/water/selectors';
+} from "../../redux/water/selectors";
 
 function WaterItem() {
   const { openModal } = useModalContext();
   const waterAmount = useSelector(dayWaterAmount);
 
-  // const water = useSelector(selectWaterState);
+  const water = useSelector(selectWaterState);
 
   // const time = useSelector(selectActiveDay);
 
@@ -31,7 +31,7 @@ function WaterItem() {
         <p className={css.infoMl}>
           {waterAmount != null && waterAmount != 0
             ? `${waterAmount} ml`
-            : '0 ml'}
+            : "0 ml"}
         </p>
 
         <p className={css.infoTime}>10:06 PM</p>
