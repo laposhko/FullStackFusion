@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
-export const setAuthHeader = token => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
@@ -37,7 +37,8 @@ export const signIn = createAsyncThunk(
       setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something went wrong in Sign In: ${error.message}`);
+      // toast.error(`Something went wrong in Sign In: ${error.message}`);
+      //we do not need this toast on login page as it has own toast
       thunkAPI.rejectWithValue(error.message);
     }
   }
