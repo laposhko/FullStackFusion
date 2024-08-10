@@ -52,7 +52,7 @@ const SignInForm = () => {
         })
       );
       successToast("Successful sign in");
-      navigate("/tracker"); 
+      navigate("/tracker");
     } catch (error) {
       errorToast("Error in sign in" || error.message);
     }
@@ -107,9 +107,9 @@ const SignInForm = () => {
           )}
         </div>
       </div>
-        <NavLink className={css.resetPassword} to="/resetPassword">
-          I don't remember the password
-        </NavLink>
+      <NavLink className={css.resetPassword} to="/resetPassword">
+        I don't remember the password
+      </NavLink>
       <div className={css.submitContainer}>
         <button className={css.submitButton}>Sign In</button>
       </div>
@@ -120,7 +120,6 @@ const SignInForm = () => {
             Sign Up
           </Link>
         </p>
-
       </div>
     </form>
   );
