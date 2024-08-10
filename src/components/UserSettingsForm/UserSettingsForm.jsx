@@ -3,17 +3,25 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./UserSettingsForm.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { updateCurrentUser } from "../../redux/users/operations";
+import { useModalContext } from "../../context/useModalContext";
+import toast from "react-hot-toast";
 export default function UserSettingsForm() {
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUser);
   const [activityTime, setActivityTime] = useState(0);
   const [userWeight, setUserWeight] = useState(0);
+  const recommendedWaterNorm =
+    Number(userWeight) * 0.03 + Number(activityTime) * 0.6
+      ? Number(userWeight) * 0.03 + Number(activityTime) * 0.6
+      : user.weight * 0.03 + user.dailyActivityTime * 0.6;
+  const { closeModal } = useModalContext();
+
   const [selectedImage, setSelectedImage] = useState(null);
   const defaultImg =
     "https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp";
@@ -21,13 +29,14 @@ export default function UserSettingsForm() {
     gender: Yup.string().oneOf(["woman", "man"]),
     name: Yup.string().max(100),
     email: Yup.string().email(),
-    weight: Yup.number()
-      .nullable()
-      .transform((value, originalValue) =>
-        String(originalValue).trim() === "" ? null : value
-      )
-      .min(10)
-      .max(250),
+    weight: Yup.string(),
+    // .number()
+    //   .nullable()
+    //   .transform((value, originalValue) =>
+    //     String(originalValue).trim() === "" ? null : value
+    //   )
+    //   .min(10)
+    //   .max(250),
     activityTime: Yup.number()
       .nullable()
       .transform((value, originalValue) =>
@@ -107,10 +116,9 @@ export default function UserSettingsForm() {
     : defaultImg;
   const onSubmit = (data) => {
     console.log(data);
+
     const formData = new FormData();
-    if (data.name) {
-      formData.append("name", data.name);
-    }
+
     if (data.avatar) {
       console.log(data.avatar);
       formData.append("avatar", data.avatar);
@@ -118,11 +126,18 @@ export default function UserSettingsForm() {
     if (data.gender) {
       formData.append("gender", data.gender);
     }
+    if (data.name) {
+      formData.append("name", data.name);
+    }
     if (data.email) {
       formData.append("email", data.email);
     }
-    if (data.dailyActivity) {
-      formData.append("dailyActivity", data.dailyActivity);
+    if (data.weight) {
+      console.log(data.weight);
+      formData.append("weight", data.weight);
+    }
+    if (data.dailyActivityTime) {
+      formData.append("dailyActivityTime", data.dailyActivity);
     }
     if (data.dailyWaterNorm) {
       formData.append("dailyWaterNorm", data.dailyWaterNorm);
@@ -130,7 +145,15 @@ export default function UserSettingsForm() {
     formData.forEach((value, key) => {
       console.log(key, value);
     });
-    dispatch(updateCurrentUser(formData));
+    dispatch(updateCurrentUser(formData))
+      .unwrap()
+      .then(() => {
+        toast.success("Your info updated!");
+        closeModal();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.Please try again!");
+      });
   };
 
   return (
@@ -247,9 +270,11 @@ export default function UserSettingsForm() {
               type="text"
               defaultValue={user.weight ? user.weight : 60}
               onChange={(e) => {
+                setValue("weight", e.target.value);
+
                 setUserWeight(e.target.value);
               }}
-              {...register("weight", {})}
+              // {...register("weight", {})}
             />
           </label>
 
@@ -259,11 +284,12 @@ export default function UserSettingsForm() {
               className={css.inputField}
               id="activity"
               type="text"
-              placeholder={user.dailyActivity}
+              defaultValue={user.dailyActivityTime ? user.dailyActivityTime : 0}
               onChange={(e) => {
+                setValue("dailyActivityTime", e.target.value);
                 setActivityTime(e.target.value);
               }}
-              {...register("dailyActivity", {})}
+              // {...register("dailyActivity", {})}
             />
           </label>
         </div>
@@ -272,10 +298,7 @@ export default function UserSettingsForm() {
         <div className={css.inputContainer}>
           <div className={css.calculatorField}>
             <p>The required amount of water in liters per day:</p>
-            <span className={css.waterAmount}>
-              {userWeight + activityTime}
-              {/* {Number(userWeight) * 0.03 + Number(activityTime) * 0.6} L */}
-            </span>
+            <span className={css.waterAmount}>{recommendedWaterNorm} L</span>
           </div>
 
           <label htmlFor="water" className={css.inputName}>
@@ -284,15 +307,15 @@ export default function UserSettingsForm() {
               className={css.inputField}
               id="water"
               type="text"
+              defaultValue={recommendedWaterNorm}
               {...register("dailyWaterNorm", {})}
             />
           </label>
         </div>
-
-        <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
-          Save
-        </button>
       </div>
+      <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
+        Save
+      </button>
     </form>
   );
 }

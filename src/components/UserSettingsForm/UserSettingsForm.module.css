@@ -38,11 +38,21 @@
   gap: 24px;
 }
 @media screen and (min-width: 1440px) {
+  .form {
+    height: 996px;
+  }
   .inputsContainer {
     flex-wrap: wrap;
-    height: 700px;
-    width: 50%;
-    gap: 20px;
+    width: calc(100% / 2 - 40px);
+    height: 594px;
+    justify-content: center;
+    /* align-items: flex-start; */
+  }
+  .inputContainer {
+    /* flex-shrink: 50%; */
+  }
+  .inputField {
+    height: 56px;
   }
 }
 .inputContainer {
