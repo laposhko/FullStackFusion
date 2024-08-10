@@ -10,6 +10,8 @@ function UserBar() {
   const [isOpen, setIsOpen] = useState(false);
   const userBarRef = useRef(null);
 
+  // console.log(user);
+
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
@@ -39,6 +41,7 @@ function UserBar() {
     <div ref={userBarRef} className={css.userBarWrapper}>
       <button type="button" className={css.userBar} onClick={toggleOpen}>
         <span>{user.user.name}</span>
+
         <img src={user.user.avatar} alt="User avatar" className={css.avatar} />
         <HiChevronDown
           className={`${css.arrowDown} ${isOpen ? css.arrowDownOpen : ''}`}

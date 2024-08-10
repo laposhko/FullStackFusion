@@ -16,11 +16,11 @@ function WaterItem() {
   const { openModal } = useModalContext();
   const waterAmount = useSelector(dayWaterAmount);
 
-  const water = useSelector(selectWaterState);
+  // const water = useSelector(selectWaterState);
 
-  const time = useSelector(selectActiveDay);
+  // const time = useSelector(selectActiveDay);
 
-  console.log(water);
+  // console.log(water);
 
   return (
     <div className={css.waterItem}>
@@ -40,7 +40,7 @@ function WaterItem() {
         <button
           className={css.btn}
           onClick={() => {
-            openModal(<WaterModal />);
+            openModal(<WaterModal mode="edit" />);
           }}
         >
           <svg className={css.svg}>

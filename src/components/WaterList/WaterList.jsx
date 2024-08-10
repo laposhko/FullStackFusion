@@ -6,9 +6,9 @@ import css from '../WaterList/WaterList.module.css';
 import { selectDayItems } from '../../redux/water/selectors';
 
 function WaterList() {
-  // const waterEntries = useSelector(selectDayItems);
+  const waterEntries = useSelector(selectDayItems);
 
-  const waterEntries = [1, 2, 3, 4, 5, 6, 7];
+  // const waterEntries = [1, 2, 3, 4, 5, 6, 7];
 
   return (
     <div className={css.waterInfo}>

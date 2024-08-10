@@ -11,7 +11,7 @@ function UserPanel() {
     <div className={css.userBarWrapper}>
       <h2 className={css.welcome}>
         Hello
-        <span className={css.userName}>,{user.user.name}!</span>
+        <span className={css.userName}>, {user.user.name}!</span>
       </h2>
       <UserBar />
     </div>
