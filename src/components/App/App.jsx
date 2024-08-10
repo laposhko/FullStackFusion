@@ -65,7 +65,7 @@ export default function App() {
             element={<RestrictedRoute component={<ResetPassword />} />}
           />
           <Route
-            path="/changePasswordPage"
+            path="/changePasswordPage/:token"
             element={<RestrictedRoute component={<ChangePasswordPage />} />}
           />
           <Route path="*" element={<NotFoundPage />} />
