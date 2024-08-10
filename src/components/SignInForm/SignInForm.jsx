@@ -55,9 +55,10 @@ const onSubmit = async (data) => {
     successToast("Successful sign in");
     navigate("/tracker");
   } catch (error) {
-    errorToast(error.message || "Error in sign in");
+    errorToast("Invalid details" || error.message);
   }
 };
+
 
 
   return (
