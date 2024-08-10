@@ -117,11 +117,7 @@ export const requestResetEmail = createAsyncThunk(
           toast.error(
             "Something went wrong on the server. Please try again later."
           );
-        } else {
-          toast.error(`Something went wrong: ${error.message}`);
         }
-      } else {
-        toast.error(`Network error: ${error.message}`);
       }
       return thunkAPI.rejectWithValue(error.message);
     }
