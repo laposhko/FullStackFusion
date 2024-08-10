@@ -1,13 +1,14 @@
 @media screen and (min-width: 768px) {
   .userBarWrapper {
     position: relative;
+    display: inline-block;
   }
 
   .popover {
     display: flex;
     flex-direction: column;
     position: absolute;
-    padding: 15px 20px;
+    padding: 15px 27px;
     align-items: center;
     box-shadow: 0 4px 8px #0000001a;
     border-radius: 8px;
@@ -15,8 +16,8 @@
     z-index: 1;
     font-weight: 700;
     background-color: var(--main-background-color);
-    top: 83%;
-    left: 75%;
+
+    top: calc(82% + 5px);
   }
 }
 
@@ -29,9 +30,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    padding: 15px 20px;
-    left: 1400px;
-    top: 15%;
+    padding: 15px 27px;
     align-items: center;
     box-shadow: 0 4px 8px #0000001a;
     border-radius: 8px;
@@ -39,6 +38,8 @@
     z-index: 1;
     font-weight: 700;
     background-color: var(--main-background-color);
+
+    top: calc(13% + 12px);
   }
 }
 
@@ -78,4 +79,5 @@
 
 .userBarWrapper {
   position: relative;
+  display: inline-block;
 }

@@ -1,26 +1,29 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import svg from "../../img/icons/sprite.svg";
-import css from "../WaterItem/WaterItem.module.css";
+import svg from '../../img/icons/sprite.svg';
+import css from '../WaterItem/WaterItem.module.css';
 
-import { useModalContext } from "../../context/useModalContext";
-import WaterModal from "../WaterModal/WaterModal";
-import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
+import { useModalContext } from '../../context/useModalContext';
+import WaterModal from '../WaterModal/WaterModal';
+import DeleteWaterModal from '../DeleteWaterModal/DeleteWaterModal';
 import {
   dayWaterAmount,
   selectActiveDay,
   selectWaterState,
   selectDayItems,
-} from "../../redux/water/selectors";
+} from '../../redux/water/selectors';
 
 function WaterItem(data) {
   const { openModal } = useModalContext();
-  // console.log(waterAmount);
-  // const water = useSelector(selectWaterState);
 
-  // const time = useSelector(selectActiveDay);
-
-  // console.log(water);
+  function formatTime(isoString) {
+    const date = new Date(isoString);
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  }
 
   return (
     <li className={css.waterItem}>
@@ -29,13 +32,9 @@ function WaterItem(data) {
       </svg>
       <div className={css.info}>
         {data && <p className={css.infoMl}>{data.data.volume} ml</p>}
-        {/* <p className={css.infoMl}>
-          {waterAmount != null && waterAmount != 0
-            ? `${waterAmount} ml`
-            : "0 ml"}
-        </p> */}
-
-        <p className={css.infoTime}>10:06 PM</p>
+        {data && (
+          <p className={css.infoTime}>{formatTime(data.data.createdAt)}</p>
+        )}
       </div>
       <div className={css.btnsWrapper}>
         <button
