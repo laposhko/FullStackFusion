@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import css from './UserPanel.module.css';
 import { selectAuthUser } from '../../redux/auth/selectors';
+
 import UserBar from '../UserBar/UserBar.jsx';
 
 function UserPanel() {
@@ -10,8 +11,7 @@ function UserPanel() {
     <div className={css.userBarWrapper}>
       <h2 className={css.welcome}>
         Hello
-        <span className={css.userName}>, {user.name}!</span>
-        {/* <span className={css.userName}>, {user.email}!</span> */}
+        <span className={css.userName}>,{user.user.name}!</span>
       </h2>
       <UserBar />
     </div>

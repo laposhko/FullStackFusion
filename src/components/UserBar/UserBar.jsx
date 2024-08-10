@@ -36,16 +36,10 @@ function UserBar() {
   }, []);
 
   return (
-    <div ref={userBarRef}>
+    <div ref={userBarRef} className={css.userBarWrapper}>
       <button type="button" className={css.userBar} onClick={toggleOpen}>
-        {/* <span>{user.name}</span> */}
-        <span>{user.email}</span>
-        <img
-          // src="https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp"
-          src={user.avatar}
-          alt="User avatar"
-          className={css.avatar}
-        />
+        <span>{user.user.name}</span>
+        <img src={user.user.avatar} alt="User avatar" className={css.avatar} />
         <HiChevronDown
           className={`${css.arrowDown} ${isOpen ? css.arrowDownOpen : ''}`}
         />
