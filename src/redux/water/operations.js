@@ -19,7 +19,9 @@ export const getWaterDayInfo = createAsyncThunk(
       const response = await axios.get("/water/day");
       return response.data.data;
     } catch (error) {
-      toast.error(`Something went wrong in getting Water day Info:${error.message}`);
+      toast.error(
+        `Something went wrong in getting Water day Info:${error.message}`
+      );
       thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -40,7 +42,9 @@ export const getWaterMonthInfo = createAsyncThunk(
       const response = await axios.get("/water/month");
       return response.data.data;
     } catch (error) {
-      toast.error(`Something went wrong in getting Month day Info:${error.message}`);
+      toast.error(
+        `Something went wrong in getting Month day Info:${error.message}`
+      );
       thunkAPI.rejectWithValue(error.message);
     }
   },
@@ -84,7 +88,7 @@ export const deleteCard = createAsyncThunk(
   "water/deletecard",
   async (cardId, thunkAPI) => {
     try {
-       await axios.delete(`water/delete/${cardId}`);
+      await axios.delete(`water/delete/${cardId}`);
     } catch (error) {
       toast.error(`Something wrong in deleting water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);

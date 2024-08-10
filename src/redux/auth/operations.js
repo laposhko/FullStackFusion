@@ -37,7 +37,8 @@ export const signIn = createAsyncThunk(
       setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something went wrong in Sign In: ${error.message}`);
+      // toast.error(`Something went wrong in Sign In: ${error.message}`);
+      //we do not need this toast on login page as it has own toast
       thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -85,7 +86,7 @@ export const getCurrentUserInformation = createAsyncThunk(
       const savedToken = state.auth.token;
       setAuthHeader(savedToken);
       const response = await axios.get("/users/current");
-      return response.data.data;
+      return response.data.data.user;
     } catch (error) {
       toast.error(
         `Something wrong in current user information: ${error.message}`
@@ -101,13 +102,24 @@ export const getCurrentUserInformation = createAsyncThunk(
   }
 );
 export const requestResetEmail = createAsyncThunk(
-  "auth/resetemai",
+  "auth/resetemail",
   async (userEmail, thunkAPI) => {
     try {
       await axios.post("/users/request-reset-email", userEmail);
+      toast.success(
+        `A password reset link has been sent to ${userEmail.email}. Please check your email.`
+      );
     } catch (error) {
-      toast.error(`Something went wrong in reset email: ${error.message}`);
-      thunkAPI.rejectWithValue(error.message);
+      if (error.response) {
+        if (error.response.status === 404) {
+          toast.error("The email address is incorrect. Please try again.");
+        } else if (error.response.status === 500) {
+          toast.error(
+            "Something went wrong on the server. Please try again later."
+          );
+        }
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

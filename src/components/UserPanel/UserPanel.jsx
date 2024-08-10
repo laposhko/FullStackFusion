@@ -6,7 +6,6 @@ import UserBar from '../UserBar/UserBar.jsx';
 
 function UserPanel() {
   const user = useSelector(selectAuthUser);
-
   return (
     <div className={css.userBarWrapper}>
       <h2 className={css.welcome}>

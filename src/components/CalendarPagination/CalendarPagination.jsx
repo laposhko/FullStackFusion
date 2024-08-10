@@ -8,7 +8,6 @@ import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForA
 import { getWaterMonthInfo } from "../../redux/water/operations.js";
 import { selectAuthUser } from "../../redux/auth/selectors.js";
 
-
 const months = [
   "January",
   "February",
@@ -27,13 +26,13 @@ const months = [
 const CalendarPagination = () => {
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getWaterMonthInfo());
   }, [dispatch]);
-  
+
   const cards = useSelector(selectMonthItems);
   const userInfo = useSelector(selectAuthUser);
-  const dailyWaterNorm = Number(userInfo.user.dailyWaterNorm)*1000;
+  const dailyWaterNorm = Number(userInfo.dailyWaterNorm) * 1000;
   const [date, setDate] = useState(new Date());
 
   const increaseDate = (currentDate) => {
@@ -49,14 +48,15 @@ const CalendarPagination = () => {
   const month = months[date.getMonth()];
   const year = date.getFullYear();
 
-
   const numOfDays = (y, m) => new Date(y, m, 0).getDate();
   const daysOfMonth = numOfDays(year, monthIndex + 1);
 
   const arrOfDays = [];
   for (let i = 1; i <= daysOfMonth; i += 1) {
-    const formattedDate = convertDateIntoStringFormat(new Date(year, monthIndex, i));
-    
+    const formattedDate = convertDateIntoStringFormat(
+      new Date(year, monthIndex, i)
+    );
+
     const userPerDayWater = cards.reduce((acc, card) => {
       if (card.date.includes(formattedDate)) {
         acc += card.volume;
