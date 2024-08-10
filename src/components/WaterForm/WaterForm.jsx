@@ -1,15 +1,13 @@
-// import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
-import SvgIcon from "../../img/icons/sprite";
 import { createCard, updateCard } from "../../redux/water/operations";
-import { selectActiveDay } from "../../redux/water/selectors";
-import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay";
 import { toast } from "react-toastify";
+import { useModalContext } from "../../context/useModalContext";
+import { selectActiveDay } from "/src/redux/water/selectors.js";
+import SvgIcon from "../../img/icons/sprite";
 import css from "./WaterForm.module.css";
-import { act } from "react";
 
 const schema = Yup.object().shape({
   waterValue: Yup.number()
@@ -31,8 +29,8 @@ const getTimeFormat = () => {
   return timeFormatting;
 };
 
-const WaterForm = ({ mode, onClose, water }) => {
-  console.log(water);
+const WaterForm = ({ mode, water }) => {
+  const { closeModal } = useModalContext();
   const {
     register,
     handleSubmit,
@@ -62,32 +60,25 @@ const WaterForm = ({ mode, onClose, water }) => {
   };
 
   const onSubmit = () => {
-    // const newData = {
-    //   localDate: convertDateFormatForActiveDay(activeDay),
-    //   waterValue: watch("waterValue"),
-    //   localTime: watch("localTime"),
-    // };
     console.log(watch("localTime"));
     const newData = {
       volume: watch("waterValue"),
       date: `${activeDay} ${watch("localTime")}`,
     };
-    console.log(water._id);
-    console.log(newData);
+
     try {
       if (mode === "add") {
         dispatch(createCard(newData));
         toast.success(
-          `The amount of water consumed has been added successfully.`
+          "The amount of water consumed has been added successfully."
         );
       } else if (mode === "edit") {
-        console.log({ _id: water._id, ...newData });
         dispatch(updateCard({ _id: water._id, ...newData }));
         toast.success(
           "The amount of water consumed has been successfully updated."
         );
       }
-      onClose();
+      closeModal();
     } catch (error) {
       toast.error("Failed to save water data. Please try again.");
     }
@@ -118,10 +109,6 @@ const WaterForm = ({ mode, onClose, water }) => {
             width={43}
             height={43}
           ></SvgIcon>
-          {/* //немає іконки мінус */}
-          {/* <svg className={css.quantityIcon}>
-            <use xlinkHref={`${sprite}#icon-minus-40x40`}></use>
-          </svg> */}
         </button>
         <span className={css.amountValue}>
           {watch("waterValue") >= 999
@@ -138,13 +125,12 @@ const WaterForm = ({ mode, onClose, water }) => {
         >
           <SvgIcon
             className={css.quantityIconPlus}
-            iconName="icon-close"
+            iconName="icon-plus"
             width={43}
             height={43}
           />
         </button>
       </div>
-
       <div>
         <div className={css.valueDiv}>
           <label className={css.labelTime} htmlFor="localTime">

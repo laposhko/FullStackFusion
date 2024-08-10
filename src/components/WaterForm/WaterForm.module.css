@@ -52,7 +52,7 @@
   height: 40px;
   fill: #ffffff;
   stroke: #2f2f2f;
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
 }
 
 @media only screen and (min-width: 768px) {

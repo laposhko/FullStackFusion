@@ -1,9 +1,10 @@
-import WaterForm from "../WaterForm/WaterForm";
+import { useModalContext } from "../../context/useModalContext";
 import SvgIcon from "../../img/icons/sprite";
+import WaterForm from "../WaterForm/WaterForm";
 import css from "./WaterModal.module.css";
 
-const WaterModal = ({ mode, onClose, water }) => {
-  console.log(water);
+const WaterModal = ({ mode, water = {} }) => {
+  const { closeModal } = useModalContext();
   const title =
     mode === "add" ? (
       <h2 className={css.title}>Add Water</h2>
@@ -20,7 +21,7 @@ const WaterModal = ({ mode, onClose, water }) => {
 
   return (
     <div className={css.wrapModal}>
-      <button type="button" className={css.closeBtn} onClick={onClose}>
+      <button type="button" className={css.closeBtn} onClick={closeModal}>
         <SvgIcon
           className={css.closeIcon}
           iconName="icon-close"
@@ -28,10 +29,9 @@ const WaterModal = ({ mode, onClose, water }) => {
           height={24}
         />
       </button>
-
       {title}
       {subtitle}
-      <WaterForm mode={mode} onClose={onClose} water={water} />
+      <WaterForm mode={mode} water={water} />
     </div>
   );
 };
