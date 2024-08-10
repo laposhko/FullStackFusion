@@ -1,16 +1,14 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { HiChevronDown } from "react-icons/hi";
-import { selectAuthUser } from "../../redux/auth/selectors";
-import css from "./UserBar.module.css";
-import UserBarPopover from "../UserBarPopover/UserBarPopover";
+import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { HiChevronDown } from 'react-icons/hi';
+import { selectAuthUser } from '../../redux/auth/selectors';
+import css from './UserBar.module.css';
+import UserBarPopover from '../UserBarPopover/UserBarPopover';
 
 function UserBar() {
   const user = useSelector(selectAuthUser);
   const [isOpen, setIsOpen] = useState(false);
   const userBarRef = useRef(null);
-
-  // console.log(user);
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
@@ -23,17 +21,17 @@ function UserBar() {
   };
 
   const closeOnEscape = (e) => {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", closeOnClickOutside);
-    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener('mousedown', closeOnClickOutside);
+    document.addEventListener('keydown', closeOnEscape);
     return () => {
-      document.removeEventListener("mousedown", closeOnClickOutside);
-      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener('mousedown', closeOnClickOutside);
+      document.removeEventListener('keydown', closeOnEscape);
     };
   }, []);
 
@@ -44,7 +42,7 @@ function UserBar() {
 
         <img src={user.avatar} alt="User avatar" className={css.avatar} />
         <HiChevronDown
-          className={`${css.arrowDown} ${isOpen ? css.arrowDownOpen : ""}`}
+          className={`${css.arrowDown} ${isOpen ? css.arrowDownOpen : ''}`}
         />
       </button>
       {isOpen && <UserBarPopover />}
