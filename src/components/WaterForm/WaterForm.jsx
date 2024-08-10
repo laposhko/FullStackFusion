@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { createCard, updateCard } from "../../redux/water/operations";
 import { toast } from "react-toastify";
-// import { act } from "react";
 import { useModalContext } from "../../context/useModalContext";
 import { selectActiveDay } from "/src/redux/water/selectors.js";
 import SvgIcon from "../../img/icons/sprite";

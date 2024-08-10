@@ -1,8 +1,10 @@
+import { useModalContext } from "../../context/useModalContext";
 import SvgIcon from "../../img/icons/sprite";
 import WaterForm from "../WaterForm/WaterForm";
 import css from "./WaterModal.module.css";
 
-const WaterModal = ({ mode, closeModal, water }) => {
+const WaterModal = ({ mode, water }) => {
+  const { closeModal } = useModalContext();
   const title =
     mode === "add" ? (
       <h2 className={css.title}>Add Water</h2>
