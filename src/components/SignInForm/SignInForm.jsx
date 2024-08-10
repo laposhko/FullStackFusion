@@ -43,20 +43,22 @@ const SignInForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data) => {
-    try {
-      dispatch(
-        signIn({
-          email: data.email,
-          password: data.password,
-        })
-      );
-      successToast("Successful sign in");
-      navigate("/tracker");
-    } catch (error) {
-      errorToast("Error in sign in" || error.message);
-    }
-  };
+const onSubmit = async (data) => {
+  try {
+    const response = await dispatch(
+      signIn({
+        email: data.email,
+        password: data.password,
+      })
+    ).unwrap(); 
+
+    successToast("Successful sign in");
+    navigate("/tracker");
+  } catch (error) {
+    errorToast(error.message || "Error in sign in");
+  }
+};
+
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
