@@ -1,26 +1,48 @@
-import { useState, useEffect } from "react";
+// import Logo from "../../components/Logo/Logo";
+// import SignInForm from "../../components/SignInForm/SignInForm";
+// import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
+// import css from "./SignInPage.module.css";
+
+// const SignInPage = () => {
+//   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
+
+//   const handleResize = () => {
+//     setIsDesktop(window.innerWidth >= 1440);
+//   };
+
+//   useEffect(() => {
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   return (
+//     <div className={css.container}>
+//       <div className={css.mainForm}>
+//         <Logo />
+//         <SignInForm />
+//       </div>
+//       {isDesktop && <div className={css.desktopForm}><AdvantagesSection /></div>}
+//     </div>
+//   );
+// };
+
+// export default SignInPage;
+
+import Logo from "../../components/Logo/Logo";
 import SignInForm from "../../components/SignInForm/SignInForm";
 import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
+
 import css from "./SignInPage.module.css";
 
 const SignInPage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth > 1440);
-
-  const handleResize = () => {
-    setIsMobile(window.innerWidth >= 1440);
-  };
-
-  useEffect(() => {
-    setIsMobile(window.innerWidth >= 1440);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <div>
-      <div className={css.signInContainer}>
+    <div className={css.container}>
+      <div className={css.mainForm}>
+        <Logo />
         <SignInForm />
-        {isMobile && <AdvantagesSection />}
+      </div>
+      <div className={css.desktopForm}>
+        <AdvantagesSection />
       </div>
     </div>
   );
