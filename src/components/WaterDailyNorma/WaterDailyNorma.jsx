@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
-import { getCurrentUserInformation} from '../../redux/auth/operations';
+import { getCurrentUserInformation } from "../../redux/auth/operations";
 import css from "./WaterDailyNorma.module.css";
 
 export default function WaterDailyNorma() {
@@ -11,10 +11,9 @@ export default function WaterDailyNorma() {
   useEffect(() => {
     dispatch(getCurrentUserInformation());
   }, [dispatch]);
-  
+
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
-  console.log(dailyNorma);
-    
+
   return (
     <div className={css.container}>
       <p className={css.title}>{dailyNorma} L</p>

@@ -19,3 +19,19 @@
   letter-spacing: -0.01em;
   color: var(--text-color);
 }
+
+@media screen and (min-width: 768px) {
+  .modal {
+    min-width: 648px;
+  }
+  .title {
+    font-size: 28px;
+    line-height: 114%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .modal {
+    min-width: 920px;
+  }
+}

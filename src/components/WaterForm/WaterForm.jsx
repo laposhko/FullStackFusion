@@ -5,9 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import SvgIcon from "../../img/icons/sprite";
 import { createCard, updateCard } from "../../redux/water/operations";
-// import { selectActiveDay } from "../../redux/selectors";
-// import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay.js";
+import { selectActiveDay } from "../../redux/water/selectors";
+import { convertDateFormatForActiveDay } from "../../helpers/convertDateFormatForActiveDay";
+import { toast } from "react-toastify";
 import css from "./WaterForm.module.css";
+import { act } from "react";
 
 const schema = Yup.object().shape({
   waterValue: Yup.number()
@@ -48,7 +50,6 @@ const WaterForm = ({ mode, onClose, water = {} }) => {
   const activeDay = useSelector(selectActiveDay);
   const dispatch = useDispatch();
 
-
   const handleClickMinus = () => {
     const current = getValues("waterValue");
     setValue("waterValue", current - 50, 50);
@@ -60,27 +61,33 @@ const WaterForm = ({ mode, onClose, water = {} }) => {
   };
 
   const onSubmit = () => {
-    //   const newData = {
-    //     localDate: convertDateFormatForActiveDay(activeDay),
-    //     waterValue: watch("waterValue"),
-    //     localTime: watch("localTime"),
-    //   };
-    //   try {
-    //     if (mode === "add") {
-    //       dispatch(createCard(newData));
-    //       toast.success(
-    //         `The amount of water consumed has been added successfully.`
-    //       );
-    //     } else if (mode === "edit") {
-    //       dispatch(updateCard({ _id: water._id, ...newData }));
-    //       toast.success(
-    //         "The amount of water consumed has been successfully updated."
-    //       );
-    //     }
-    //     onClose();
-    //   } catch (error) {
-    //     toast.error("Failed to save water data. Please try again.");
-    //   }
+    // const newData = {
+    //   localDate: convertDateFormatForActiveDay(activeDay),
+    //   waterValue: watch("waterValue"),
+    //   localTime: watch("localTime"),
+    // };
+    console.log(watch("localTime"));
+    const newData = {
+      volume: watch("waterValue"),
+      date: `${activeDay} ${watch("localTime")}`,
+    };
+
+    try {
+      if (mode === "add") {
+        dispatch(createCard(newData));
+        toast.success(
+          `The amount of water consumed has been added successfully.`
+        );
+      } else if (mode === "edit") {
+        dispatch(updateCard({ _id: water._id, ...newData }));
+        toast.success(
+          "The amount of water consumed has been successfully updated."
+        );
+      }
+      onClose();
+    } catch (error) {
+      toast.error("Failed to save water data. Please try again.");
+    }
   };
 
   const handleBlur = () => {
