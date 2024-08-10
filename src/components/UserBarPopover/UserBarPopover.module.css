@@ -1,18 +1,46 @@
-.popover {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  padding: 15px 20px;
-  right: 0;
-  top: 110%;
-  align-items: center;
-  box-shadow: 0 4px 8px #0000001a;
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 1;
-  font-weight: 700;
-  background-color: var(--main-background-color);
-  /* outline: 1px solid black; */
+
+@media screen and (min-width: 768px) {
+  .userBarWrapper {
+    position: relative;
+  }
+
+  .popover {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 15px 20px;
+    align-items: center;
+    box-shadow: 0 4px 8px #0000001a;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    font-weight: 700;
+    background-color: var(--main-background-color);
+    top: 83%;
+    left: 75%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userBarWrapper {
+    position: relative;
+  }
+
+  .popover {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 15px 20px;
+    left: 1400px;
+    top: 15%;
+    align-items: center;
+    box-shadow: 0 4px 8px #0000001a;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    font-weight: 700;
+    background-color: var(--main-background-color);
+  }
 }
 
 .wrapperItem {
@@ -46,4 +74,8 @@
   transition: color 0.3s linear;
 
   /* transform: rotate(45deg); */
+}
+
+.userBarWrapper {
+  position: relative;
 }

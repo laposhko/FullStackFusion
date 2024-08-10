@@ -22,6 +22,8 @@
 
 @media (min-width: 768px) {
   .userBarWrapper {
+    display: flex;
+    gap: 20px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

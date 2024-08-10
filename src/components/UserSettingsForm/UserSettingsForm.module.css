@@ -1,8 +1,8 @@
 .form {
-  padding: 30px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 }
 .uploadImgContainer {
   height: 103px;
@@ -11,6 +11,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .uploadImgContainer {
+    height: 134px;
+  }
 }
 .avatar {
   border-radius: 50%;
@@ -26,12 +31,38 @@
   justify-content: center;
   align-items: center;
 }
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+@media screen and (min-width: 1440px) {
+  .form {
+    height: 996px;
+  }
+  .inputsContainer {
+    flex-wrap: wrap;
+    width: calc(100% / 2 - 40px);
+    height: 594px;
+    justify-content: center;
+    /* align-items: flex-start; */
+  }
+  .inputContainer {
+    /* flex-shrink: 50%; */
+  }
+  .inputField {
+    height: 56px;
+  }
+}
 .inputContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 .inputName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
@@ -135,7 +166,11 @@
 .accentColor {
   color: var(--background-avocado-green);
 }
-
+.calculatorField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .waterAmount {
   font-weight: 700;
   font-size: 14px;

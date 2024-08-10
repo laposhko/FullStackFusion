@@ -1,9 +1,10 @@
-import clsx from "clsx";
-import style from "./AddWaterBtn.module.css";
-import SvgIcon from "../../img/icons/sprite";
-import { useModalContext } from "../../context/useModalContext";
-// import UserSettingsModal from '../UserSettingsModal/UserSettingsModal'
-import WaterModal from "../WaterModal/WaterModal";
+
+
+import clsx from 'clsx';
+import style from './AddWaterBtn.module.css';
+import SvgIcon from '../../img/icons/sprite';
+import { useModalContext } from '../../context/useModalContext';
+import WaterModal from '../WaterModal/WaterModal';
 
 export default function AddWaterBtn({ className }) {
   const { openModal } = useModalContext();
