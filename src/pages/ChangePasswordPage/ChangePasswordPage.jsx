@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import * as yup from "yup";
 import css from "./ChangePasswordPage.module.css";
+import { useSearchParams } from "react-router-dom";
 
 let changePasswordSchema = yup.object().shape({
   password: yup
@@ -18,14 +19,20 @@ export default function ChangePasswordPage() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
 
   const handleChangePassword = async event => {
     event.preventDefault();
 
     try {
       await changePasswordSchema.validate({ password });
-      dispatch(resetPassword(password));
-      toast.success("Password has been changed successfully!");
+      if (token) {
+        dispatch(resetPassword({ password: password, token: token }));
+        toast.success("Password has been changed successfully!");
+      } else {
+        toast.error("Invalid or missing token");
+      }
     } catch (err) {
       toast.error(err.message);
     }
