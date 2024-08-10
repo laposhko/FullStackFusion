@@ -13,6 +13,7 @@ form > *:not(:last-child) {
   color: var(--button-gray);
   font-size: 32px;
   font-weight: 700;
+
 }
 
 .inputContainer {
@@ -36,6 +37,7 @@ form > *:not(:last-child) {
 .passwordContainer {
   position: relative;
   width: 311px;
+
 }
 
 .inputField {
@@ -45,6 +47,15 @@ form > *:not(:last-child) {
   border-radius: 15px;
   padding: 16px 0px 16px 16px;
   transition: color 300ms ease-in;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+  opacity: 60%;
+  height: 56px;
+}
+
+.inputContainer input:focus {
+  border-color: var(--background-avocado-green);
   outline: none;
 }
 
@@ -65,6 +76,14 @@ form > *:not(:last-child) {
 
 .submitButton {
   color: var(--button-gray);
+
+}
+
+.btnform {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  font-family: Poppins;
   background-color: var(--background-avocado-green);
   font-size: 14px;
   font-weight: 700;
@@ -72,6 +91,15 @@ form > *:not(:last-child) {
   border: none;
   border-radius: 30px;
   text-align: center;
+  color: var(--button-gray);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.29;
+  cursor: pointer;
+  margin-top: 18px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  padding: 16px 0;
   transition: background-color 300ms ease-in;
 }
 
@@ -102,7 +130,6 @@ form > *:not(:last-child) {
 .svgIcon {
   display: none;
 }
-
 .resetPassword {
   text-align: center;
   font-size: 12px;
@@ -143,6 +170,23 @@ form > *:not(:last-child) {
   .submitButton {
     font-size: 16px;
     padding: 18px 187px;
+
+  }
+
+  .resetPassword {
+    font-size: 13px;
+  }
+
+@media (min-width: 1440px) {
+  .signInForm {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    height: 736px;
+    background-color: var(--main-background-color);
+    border-radius: 30px;
+    overflow: hidden;
+    gap: 32px;
   }
 
   .eyeToggle {
@@ -166,5 +210,6 @@ form > *:not(:last-child) {
 @media screen and (min-width: 1440px) {
   .form {
     padding-top: 74px;
+
   }
 }
