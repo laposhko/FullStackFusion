@@ -90,6 +90,7 @@ const SignUpForm = () => {
               type="email"
               {...register("email")}
               id={emailId}
+              placeholder="Enter your email"
             />
             {errors.email && (
               <p className={style.errorMessage}>{errors.email?.message}</p>
@@ -105,6 +106,7 @@ const SignUpForm = () => {
                 type={isVisible ? "text" : "password"}
                 {...register("password")}
                 id={passwordId}
+                placeholder="Enter your password"
               />
               <button
                 onClick={setVisibleToggler}
@@ -133,6 +135,7 @@ const SignUpForm = () => {
                 type={isCheckVisible ? "text" : "password"}
                 {...register("repeatPassword")}
                 id={repeatPasswordId}
+                placeholder="Repeat password"
               />
               <button
                 onClick={setIsCheckVisibleToggler}
