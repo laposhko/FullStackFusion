@@ -3,6 +3,9 @@
   flex-direction: column;
   gap: 40px;
 }
+form > *:not(:last-child) {
+  margin-bottom: 0;
+}
 .uploadImgContainer {
   min-height: 103px;
   display: flex;
@@ -19,24 +22,21 @@
   object-fit: cover;
 }
 .uploadBtn {
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   cursor: pointer;
 }
-/* .imageInput {
-  display: none;
-} */
-.inputsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.userInfoAllContainer {
+  margin-bottom: 0;
 }
 
-.inputContainer {
-  /* flex-shrink: 50%; */
+.inputContainerLast {
+  margin-bottom: 0;
 }
+
 .inputField {
   height: 56px;
 }
@@ -44,7 +44,9 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-bottom: 24px;
 }
+
 .inputName {
   display: flex;
   flex-direction: column;
@@ -54,8 +56,9 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: var(--text-color);
-  /* margin-bottom: 34px; */
+  margin-top: 0;
 }
+
 .inputField {
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
@@ -167,15 +170,16 @@
   flex-direction: column;
   gap: 8px;
 }
+
 .waterAmount {
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   color: var(--background-avocado-green);
+  margin-bottom: 14px;
 }
 .note {
   display: flex;
-  /* align-items: center; */
 }
 .saveBtn {
   border-radius: 30px;
@@ -191,6 +195,9 @@
   .formulas {
     flex-direction: row;
     gap: 28px;
+  }
+  .uploadBtn {
+    font-size: 16px;
   }
 }
 @media screen and (min-width: 1440px) {

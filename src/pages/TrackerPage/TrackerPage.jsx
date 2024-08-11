@@ -4,7 +4,6 @@ import Modals from "../../components/Modal/ModalWindow";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { selectActiveDay } from "../../redux/water/selectors";
-import { getCurrentUserInformation } from "../../redux/auth/operations";
 import { getWaterDayInfo } from "../../redux/water/operations";
 import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo";
 export default function TrackerPage() {
