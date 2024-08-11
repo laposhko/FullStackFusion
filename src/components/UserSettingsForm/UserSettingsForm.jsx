@@ -35,10 +35,12 @@ export default function UserSettingsForm() {
       "Gender can be only woman or man"
     ),
     name: Yup.string().max(70, "Name should not be longer than 70 characters"),
-    email: Yup.string().matches(
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-      "Invalid email"
-    ),
+    email: Yup.string()
+      .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Invalid email")
+      .nullable()
+      .transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value
+      ),
     weight: Yup.number()
       .typeError("Weight must be a number")
       .nullable("Weight should be a number")
@@ -127,15 +129,11 @@ export default function UserSettingsForm() {
     ? user.avatar
     : defaultImg;
   const onSubmit = (data) => {
-    console.log(data);
-
     const formData = new FormData();
-
     if (data.avatar) {
-      console.log(data.avatar);
       formData.append("avatar", data.avatar);
     }
-    if (data.gender) {
+    if (data.gender != user.gender) {
       formData.append("gender", data.gender);
     }
     if (data.name) {
@@ -145,7 +143,6 @@ export default function UserSettingsForm() {
       formData.append("email", data.email);
     }
     if (data.weight) {
-      console.log(data.weight);
       formData.append("weight", data.weight);
     }
     if (data.dailyActivityTime) {
@@ -154,9 +151,12 @@ export default function UserSettingsForm() {
     if (data.dailyWaterNorm) {
       formData.append("dailyWaterNorm", data.dailyWaterNorm);
     }
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+
+    const isEmpty = Array.from(formData.entries()).length === 0;
+    if (isEmpty) {
+      toast.error("You did not any changes");
+      return;
+    }
     dispatch(updateCurrentUser(formData))
       .unwrap()
       .then(() => {
