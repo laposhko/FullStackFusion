@@ -39,7 +39,6 @@
 }
 .inputField {
   height: 56px;
-
 }
 .inputContainer {
   display: flex;
@@ -229,9 +228,9 @@
     margin-bottom: 0;
   }
 }
+
 .errorMessage {
   color: var(--error-text);
   font-size: 14px;
   font-weight: 400;
-
 }

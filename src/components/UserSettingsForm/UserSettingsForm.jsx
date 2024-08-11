@@ -3,11 +3,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./UserSettingsForm.module.css";
-import {
-  useState,
-  useRef,
-  // useEffect
-} from "react";
+import { useState, useRef, useEffect } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
@@ -223,7 +219,6 @@ export default function UserSettingsForm() {
                 />
               </label>
             </div>
-
             {/* FORMULAS */}
             <div className={css.inputContainer}>
               <h5 className={css.inputName}>My daily norma</h5>
@@ -271,6 +266,7 @@ export default function UserSettingsForm() {
                   // {...register("weight", {})}
                 />
               </label>
+
               <label htmlFor="activity" className={css.calculatorField}>
                 The time of active participation in sports:
                 <input
@@ -284,6 +280,7 @@ export default function UserSettingsForm() {
                     setValue("dailyActivityTime", e.target.value);
                     setActivityTime(e.target.value);
                   }}
+                  // {...register("dailyActivity", {})}
                 />
               </label>
             </div>
@@ -295,8 +292,7 @@ export default function UserSettingsForm() {
                 <span className={css.waterAmount}>
                   {recommendedWaterNorm} L
                 </span>
-
-
+              </div>
 
               <label htmlFor="water" className={css.inputName}>
                 Write down how much water you will drink:
@@ -310,7 +306,6 @@ export default function UserSettingsForm() {
               </label>
             </div>
           </div>
-
         </div>
       </div>
       <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
