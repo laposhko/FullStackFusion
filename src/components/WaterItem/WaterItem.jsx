@@ -1,26 +1,26 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import svg from '../../img/icons/sprite.svg';
-import css from '../WaterItem/WaterItem.module.css';
+import svg from "../../img/icons/sprite.svg";
+import css from "../WaterItem/WaterItem.module.css";
 
-import { useModalContext } from '../../context/useModalContext';
-import WaterModal from '../WaterModal/WaterModal';
-import DeleteWaterModal from '../DeleteWaterModal/DeleteWaterModal';
+import { useModalContext } from "../../context/useModalContext";
+import WaterModal from "../WaterModal/WaterModal";
+import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
 import {
-  dayWaterAmount,
+  selectWaterAmountForDay,
   selectActiveDay,
   selectWaterState,
   selectDayItems,
-} from '../../redux/water/selectors';
+} from "../../redux/water/selectors";
 
 function WaterItem(data) {
   const { openModal } = useModalContext();
 
   function formatTime(isoString) {
     const date = new Date(isoString);
-    return date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
+    return date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
       hour12: true,
     });
   }

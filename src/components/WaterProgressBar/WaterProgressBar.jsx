@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { dayWaterAmount } from "../../redux/water/selectors";
+import { selectWaterAmountForDay } from "../../redux/water/selectors";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { getWaterDayInfo } from "../../redux/water/operations";
 import { getCurrentUserInformation } from "../../redux/auth/operations";
@@ -15,7 +15,7 @@ const WaterProgressBar = () => {
   // }, [dispatch]);
 
   const user = useSelector(selectAuthUser);
-  const waterAmount = useSelector(dayWaterAmount);
+  const waterAmount = useSelector(selectWaterAmountForDay);
   // console.log(waterAmount);
   const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
   // console.log(dayAmount)

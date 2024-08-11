@@ -73,7 +73,10 @@ const waterSlice = createSlice({
       .addCase(createCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.cards = action.payload;
+        state.dayItems.push(action.payload);
+        state.monthItems.push(action.payload);
+        state.dayWaterAmount[0].dayAmount =
+          state.dayWaterAmount[0].dayAmount + action.payload.volume;
       })
       .addCase(createCard.rejected, (state) => {
         state.isLoading = false;
@@ -83,9 +86,32 @@ const waterSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(updateCard.fulfilled, (state) => {
+      .addCase(updateCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
+        const { _id, ...newData } = action.payload;
+        const indexinDay = state.dayItems.findIndex(
+          (element) => element._id === _id
+        );
+        state.dayWaterAmount[0].dayAmount =
+          state.dayWaterAmount[0].dayAmount -
+          state.dayItems[indexinDay].volume +
+          action.payload.volume;
+        if (indexinDay !== -1) {
+          state.dayItems[indexinDay] = {
+            ...state.dayItems[indexinDay],
+            ...newData,
+          };
+        }
+        const indexinMonth = state.monthItems.findIndex(
+          (element) => element._id === _id
+        );
+        if (indexinMonth !== -1) {
+          state.monthItems[indexinMonth] = {
+            ...state.monthItems[indexinMonth],
+            ...newData,
+          };
+        }
       })
       .addCase(updateCard.rejected, (state) => {
         state.isLoading = false;
@@ -95,9 +121,20 @@ const waterSlice = createSlice({
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(deleteCard.fulfilled, (state) => {
+      .addCase(deleteCard.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
+        const cardToDelete = state.dayItems.find((item) => {
+          return item._id === action.payload;
+        });
+        state.dayWaterAmount[0].dayAmount =
+          state.dayWaterAmount[0].dayAmount - cardToDelete.volume;
+        state.dayItems = state.dayItems.filter(
+          (item) => item._id !== action.payload
+        );
+        state.monthItems = state.monthItems.filter(
+          (item) => item._id !== action.payload
+        );
       })
       .addCase(signOut.pending, (state) => {
         state.isLoading = true;
