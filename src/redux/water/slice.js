@@ -12,7 +12,7 @@ import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForA
 const waterSlice = createSlice({
   name: "water",
   initialState: {
-    activeDay: convertDateIntoStringFormat(new Date),
+    activeDay: convertDateIntoStringFormat(new Date()),
     dayItems: [],
     dayWaterAmount: [],
     dayTotal: null,
@@ -23,9 +23,9 @@ const waterSlice = createSlice({
     isError: false,
   },
   reducers: {
-    setActiveDay (state, action) {
+    setActiveDay(state, action) {
       state.activeDay = action.payload;
-    }
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -39,11 +39,11 @@ const waterSlice = createSlice({
         state.dayItems = action.payload.items;
 
         state.dayWaterAmount = action.payload.waterAmount;
-      //   if (action.payload.data.waterAmount && action.payload.data.waterAmount.length > 0) {
-      //     state.dayWaterAmount = action.payload.data.waterAmount[0].dayAmount;
-      // } else {
-      //     state.dayWaterAmount = 0; 
-      // }
+        //   if (action.payload.data.waterAmount && action.payload.data.waterAmount.length > 0) {
+        //     state.dayWaterAmount = action.payload.data.waterAmount[0].dayAmount;
+        // } else {
+        //     state.dayWaterAmount = 0;
+        // }
 
         state.dayTotal = action.payload.total;
       })
@@ -121,5 +121,5 @@ const waterSlice = createSlice({
 
 const waterReducer = waterSlice.reducer;
 
-export const {setActiveDay} = waterSlice.actions;
+export const { setActiveDay } = waterSlice.actions;
 export default waterReducer;

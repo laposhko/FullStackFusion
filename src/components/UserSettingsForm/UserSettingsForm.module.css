@@ -44,9 +44,10 @@
   .inputsContainer {
     flex-wrap: wrap;
     width: calc(100% / 2 - 40px);
-    height: 594px;
+    height: 550px;
     justify-content: center;
     margin-bottom: 0;
+    column-gap: 100px;
     /* align-items: flex-start; */
   }
   .inputContainer {

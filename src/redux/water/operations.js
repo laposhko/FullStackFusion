@@ -14,9 +14,9 @@ axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
 export const getWaterDayInfo = createAsyncThunk(
   "water/getwaterdayinfo",
-  async (_, thunkAPI) => {
+  async (date, thunkAPI) => {
     try {
-      const response = await axios.get("/water/day");
+      const response = await axios.get(`/water/day?date=${date}`);
       return response.data.data;
     } catch (error) {
       toast.error(
@@ -37,9 +37,9 @@ export const getWaterDayInfo = createAsyncThunk(
 
 export const getWaterMonthInfo = createAsyncThunk(
   "water/getwatermonthinfo",
-  async (_, thunkAPI) => {
+  async (month, thunkAPI) => {
     try {
-      const response = await axios.get("/water/month");
+      const response = await axios.get(`/water/month?date=${month}`);
       return response.data.data;
     } catch (error) {
       toast.error(

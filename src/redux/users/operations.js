@@ -46,11 +46,7 @@ export const updateCurrentUser = createAsyncThunk(
   async (updatedUser, thunkAPI) => {
     try {
       console.log(updatedUser);
-      const response = await axios.patch("users/update", updatedUser, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.patch("users/update", updatedUser);
       console.log(response.data.data.updatedResult);
       return response.data.data.updatedResult;
     } catch (error) {
