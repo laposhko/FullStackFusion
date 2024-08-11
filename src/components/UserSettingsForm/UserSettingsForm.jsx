@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./UserSettingsForm.module.css";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
@@ -14,16 +14,18 @@ import toast from "react-hot-toast";
 export default function UserSettingsForm() {
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUser);
-  const [activityTime, setActivityTime] = useState(0);
-  const [userWeight, setUserWeight] = useState(0);
-  const recommendedWaterNorm = useMemo(() => {
-    return (
-      Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-        ? Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-        : user.weight * 0.03 + user.dailyActivityTime * 0.6
-    ).toFixed(1);
-  }, [activityTime, userWeight, user.weight, user.dailyActivityTime]);
-
+  const [activityTime, setActivityTime] = useState(user.dailyActivityTime);
+  const [userWeight, setUserWeight] = useState(user.weight);
+  const [gender, setGender] = useState(user.gender);
+  const [recommendedWaterNorm, setRecommendedWaterNorm] = useState();
+  useEffect(() => {
+    setRecommendedWaterNorm(
+      (gender === "woman"
+        ? userWeight * 0.03 + activityTime * 0.4
+        : userWeight * 0.04 + activityTime * 0.6
+      ).toFixed(1)
+    );
+  }, [activityTime, userWeight, gender]);
   const { closeModal } = useModalContext();
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -81,47 +83,14 @@ export default function UserSettingsForm() {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  // const convertToBinaryString = (file) => {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.onload = () => resolve(reader.result);
-  //     reader.onerror = (error) => reject(error);
-  //     reader.readAsBinaryString(file);
-  //   });
-  // };
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
 
-    console.log(file);
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
       setValue("avatar", file);
     }
   };
-  // const reader = new FileReader();
-
-  // reader.onloadend = () => {
-  //   const base64String = reader.result
-  //     .replace("data:", "")
-  //     .replace(/^.+,/, "");
-  //   console.log(base64String);
-  // };
-  // const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-
-  // Assuming you're sending the image as part of a JSON payload
-  // const payload = {
-  //   image: base64String,
-  // };
-  // const binaryString = await convertToBinaryString(file);
-  // console.log(binaryString);
-  // console.log(URL.createObjectURL(file));
-  // setValue("avatar", binaryString);
-
-  //   reader.onloadend = () => {
-  //     setSelectedImage(reader.result);
-  //     console.log(reader.result);
-  //   };
-  //   reader.readAsDataURL(file);
 
   const avatar = selectedImage
     ? selectedImage
@@ -146,7 +115,7 @@ export default function UserSettingsForm() {
       formData.append("weight", data.weight);
     }
     if (data.dailyActivityTime) {
-      formData.append("dailyActivityTime", data.dailyActivity);
+      formData.append("dailyActivityTime", data.dailyActivityTime);
     }
     if (data.dailyWaterNorm) {
       formData.append("dailyWaterNorm", data.dailyWaterNorm);
@@ -157,6 +126,9 @@ export default function UserSettingsForm() {
       toast.error("You did not any changes");
       return;
     }
+    // formData.forEach((key, value) => {
+    //   console.log(value, key);
+    // });
     dispatch(updateCurrentUser(formData))
       .unwrap()
       .then(() => {
@@ -202,6 +174,7 @@ export default function UserSettingsForm() {
                 value="woman"
                 className={css.radioInput}
                 defaultChecked={user.gender === "woman"}
+                onChange={() => setGender("woman")}
               />
               <span className={css.customRadio}></span>
               <span className={css.radiobuttonText}>Woman</span>
@@ -214,6 +187,7 @@ export default function UserSettingsForm() {
                 value="man"
                 className={css.radioInput}
                 defaultChecked={user.gender === "man"}
+                onChange={() => setGender("man")}
               />
               <span className={css.customRadio}></span>
               <span className={css.radiobuttonText}>Man</span>
@@ -333,7 +307,8 @@ export default function UserSettingsForm() {
               className={css.inputField}
               id="water"
               type="text"
-              placeholder={recommendedWaterNorm}
+              defaultValue={recommendedWaterNorm}
+              // placeholder={user.dailyWaterNorm}
               {...register("dailyWaterNorm", {})}
             />
             {errors.dailyWaterNorm && (
