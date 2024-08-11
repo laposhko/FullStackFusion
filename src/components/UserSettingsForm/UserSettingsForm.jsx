@@ -3,7 +3,11 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./UserSettingsForm.module.css";
-import { useState, useRef, useEffect } from "react";
+import {
+  useState,
+  useRef,
+  // useEffect
+} from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
@@ -72,7 +76,7 @@ export default function UserSettingsForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
     setValue,
   } = useForm({
     resolver: yupResolver(validationSchema),
@@ -195,128 +199,118 @@ export default function UserSettingsForm() {
           </div>
         </div>
         {/* USER INFO */}
-        <div className={css.inputContainer}>
-          <label htmlFor="name" className={css.inputName}>
-            Your name
-            <input
-              className={css.inputField}
-              id="name"
-              type="text"
-              placeholder={user.name}
-              {...register("name", {})}
-            />
-            {errors.name && (
-              <p className={css.errorMessage}>{errors.name?.message}</p>
-            )}
-          </label>
-          <label htmlFor="email" className={css.inputName}>
-            Email
-            <input
-              className={css.inputField}
-              id="email"
-              type="email"
-              placeholder={user.email}
-              {...register("email", {})}
-            />
-            {errors.email && (
-              <p className={css.errorMessage}>{errors.email?.message}</p>
-            )}
-          </label>
-        </div>
-
-        {/* FORMULAS */}
-        <div className={css.inputContainer}>
-          <h5 className={css.inputName}>My daily norma</h5>
-          <div className={css.formulas}>
-            <div className={css.formulaBlock}>
-              <h6 className={css.formulaLabel}>For woman</h6>
-              <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+        <div className={css.userInfoAllContainer}>
+          <div className={css.userInfoPart1}>
+            <div className={css.inputContainer}>
+              <label htmlFor="name" className={css.inputName}>
+                Your name
+                <input
+                  className={css.inputField}
+                  id="name"
+                  type="text"
+                  placeholder={user.name}
+                  {...register("name", {})}
+                />
+              </label>
+              <label htmlFor="email" className={css.inputName}>
+                Email
+                <input
+                  className={css.inputField}
+                  id="email"
+                  type="email"
+                  placeholder={user.email}
+                  {...register("email", {})}
+                />
+              </label>
             </div>
-            <div className={css.formulaBlock}>
-              <h6 className={css.formulaLabel}>For man</h6>
-              <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+
+            {/* FORMULAS */}
+            <div className={css.inputContainer}>
+              <h5 className={css.inputName}>My daily norma</h5>
+              <div className={css.formulas}>
+                <div className={css.formulaBlock}>
+                  <h6 className={css.formulaLabel}>For woman</h6>
+                  <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
+                </div>
+                <div className={css.formulaBlock}>
+                  <h6 className={css.formulaLabel}>For man</h6>
+                  <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
+                </div>
+              </div>
+
+              <p className={css.formulasDescription}>
+                <span className={css.accentColor}>*</span> V is the volume of
+                the water norm in liters per day, M is your body weight, T is
+                the time of active sports, or another type of activity
+                commensurate in terms of loads (in the absence of these, you
+                must set 0)
+              </p>
+              <span className={css.note}>
+                <span className={css.accentColor}>
+                  <BsExclamationLg style={{ fontSize: "18px" }} />
+                </span>
+                Active time in hours
+              </span>
+            </div>
+          </div>
+          {/* CALCULATOR */}
+          <div className={css.userInfoPart2}>
+            <div className={css.inputContainer}>
+              <label htmlFor="weight" className={css.calculatorField}>
+                Your weight in kilograms:
+                <input
+                  className={css.inputField}
+                  id="weight"
+                  type="text"
+                  defaultValue={user.weight ? user.weight : 60}
+                  onChange={(e) => {
+                    setValue("weight", e.target.value);
+
+                    setUserWeight(e.target.value);
+                  }}
+                  // {...register("weight", {})}
+                />
+              </label>
+              <label htmlFor="activity" className={css.calculatorField}>
+                The time of active participation in sports:
+                <input
+                  className={css.inputField}
+                  id="activity"
+                  type="text"
+                  defaultValue={
+                    user.dailyActivityTime ? user.dailyActivityTime : 0
+                  }
+                  onChange={(e) => {
+                    setValue("dailyActivityTime", e.target.value);
+                    setActivityTime(e.target.value);
+                  }}
+                />
+              </label>
+            </div>
+
+            {/* WATER AMOUNT */}
+            <div className={css.inputContainer}>
+              <div className={css.calculatorField}>
+                <p>The required amount of water in liters per day:</p>
+                <span className={css.waterAmount}>
+                  {recommendedWaterNorm} L
+                </span>
+
+
+
+              <label htmlFor="water" className={css.inputName}>
+                Write down how much water you will drink:
+                <input
+                  className={css.inputField}
+                  id="water"
+                  type="text"
+                  defaultValue={recommendedWaterNorm}
+                  {...register("dailyWaterNorm", {})}
+                />
+              </label>
             </div>
           </div>
 
-          <p className={css.formulasDescription}>
-            <span className={css.accentColor}>*</span> V is the volume of the
-            water norm in liters per day, M is your body weight, T is the time
-            of active sports, or another type of activity commensurate in terms
-            of loads (in the absence of these, you must set 0)
-          </p>
-          <span className={css.note}>
-            <span className={css.accentColor}>
-              <BsExclamationLg style={{ fontSize: "18px" }} />
-            </span>
-            Active time in hours
-          </span>
-        </div>
-
-        {/* CALCULATOR */}
-        <div className={css.inputContainer}>
-          <label htmlFor="weight" className={css.calculatorField}>
-            Your weight in kilograms:
-            <input
-              className={css.inputField}
-              id="weight"
-              type="text"
-              defaultValue={user.weight ? user.weight : 60}
-              onChange={(e) => {
-                setValue("weight", e.target.value);
-
-                setUserWeight(e.target.value);
-              }}
-              // {...register("weight", {})}
-            />
-            {errors.weight && (
-              <p className={css.errorMessage}>{errors.weight?.message}</p>
-            )}
-          </label>
-
-          <label htmlFor="activity" className={css.calculatorField}>
-            The time of active participation in sports:
-            <input
-              className={css.inputField}
-              id="activity"
-              type="text"
-              defaultValue={user.dailyActivityTime ? user.dailyActivityTime : 0}
-              onChange={(e) => {
-                setValue("dailyActivityTime", e.target.value);
-                setActivityTime(e.target.value);
-              }}
-              // {...register("dailyActivity", {})}
-            />
-            {errors.dailyActivityTime && (
-              <p className={css.errorMessage}>
-                {errors.dailyActivityTime?.message}
-              </p>
-            )}
-          </label>
-        </div>
-
-        {/* WATER AMOUNT */}
-        <div className={css.inputContainer}>
-          <div className={css.calculatorField}>
-            <p>The required amount of water in liters per day:</p>
-            <span className={css.waterAmount}>{recommendedWaterNorm} L</span>
-          </div>
-
-          <label htmlFor="water" className={css.inputName}>
-            Write down how much water you will drink:
-            <input
-              className={css.inputField}
-              id="water"
-              type="text"
-              defaultValue={recommendedWaterNorm}
-              // placeholder={user.dailyWaterNorm}
-              {...register("dailyWaterNorm", {})}
-            />
-            {errors.dailyWaterNorm && (
-              <p className={css.errorMessage}>
-                {errors.dailyWaterNorm?.message}
-              </p>
-            )}
-          </label>
         </div>
       </div>
       <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>

@@ -18,6 +18,7 @@
   line-height: 120%;
   letter-spacing: -0.01em;
   color: var(--text-color);
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -33,5 +34,6 @@
 @media screen and (min-width: 1440px) {
   .modal {
     min-width: 920px;
+    padding: 40px;
   }
 }
