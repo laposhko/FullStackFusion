@@ -15,15 +15,8 @@ function WaterList() {
   //   if (!waterEntries) {
   //     dispatch(getWaterDayInfo());
   //   }
-  // }, [waterEntries, dispatch]);
 
-  // console.log(waterEntries);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!waterEntries) {
-      dispatch(getWaterDayInfo(date));
-    }
-  }, [waterEntries, dispatch, date]);
+  // }, [waterEntries, dispatch, date]);
 
   return (
     <div className={css.waterInfo}>
