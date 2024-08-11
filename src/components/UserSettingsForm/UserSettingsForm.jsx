@@ -3,12 +3,12 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./UserSettingsForm.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useMemo } from "react";
 import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
-import { updateCurrentUser } from "../../redux/users/operations";
+import { updateCurrentUser } from "../../redux/auth/operations";
 import { useModalContext } from "../../context/useModalContext";
 import toast from "react-hot-toast";
 export default function UserSettingsForm() {
@@ -16,42 +16,54 @@ export default function UserSettingsForm() {
   const user = useSelector(selectAuthUser);
   const [activityTime, setActivityTime] = useState(0);
   const [userWeight, setUserWeight] = useState(0);
-  const recommendedWaterNorm =
-    Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-      ? Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-      : user.weight * 0.03 + user.dailyActivityTime * 0.6;
+  const recommendedWaterNorm = useMemo(() => {
+    return (
+      Number(userWeight) * 0.03 + Number(activityTime) * 0.6
+        ? Number(userWeight) * 0.03 + Number(activityTime) * 0.6
+        : user.weight * 0.03 + user.dailyActivityTime * 0.6
+    ).toFixed(1);
+  }, [activityTime, userWeight, user.weight, user.dailyActivityTime]);
+
   const { closeModal } = useModalContext();
 
   const [selectedImage, setSelectedImage] = useState(null);
   const defaultImg =
     "https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp";
   const validationSchema = Yup.object().shape({
-    gender: Yup.string().oneOf(["woman", "man"]),
-    name: Yup.string().max(100),
-    email: Yup.string().email(),
-    weight: Yup.string(),
-    // .number()
-    //   .nullable()
-    //   .transform((value, originalValue) =>
-    //     String(originalValue).trim() === "" ? null : value
-    //   )
-    //   .min(10)
-    //   .max(250),
-    activityTime: Yup.number()
+    gender: Yup.string().oneOf(
+      ["woman", "man"],
+      "Gender can be only woman or man"
+    ),
+    name: Yup.string().max(70, "Name should not be longer than 70 characters"),
+    email: Yup.string().matches(
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+      "Invalid email"
+    ),
+    weight: Yup.number()
+      .typeError("Weight must be a number")
+      .nullable("Weight should be a number")
+      .transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value
+      )
+      .min(10, "Weight should not be less than 10 kg")
+      .max(250, "Weight should not be more than 250 kg"),
+    dailyActivityTime: Yup.number()
+      .typeError("Activity number must be a number")
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0)
-      .max(12),
+      .min(0, "Activity time cannot be negative number")
+      .max(12, "Activity time cannot be more than 12 hours for day"),
     dailyWaterNorm: Yup.number()
+      .typeError("Daily water norm must be a number")
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0)
-      .max(10),
-    avatar: Yup.string(),
+      .min(0, "Water norm should be more than 0 L")
+      .max(10, "Water norm should not be more than 10 L for day"),
+    avatar: Yup.mixed(),
   });
   const {
     register,
@@ -219,6 +231,9 @@ export default function UserSettingsForm() {
               placeholder={user.name}
               {...register("name", {})}
             />
+            {errors.name && (
+              <p className={css.errorMessage}>{errors.name?.message}</p>
+            )}
           </label>
           <label htmlFor="email" className={css.inputName}>
             Email
@@ -229,6 +244,9 @@ export default function UserSettingsForm() {
               placeholder={user.email}
               {...register("email", {})}
             />
+            {errors.email && (
+              <p className={css.errorMessage}>{errors.email?.message}</p>
+            )}
           </label>
         </div>
 
@@ -276,6 +294,9 @@ export default function UserSettingsForm() {
               }}
               // {...register("weight", {})}
             />
+            {errors.weight && (
+              <p className={css.errorMessage}>{errors.weight?.message}</p>
+            )}
           </label>
 
           <label htmlFor="activity" className={css.calculatorField}>
@@ -291,6 +312,11 @@ export default function UserSettingsForm() {
               }}
               // {...register("dailyActivity", {})}
             />
+            {errors.dailyActivityTime && (
+              <p className={css.errorMessage}>
+                {errors.dailyActivityTime?.message}
+              </p>
+            )}
           </label>
         </div>
 
@@ -307,9 +333,14 @@ export default function UserSettingsForm() {
               className={css.inputField}
               id="water"
               type="text"
-              defaultValue={recommendedWaterNorm}
+              placeholder={recommendedWaterNorm}
               {...register("dailyWaterNorm", {})}
             />
+            {errors.dailyWaterNorm && (
+              <p className={css.errorMessage}>
+                {errors.dailyWaterNorm?.message}
+              </p>
+            )}
           </label>
         </div>
       </div>

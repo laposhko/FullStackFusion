@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getAllUsers,
   // getCurrentUserInformation,
-  updateCurrentUser,
+  // updateCurrentUser,
 } from "./operations";
 
 const getAllUsersSlice = createSlice({
@@ -36,34 +36,35 @@ const getAllUsersSlice = createSlice({
       .addCase(getAllUsers.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-      })
-      // .addCase(getCurrentUserInformation.pending, (state) => {
-      //   state.isLoading = true;
-      //   state.isError = false;
-      // })
-      // .addCase(getCurrentUserInformation.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   state.isError = false;
-      //   state.isLoggedIn = true;
-      //   state.user = action.payload;
-      // })
-      // .addCase(getCurrentUserInformation.rejected, (state) => {
-      //   state.isLoading = false;
-      //   state.isError = true;
-      // })
-      .addCase(updateCurrentUser.pending, (state) => {
-        state.isLoading = true;
-        state.isError = false;
-      })
-      .addCase(updateCurrentUser.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.user = action.payload;
-      })
-      .addCase(updateCurrentUser.rejected, (state) => {
-        state.isLoading = false;
-        state.isError = true;
       }),
+  // .addCase(getCurrentUserInformation.pending, (state) => {
+  //   state.isLoading = true;
+  //   state.isError = false;
+  // })
+  // .addCase(getCurrentUserInformation.fulfilled, (state, action) => {
+  //   state.isLoading = false;
+  //   state.isError = false;
+  //   state.isLoggedIn = true;
+  //   state.user = action.payload;
+  // })
+  // .addCase(getCurrentUserInformation.rejected, (state) => {
+  //   state.isLoading = false;
+  //   state.isError = true;
+  // })
+  // .addCase(updateCurrentUser.pending, (state) => {
+  //   state.isLoading = true;
+  //   state.isError = false;
+  // })
+  // .addCase(updateCurrentUser.fulfilled, (state, action) => {
+  //   state.isLoading = false;
+  //   state.isError = false;
+
+  //   state.user = action.payload;
+  // })
+  // .addCase(updateCurrentUser.rejected, (state) => {
+  //   state.isLoading = false;
+  //   state.isError = true;
+  // }),
 });
 
 const usersReducer = getAllUsersSlice.reducer;

@@ -75,7 +75,6 @@ export const updateCard = createAsyncThunk(
   "water/update",
   async (newData, thunkAPI) => {
     try {
-      console.log(newData);
       const response = await axios.patch(`/water/${newData._id}`, {
         volume: newData.volume,
       });
@@ -92,6 +91,7 @@ export const deleteCard = createAsyncThunk(
   async (cardId, thunkAPI) => {
     try {
       await axios.delete(`water/${cardId}`);
+      return cardId;
     } catch (error) {
       toast.error(`Something wrong in deleting water card:${error.message}`);
       thunkAPI.rejectWithValue(error.message);

@@ -60,7 +60,6 @@ const WaterForm = ({ mode, water }) => {
   };
 
   const onSubmit = () => {
-    console.log(watch("localTime"));
     const newData = {
       volume: watch("waterValue"),
       date: `${activeDay} ${watch("localTime")}`,
