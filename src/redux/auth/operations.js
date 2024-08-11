@@ -150,3 +150,17 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+export const updateCurrentUser = createAsyncThunk(
+  "users/updateuser",
+  async (updatedUser, thunkAPI) => {
+    try {
+      const response = await axios.patch("users/update", updatedUser);
+      return response.data.data.updatedResult;
+    } catch (error) {
+      toast.error(
+        `Something wrong in updating current user information: ${error.message}`
+      );
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

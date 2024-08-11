@@ -4,25 +4,26 @@ import WaterItem from "../WaterItem/WaterItem";
 import css from "../WaterList/WaterList.module.css";
 import { getWaterDayInfo } from "../../redux/water/operations";
 import { selectDayItems } from "../../redux/water/selectors";
-
+import { selectActiveDay } from "../../redux/water/selectors";
 function WaterList() {
+  // const date = useSelector(selectActiveDay);
+  // console.log(date);
   const waterEntries = useSelector(selectDayItems);
-  console.log(waterEntries);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!waterEntries) {
-      dispatch(getWaterDayInfo());
-    }
-  }, [waterEntries, dispatch]);
-  // const waterEntries = [1, 2, 3, 4, 5, 6, 7];
+  // console.log(waterEntries);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (!waterEntries) {
+  //     dispatch(getWaterDayInfo(date));
+  //   }
+  // }, [waterEntries, dispatch, date]);
+
 
   return (
     <div className={css.waterInfo}>
       {waterEntries && waterEntries.length > 0 ? (
         <ul className={css.waterList}>
           {waterEntries.map((entry, index) => (
-            // <WaterItem key={index} data={entry} />
             <WaterItem key={index} data={entry} />
           ))}
         </ul>

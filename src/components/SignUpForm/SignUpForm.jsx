@@ -68,7 +68,7 @@ const SignUpForm = () => {
           password: data.password,
         })
       );
-      successToast("Succesfull sign up");
+      successToast("Successfully sign up");
       navigation("/tracker");
     } catch (error) {
       errorToast("Error in sign up" || error.message);

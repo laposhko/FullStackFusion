@@ -1,28 +1,29 @@
-import UserPanel from "../../components/UserPanel/UserPanel";
-import DailyInfo from "../../components/DailyInfo/DailyInfo";
 import css from "./TrackerPage.module.css";
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo";
-import Calendar from "../../components/Calendar/Calendar";
 import Modals from "../../components/Modal/ModalWindow";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { selectActiveDay } from "../../redux/water/selectors";
 import { getCurrentUserInformation } from "../../redux/auth/operations";
 import { getWaterDayInfo } from "../../redux/water/operations";
+import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo";
 export default function TrackerPage() {
   const dispatch = useDispatch();
+  const date = useSelector(selectActiveDay);
   useEffect(() => {
-    dispatch(getWaterDayInfo());
-  }, [dispatch]);
+    dispatch(getWaterDayInfo(date));
+  }, [dispatch, date]);
 
   return (
     <div className={css.pageContainer}>
       <div className={css.sectionWrapper}>
         <WaterMainInfo />
-        <div className={css.rightSectionWrapper}>
+        <WaterDetailedInfo></WaterDetailedInfo>
+        {/* <div className={css.rightSectionWrapper}>
           <UserPanel />
           <DailyInfo />
           <Calendar></Calendar>
-        </div>
+        </div> */}
 
         <Modals></Modals>
       </div>

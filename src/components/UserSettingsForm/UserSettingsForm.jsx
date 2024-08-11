@@ -12,50 +12,66 @@ import { selectAuthUser } from "../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
-import { updateCurrentUser } from "../../redux/users/operations";
+import { updateCurrentUser } from "../../redux/auth/operations";
 import { useModalContext } from "../../context/useModalContext";
 import toast from "react-hot-toast";
 export default function UserSettingsForm() {
   const dispatch = useDispatch();
   const user = useSelector(selectAuthUser);
-  const [activityTime, setActivityTime] = useState(0);
-  const [userWeight, setUserWeight] = useState(0);
-  const recommendedWaterNorm =
-    Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-      ? Number(userWeight) * 0.03 + Number(activityTime) * 0.6
-      : user.weight * 0.03 + user.dailyActivityTime * 0.6;
+  const [activityTime, setActivityTime] = useState(user.dailyActivityTime);
+  const [userWeight, setUserWeight] = useState(user.weight);
+  const [gender, setGender] = useState(user.gender);
+  const [recommendedWaterNorm, setRecommendedWaterNorm] = useState();
+  useEffect(() => {
+    setRecommendedWaterNorm(
+      (gender === "woman"
+        ? userWeight * 0.03 + activityTime * 0.4
+        : userWeight * 0.04 + activityTime * 0.6
+      ).toFixed(1)
+    );
+  }, [activityTime, userWeight, gender]);
   const { closeModal } = useModalContext();
 
   const [selectedImage, setSelectedImage] = useState(null);
   const defaultImg =
     "https://res.cloudinary.com/dntbkzhtq/image/upload/v1719141998/AquaTrack/defaultAvatar.webp";
   const validationSchema = Yup.object().shape({
-    gender: Yup.string().oneOf(["woman", "man"]),
-    name: Yup.string().max(100),
-    email: Yup.string().email(),
-    weight: Yup.string(),
-    // .number()
-    //   .nullable()
-    //   .transform((value, originalValue) =>
-    //     String(originalValue).trim() === "" ? null : value
-    //   )
-    //   .min(10)
-    //   .max(250),
-    activityTime: Yup.number()
+    gender: Yup.string().oneOf(
+      ["woman", "man"],
+      "Gender can be only woman or man"
+    ),
+    name: Yup.string().max(70, "Name should not be longer than 70 characters"),
+    email: Yup.string()
+      .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Invalid email")
+      .nullable()
+      .transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value
+      ),
+    weight: Yup.number()
+      .typeError("Weight must be a number")
+      .nullable("Weight should be a number")
+      .transform((value, originalValue) =>
+        String(originalValue).trim() === "" ? null : value
+      )
+      .min(10, "Weight should not be less than 10 kg")
+      .max(250, "Weight should not be more than 250 kg"),
+    dailyActivityTime: Yup.number()
+      .typeError("Activity number must be a number")
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0)
-      .max(12),
+      .min(0, "Activity time cannot be negative number")
+      .max(12, "Activity time cannot be more than 12 hours for day"),
     dailyWaterNorm: Yup.number()
+      .typeError("Daily water norm must be a number")
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0)
-      .max(10),
-    avatar: Yup.string(),
+      .min(0, "Water norm should be more than 0 L")
+      .max(10, "Water norm should not be more than 10 L for day"),
+    avatar: Yup.mixed(),
   });
   const {
     register,
@@ -71,47 +87,14 @@ export default function UserSettingsForm() {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  // const convertToBinaryString = (file) => {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.onload = () => resolve(reader.result);
-  //     reader.onerror = (error) => reject(error);
-  //     reader.readAsBinaryString(file);
-  //   });
-  // };
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
 
-    console.log(file);
     if (file) {
       setSelectedImage(URL.createObjectURL(file));
       setValue("avatar", file);
     }
   };
-  // const reader = new FileReader();
-
-  // reader.onloadend = () => {
-  //   const base64String = reader.result
-  //     .replace("data:", "")
-  //     .replace(/^.+,/, "");
-  //   console.log(base64String);
-  // };
-  // const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-
-  // Assuming you're sending the image as part of a JSON payload
-  // const payload = {
-  //   image: base64String,
-  // };
-  // const binaryString = await convertToBinaryString(file);
-  // console.log(binaryString);
-  // console.log(URL.createObjectURL(file));
-  // setValue("avatar", binaryString);
-
-  //   reader.onloadend = () => {
-  //     setSelectedImage(reader.result);
-  //     console.log(reader.result);
-  //   };
-  //   reader.readAsDataURL(file);
 
   const avatar = selectedImage
     ? selectedImage
@@ -119,15 +102,11 @@ export default function UserSettingsForm() {
     ? user.avatar
     : defaultImg;
   const onSubmit = (data) => {
-    console.log(data);
-
     const formData = new FormData();
-
     if (data.avatar) {
-      console.log(data.avatar);
       formData.append("avatar", data.avatar);
     }
-    if (data.gender) {
+    if (data.gender != user.gender) {
       formData.append("gender", data.gender);
     }
     if (data.name) {
@@ -137,18 +116,23 @@ export default function UserSettingsForm() {
       formData.append("email", data.email);
     }
     if (data.weight) {
-      console.log(data.weight);
       formData.append("weight", data.weight);
     }
     if (data.dailyActivityTime) {
-      formData.append("dailyActivityTime", data.dailyActivity);
+      formData.append("dailyActivityTime", data.dailyActivityTime);
     }
     if (data.dailyWaterNorm) {
       formData.append("dailyWaterNorm", data.dailyWaterNorm);
     }
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
+
+    const isEmpty = Array.from(formData.entries()).length === 0;
+    if (isEmpty) {
+      toast.error("You did not any changes");
+      return;
+    }
+    // formData.forEach((key, value) => {
+    //   console.log(value, key);
+    // });
     dispatch(updateCurrentUser(formData))
       .unwrap()
       .then(() => {
@@ -194,6 +178,7 @@ export default function UserSettingsForm() {
                 value="woman"
                 className={css.radioInput}
                 defaultChecked={user.gender === "woman"}
+                onChange={() => setGender("woman")}
               />
               <span className={css.customRadio}></span>
               <span className={css.radiobuttonText}>Woman</span>
@@ -206,6 +191,7 @@ export default function UserSettingsForm() {
                 value="man"
                 className={css.radioInput}
                 defaultChecked={user.gender === "man"}
+                onChange={() => setGender("man")}
               />
               <span className={css.customRadio}></span>
               <span className={css.radiobuttonText}>Man</span>
@@ -285,7 +271,6 @@ export default function UserSettingsForm() {
                   // {...register("weight", {})}
                 />
               </label>
-
               <label htmlFor="activity" className={css.calculatorField}>
                 The time of active participation in sports:
                 <input
@@ -299,7 +284,6 @@ export default function UserSettingsForm() {
                     setValue("dailyActivityTime", e.target.value);
                     setActivityTime(e.target.value);
                   }}
-                  // {...register("dailyActivity", {})}
                 />
               </label>
             </div>
@@ -311,7 +295,8 @@ export default function UserSettingsForm() {
                 <span className={css.waterAmount}>
                   {recommendedWaterNorm} L
                 </span>
-              </div>
+
+
 
               <label htmlFor="water" className={css.inputName}>
                 Write down how much water you will drink:
@@ -325,6 +310,7 @@ export default function UserSettingsForm() {
               </label>
             </div>
           </div>
+
         </div>
       </div>
       <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
