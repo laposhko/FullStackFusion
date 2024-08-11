@@ -7,16 +7,8 @@ import { selectDayItems } from '../../redux/water/selectors';
 import { selectActiveDay } from '../../redux/water/selectors';
 function WaterList() {
   const date = useSelector(selectActiveDay);
-  // console.log(date);
+
   const waterEntries = useSelector(selectDayItems);
-
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   if (!waterEntries) {
-  //     dispatch(getWaterDayInfo());
-  //   }
-
-  // }, [waterEntries, dispatch, date]);
 
   return (
     <div className={css.waterInfo}>
