@@ -38,12 +38,14 @@ const waterSlice = createSlice({
         state.isError = false;
         state.dayItems = action.payload.items;
 
-        state.dayWaterAmount = action.payload.waterAmount;
-        //   if (action.payload.data.waterAmount && action.payload.data.waterAmount.length > 0) {
-        //     state.dayWaterAmount = action.payload.data.waterAmount[0].dayAmount;
-        // } else {
-        //     state.dayWaterAmount = 0;
-        // }
+        if (
+          action.payload.waterAmount &&
+          action.payload.waterAmount.length > 0
+        ) {
+          state.dayWaterAmount = action.payload.waterAmount;
+        } else {
+          state.dayWaterAmount = [{}];
+        }
 
         state.dayTotal = action.payload.total;
       })
@@ -75,6 +77,7 @@ const waterSlice = createSlice({
         state.isError = false;
         state.dayItems.push(action.payload);
         state.monthItems.push(action.payload);
+        console.log(state.dayWaterAmount[0]);
         state.dayWaterAmount[0].dayAmount =
           state.dayWaterAmount[0].dayAmount + action.payload.volume;
       })
