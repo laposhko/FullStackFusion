@@ -4,7 +4,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-import { getCurrentUserInformation, refresh } from "../../redux/auth/operations.js";
+import {
+  getCurrentUserInformation,
+  refresh,
+} from "../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
@@ -25,15 +28,15 @@ import css from "./App.module.css";
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCurrentUserInformation())
+    dispatch(getCurrentUserInformation());
     dispatch(refresh());
   }, [dispatch]);
+
   // useEffect(() => {
   // setInterval(()=>{
   //   dispatch()
   // }, 5000)
   // }, []);
-
 
   return (
     <>
