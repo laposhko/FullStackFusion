@@ -10,6 +10,7 @@ function WaterList() {
   // console.log(date);
   const waterEntries = useSelector(selectDayItems);
 
+
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   if (!waterEntries) {
@@ -24,6 +25,7 @@ function WaterList() {
       dispatch(getWaterDayInfo(date));
     }
   }, [waterEntries, dispatch, date]);
+
 
   return (
     <div className={css.waterInfo}>
