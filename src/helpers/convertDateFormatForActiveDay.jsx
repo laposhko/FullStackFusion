@@ -2,7 +2,7 @@ export function convertDateFormatForActiveDay(dateString) {
   if (/^\d{2}\.\d{2}\.\d{4}$/.test(dateString)) {
     return dateString;
   }
-
+  console.log(dateString);
   const [month, day, year] = dateString.split("-");
   console.log(month, day, year);
   const paddedDay = day.padStart(2, "0");
