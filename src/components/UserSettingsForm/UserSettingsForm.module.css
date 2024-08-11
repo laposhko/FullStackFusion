@@ -207,3 +207,9 @@
   height: 46px;
   background-color: var(--background-avocado-green);
 }
+
+.errorMessage {
+  color: var(--error-text);
+  font-size: 14px;
+  font-weight: 400;
+}

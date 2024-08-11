@@ -77,7 +77,6 @@ const waterSlice = createSlice({
         state.isError = false;
         state.dayItems.push(action.payload);
         state.monthItems.push(action.payload);
-        console.log(state.dayWaterAmount[0]);
         state.dayWaterAmount[0].dayAmount =
           state.dayWaterAmount[0].dayAmount + action.payload.volume;
       })
