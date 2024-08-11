@@ -6,7 +6,7 @@ import { getWaterDayInfo } from '../../redux/water/operations';
 import { selectDayItems } from '../../redux/water/selectors';
 import { selectActiveDay } from '../../redux/water/selectors';
 function WaterList() {
-  // const date = useSelector(selectActiveDay);
+  const date = useSelector(selectActiveDay);
   // console.log(date);
   const waterEntries = useSelector(selectDayItems);
 
@@ -17,7 +17,7 @@ function WaterList() {
   //   }
   // }, [waterEntries, dispatch]);
 
-  console.log(waterEntries);
+  // console.log(waterEntries);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!waterEntries) {
