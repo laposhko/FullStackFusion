@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import css from "./UserPanel.module.css";
-import { selectAuthUser } from "../../redux/auth/selectors";
+import { useSelector } from 'react-redux';
+import css from './UserPanel.module.css';
+import { selectAuthUser } from '../../redux/auth/selectors';
 
-import UserBar from "../UserBar/UserBar.jsx";
+import UserBar from '../UserBar/UserBar.jsx';
 
 function UserPanel() {
   const user = useSelector(selectAuthUser);

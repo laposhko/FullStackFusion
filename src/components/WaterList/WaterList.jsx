@@ -7,7 +7,6 @@ import { selectDayItems } from '../../redux/water/selectors';
 
 function WaterList() {
   const waterEntries = useSelector(selectDayItems);
-  console.log(waterEntries);
 
   const dispatch = useDispatch();
   useEffect(() => {
