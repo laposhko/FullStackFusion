@@ -9,6 +9,7 @@ function WaterList() {
   // const date = useSelector(selectActiveDay);
   // console.log(date);
   const waterEntries = useSelector(selectDayItems);
+
   // console.log(waterEntries);
   // const dispatch = useDispatch();
   // useEffect(() => {
@@ -16,6 +17,7 @@ function WaterList() {
   //     dispatch(getWaterDayInfo(date));
   //   }
   // }, [waterEntries, dispatch, date]);
+
 
   return (
     <div className={css.waterInfo}>

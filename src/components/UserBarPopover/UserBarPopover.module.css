@@ -1,46 +1,25 @@
+.popover {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 15px 20px;
+  align-items: center;
+  box-shadow: 0 4px 8px #0000001a;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1;
+  font-weight: 700;
+  background-color: var(--main-background-color);
+  top: 110%;
+}
+
+@media screen and (max-width: 767px) {
+}
+
 @media screen and (min-width: 768px) {
-  .userBarWrapper {
-    position: relative;
-    display: inline-block;
-  }
-
-  .popover {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    padding: 15px 27px;
-    align-items: center;
-    box-shadow: 0 4px 8px #0000001a;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1;
-    font-weight: 700;
-    background-color: var(--main-background-color);
-
-    top: calc(82% + 5px);
-  }
 }
 
 @media screen and (min-width: 1440px) {
-  .userBarWrapper {
-    position: relative;
-  }
-
-  .popover {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    padding: 15px 27px;
-    align-items: center;
-    box-shadow: 0 4px 8px #0000001a;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1;
-    font-weight: 700;
-    background-color: var(--main-background-color);
-
-    top: calc(13% + 12px);
-  }
 }
 
 .wrapperItem {
@@ -51,7 +30,6 @@
 
 .popoverItem {
   color: #323f4766;
-  display: block;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -73,11 +51,4 @@
   fill: var(--main-background-color);
   stroke: #323f4766;
   transition: stroke 0.3s linear;
-
-  /* transform: rotate(45deg); */
-}
-
-.userBarWrapper {
-  position: relative;
-  display: inline-block;
 }
