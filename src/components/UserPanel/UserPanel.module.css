@@ -1,3 +1,18 @@
+@media screen and (max-width: 767px) {
+  .welcome {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    color: var(--button-gray);
+    margin-bottom: 20px;
+  }
+
+  .userName {
+    font-weight: 700;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .userBarWrapper {
     display: flex;
@@ -26,6 +41,7 @@
   }
 
   .userBarWrapper {
+    /* position: relative; */
     display: flex;
     gap: 20px;
     flex-direction: row;

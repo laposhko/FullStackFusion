@@ -28,7 +28,7 @@ function WaterItem(data) {
   return (
     <li className={css.waterItem}>
       <svg className={css.icon}>
-        <use href={`${svg}#icon-trash`}></use>
+        <use href={`${svg}#icon-water-glass`}></use>
       </svg>
       <div className={css.info}>
         {data && <p className={css.infoMl}>{data.data.volume} ml</p>}

@@ -6,9 +6,9 @@
   margin-bottom: 24px;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (max-width: 767px) {
   .wrapper {
-    padding: 49px 0 40px;
+    margin-top: 43px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -16,5 +16,11 @@
     width: 100%;
     padding: 40px 0;
     margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    padding: 49px 0 40px;
   }
 }
