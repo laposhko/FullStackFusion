@@ -1,6 +1,3 @@
-// необхідно додати базовий URL
-// додав тостери для помилок, щоб їх ідентифікувати. потрбіно?
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -35,6 +32,7 @@ export const signIn = createAsyncThunk(
     try {
       const response = await axios.post("/users/login", user);
       setAuthHeader(response.data.data.accessToken);
+
       return response.data.data;
     } catch (error) {
       // toast.error(`Something went wrong in Sign In: ${error.message}`);
@@ -61,7 +59,9 @@ export const refresh = createAsyncThunk(
       const fullReduxState = thunkAPI.getState();
       const token = fullReduxState.auth.token;
       setAuthHeader(token);
-      const response = await axios.post("/users/refresh");
+      const response = await axios.post("/users/refresh", {
+        withCredentials: true,
+      });
       return response.data.data;
     } catch (error) {
       toast.error(`Something went wrong in Refresh: ${error.message}`);
