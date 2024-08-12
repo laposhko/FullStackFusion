@@ -7,7 +7,7 @@
   }
 
   .rightSectionWrapper {
-    width: 343px;
+    min-width: 343px;
     height: 770px;
     padding: 40px 20px;
     border-radius: 30px;
