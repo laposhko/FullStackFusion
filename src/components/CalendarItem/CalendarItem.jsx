@@ -39,7 +39,7 @@ const CalendarItem = ({formatDate, day, dayResult, isActive}) => {
         dispatch(setActiveDay(e.target.value));
     };
 
-    return (<div  className={css.container} >
+    return (<div  className={css.container}  >
         <button value={formatDate} className={styles} onClick={(e) => handleClick(e)}>{day}</button>
         <p className={css.text}>{dayResult}%</p>
     </div>)

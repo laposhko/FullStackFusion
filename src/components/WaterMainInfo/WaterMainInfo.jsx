@@ -10,6 +10,7 @@ import bottle1m from '../../img/TrackerPage/bottle-for-water-mobile.png';
 import bottle2m from '../../img/TrackerPage/bottle-for-water-mobile@2x.png';
 import bottle1t from '../../img/TrackerPage/bottle-for-water-tablet.png';
 import bottle2t from '../../img/TrackerPage/bottle-for-water-tablet@2x.png';
+import ReactourBtn from '../Reactour/ReactourBtn/ReactourBtn';
 
 export default function WaterMainInfo() {
     return(
@@ -37,6 +38,7 @@ export default function WaterMainInfo() {
                 className={css.waterBottle}
                 loading="lazy"
             />
+            <ReactourBtn/>
         </div>
     )
 }

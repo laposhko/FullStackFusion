@@ -15,7 +15,7 @@ export default function WaterDailyNorma() {
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
 
   return (
-    <div className={css.container}>
+    <div className={css.container} data-tour="step-2">
       <p className={css.title}>{dailyNorma} L</p>
       <p className={css.text}>My daily norma</p>
     </div>

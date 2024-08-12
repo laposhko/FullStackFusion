@@ -36,7 +36,7 @@ const WaterProgressBar = () => {
   };
 
   return (
-    <div className={css.waterProgressBar}>
+    <div className={css.waterProgressBar} data-tour="step-3">
       <div className={css.today}>{formatDate(day)}</div>
       <div className={css.progressContainer}>
         <div className={css.progressBar} style={{ width: `${percentage}%` }}>
