@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
+axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
