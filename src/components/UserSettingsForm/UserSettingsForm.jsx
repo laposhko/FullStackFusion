@@ -98,6 +98,7 @@ export default function UserSettingsForm() {
     ? user.avatar
     : defaultImg;
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
     if (data.avatar) {
       formData.append("avatar", data.avatar);
@@ -117,18 +118,21 @@ export default function UserSettingsForm() {
     if (data.dailyActivityTime) {
       formData.append("dailyActivityTime", data.dailyActivityTime);
     }
+    // formData.append("dailyWaterNorm", recommendedWaterNorm);
+
     if (data.dailyWaterNorm) {
+      console.log(data.dailyWaterNorm);
       formData.append("dailyWaterNorm", data.dailyWaterNorm);
     }
 
     const isEmpty = Array.from(formData.entries()).length === 0;
     if (isEmpty) {
-      toast.error("You did not any changes");
+      closeModal();
       return;
     }
-    // formData.forEach((key, value) => {
-    //   console.log(value, key);
-    // });
+    formData.forEach((key, value) => {
+      console.log(value, key);
+    });
     dispatch(updateCurrentUser(formData))
       .unwrap()
       .then(() => {
@@ -300,7 +304,8 @@ export default function UserSettingsForm() {
                   className={css.inputField}
                   id="water"
                   type="text"
-                  defaultValue={recommendedWaterNorm}
+                  placeholder={recommendedWaterNorm}
+                  onChange={(e) => setValue("dailyWaterNorm", e.target.value)}
                   {...register("dailyWaterNorm", {})}
                 />
               </label>

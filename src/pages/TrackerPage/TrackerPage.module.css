@@ -4,6 +4,7 @@
     max-width: 375px;
     padding: 16px;
     margin: 0 auto;
+    gap: 8px;
   }
 
   .rightSectionWrapper {
