@@ -20,6 +20,7 @@ const ChangePasswordPage = lazy(() =>
   import("../../pages/ChangePasswordPage/ChangePasswordPage.jsx")
 );
 import Modals from "../Modal/ModalWindow";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import css from "./App.module.css";
 
 export default function App() {
@@ -29,7 +30,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <GoogleOAuthProvider clientId="600058872872-igr40nq9bls1o67lup2pis6h3rj83452.apps.googleusercontent.com">
       <Toaster
         toastOptions={{
           className: css.toastCssStyles,
@@ -65,12 +66,16 @@ export default function App() {
             element={<RestrictedRoute component={<ResetPassword />} />}
           />
           <Route
+            path="/users/confirm-google-auth"
+            element={<RestrictedRoute component={<TrackerPage />} />}
+          />
+          <Route
             path="/changePasswordPage/:token"
             element={<RestrictedRoute component={<ChangePasswordPage />} />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </>
+    </GoogleOAuthProvider>
   );
 }

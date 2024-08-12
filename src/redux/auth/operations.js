@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
-export const setAuthHeader = (token) => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
@@ -125,16 +125,31 @@ export const requestResetEmail = createAsyncThunk(
 );
 
 export const googleAuthLink = createAsyncThunk(
-  "auth/googleauth",
+  "users/googleauth",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/auth/get-oauth-url");
+      const response = await axios.get("/users/get-oauth-url");
       return response.data;
     } catch (error) {
       toast.error(
         `Something went wrong in google authorization: ${error.message}`
       );
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const googleAuthConfirm2 = createAsyncThunk(
+  "users/googleAuthConfirm",
+  async (code, thunkAPI) => {
+    try {
+      const response = await axios.post("/users/confirm-google-auth", code);
+      return response.data;
+    } catch (error) {
+      toast.error(
+        `Something went wrong in google authorization: ${error.message}`
+      );
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

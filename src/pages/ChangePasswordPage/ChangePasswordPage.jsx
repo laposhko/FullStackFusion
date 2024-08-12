@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import * as yup from "yup";
 import css from "./ChangePasswordPage.module.css";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 let changePasswordSchema = yup.object().shape({
   password: yup
@@ -19,8 +19,7 @@ export default function ChangePasswordPage() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  const { token } = useParams();
 
   const handleChangePassword = async event => {
     event.preventDefault();
