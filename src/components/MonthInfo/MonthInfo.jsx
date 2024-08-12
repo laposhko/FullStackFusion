@@ -16,13 +16,14 @@ const ToggleComponent = () => {
     };
   
     const monthArray = useSelector(selectMonthItems);
+    console.log(monthArray);
 
     const formattedMonthArray = useMemo(() => {
         return monthArray.map((day) => {
-            const dateParts = day.day ? day.day.split('-') : [];
+            const dayPart = day.date.split(' ')[0].split('-')[2];
             return {
               id: day.id,
-              date: dateParts.length === 3 ? dateParts[2] : 'Invalid Date',
+              date: dayPart.length === 3 ? dayPart[2] : 'Invalid Date',
               value: Math.floor(Number(day.totalAmount) * 1000),
             };
           });
