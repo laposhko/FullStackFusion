@@ -8,7 +8,7 @@ export default function WaterDetailedInfo() {
     <div className={css.rightSectionWrapper}>
       <UserPanel />
       <DailyInfo />
-      <Calendar></Calendar>
+      <Calendar />
     </div>
   );
 }
