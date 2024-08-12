@@ -3,20 +3,12 @@ import SvgIcon from "../../img/icons/sprite";
 import useToast from "../../hooks/useToast";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/auth/operations";
 import css from "./SignInForm.module.css";
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email")
-    .required("Email field is required"),
-  password: Yup.string()
-    .min(6, "Password must be more than 6 symbols")
-    .required("Password field is required"),
-});
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +17,18 @@ const SignInForm = () => {
   const emailId = useId();
   const passwordId = useId();
 
+  const { t } = useTranslation();
+
   const { successToast, errorToast } = useToast();
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t("SignIn.emailInvalid"))
+      .required(t("SignIn.emailRequired")),
+    password: Yup.string()
+      .min(6, t("SignIn.passwordMin"))
+      .required(t("SignIn.passwordRequired")),
+  });
 
   const {
     register,
@@ -43,38 +46,36 @@ const SignInForm = () => {
     setShowPassword(!showPassword);
   };
 
-const onSubmit = async (data) => {
-  try {
-    const response = await dispatch(
-      signIn({
-        email: data.email,
-        password: data.password,
-      })
-    ).unwrap(); 
+  const onSubmit = async (data) => {
+    try {
+      const response = await dispatch(
+        signIn({
+          email: data.email,
+          password: data.password,
+        })
+      ).unwrap();
 
-    successToast("Successful sign in");
-    navigate("/tracker");
-  } catch (error) {
-    errorToast("Invalid details" || error.message);
-  }
-};
-
-
+      successToast(t("SignIn.success"));
+      navigate("/tracker");
+    } catch (error) {
+      errorToast(t("SignIn.error") || error.message);
+    }
+  };
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={css.formTitle}>Sign In</div>
+      <div className={css.formTitle}>{t("SignIn.signIn")}</div>
       <div className={css.inputContainer}>
         <div className={css.inputGroup}>
           <label className={css.label} htmlFor={emailId}>
-            Email
+            {t("SignIn.email")}
           </label>
           <input
             className={customStyler(errors.email)}
             type="email"
             {...register("email")}
             id={emailId}
-            placeholder="Enter your email"
+            placeholder={t("SignIn.emailPlaceholder")}
           />
           {errors.email && (
             <p className={css.errorMessage}>{errors.email?.message}</p>
@@ -82,7 +83,7 @@ const onSubmit = async (data) => {
         </div>
         <div className={css.inputGroup}>
           <label className={css.label} htmlFor={passwordId}>
-            Password
+            {t("SignIn.password")}
           </label>
           <div className={css.passwordContainer}>
             <input
@@ -90,7 +91,7 @@ const onSubmit = async (data) => {
               type={showPassword ? "text" : "password"}
               {...register("password")}
               id={passwordId}
-              placeholder="Enter your password"
+              placeholder={t("SignIn.passwordPlaceholder")}
             />
             <button
               onClick={togglePasswordVisibility}
@@ -111,16 +112,16 @@ const onSubmit = async (data) => {
         </div>
       </div>
       <NavLink className={css.resetPassword} to="/resetPassword">
-        I don't remember the password
+        {t("SignIn.passwordForget")}
       </NavLink>
       <div className={css.submitContainer}>
-        <button className={css.submitButton}>Sign In</button>
+        <button className={css.submitButton}>{t("SignIn.signIn")}</button>
       </div>
       <div className={css.linkContainer}>
         <p>
-          Don't have an account?{" "}
+          {t("SignIn.text")}{" "}
           <Link className={css.signUpLink} to={"/signup"}>
-            Sign Up
+            {t("SignIn.signUp")}
           </Link>
         </p>
       </div>
