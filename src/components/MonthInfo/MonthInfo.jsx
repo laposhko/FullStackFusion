@@ -1,8 +1,12 @@
 import Statistics from "../Statistics/Statistics.jsx"
 import Calendar from "../Calendar/Calendar"
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./Monthinfo.module.css";
+import { useSelector } from "react-redux";
+import { selectMonthItems } from "../../redux/water/selectors.js";
+
+
 
 const ToggleComponent = () => {
     const [isComponentCalendar, setIsComponentCalendar] = useState(true);
@@ -11,6 +15,18 @@ const ToggleComponent = () => {
       setIsComponentCalendar(!isComponentCalendar);
     };
   
+    const monthArray = useSelector(selectMonthItems);
+
+    const formattedMonthArray = useMemo(() => {
+        return monthArray.map((day) => {
+          return {
+            id: day.id,
+            date: day.day.split('-')[2],
+            value: Math.floor(Number(day.totalAmount) * 1000),
+          };
+        });
+      }, [monthArray]);
+
     return (
       <div>
         <button onClick={handleToggle}>
@@ -23,7 +39,12 @@ const ToggleComponent = () => {
         </button>
   
         
-        {isComponentCalendar ? <Calendar /> : <Statistics />}
+        {isComponentCalendar ? (
+        <Calendar />
+      ) : (
+        <Statistics data={formattedMonthArray} />
+      )}
+
       </div>
     );
   };
