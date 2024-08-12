@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./Monthinfo.module.css";
 import { useSelector } from "react-redux";
-import { selectMonthItems } from "../../redux/water/selectors.js";
+import { selectMonthWaterAmount } from "../../redux/water/selectors.js";
 
 
 
@@ -15,17 +15,18 @@ const ToggleComponent = () => {
       setIsComponentCalendar(!isComponentCalendar);
     };
   
-    const monthArray = useSelector(selectMonthItems);
+    const monthArray = useSelector(selectMonthWaterAmount);
 
     const formattedMonthArray = useMemo(() => {
         return monthArray.map((day) => {
-          return {
-            id: day.id,
-            date: day.day.split('-')[2],
-            value: Math.floor(Number(day.totalAmount) * 1000),
-          };
-        });
-      }, [monthArray]);
+            const dateParts = day.day ? day.day.split('-') : [];
+            return {
+              id: day.id,
+              date: dateParts.length === 3 ? dateParts[2] : 'Invalid Date',
+              value: Math.floor(Number(day.totalAmount) * 1000),
+            };
+          });
+        }, [monthArray]);
 
     return (
       <div>
