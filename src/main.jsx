@@ -10,9 +10,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import { HelmetProvider } from "react-helmet-async";
 import { ModalProvider } from "./context/ModalContext.jsx";
-// import { TourProvider } from '@reactour/tour';
-// import steps from './components/Reactour/reacTourSteps.js';
-// import { tourStyles } from './components/Reactour/tourStyles.js';
 import TourProviderWrapper from './components/Reactour/reactourConfig.jsx'
 
 ReactDOM.createRoot(document.getElementById("root")).render(

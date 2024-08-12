@@ -36,5 +36,4 @@ export const tourStyles = {
       ...base,
       rx: '8px',
     }),
-    
   };
