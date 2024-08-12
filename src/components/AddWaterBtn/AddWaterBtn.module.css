@@ -27,7 +27,8 @@
 .addBtnStyle2 {
   font-size: 16px;
   line-height: 1.5;
-  /* padding: 20px 8px; */
+  width: 124px;
+  height: 30px;
   color: var(--button-gray);
   background-color: transparent;
 }
@@ -94,9 +95,9 @@
   }
 
   .addBtnStyle2 {
-    padding: 18px 24px;
-    /* left: 32px;
-      bottom: 64px; */
+    padding: 0;
+    width: 124px;
+    height: 30px;
   }
 }
 
@@ -105,7 +106,9 @@
     padding: 20px 30px;
   }
 
-  /* .addBtnStyle2 {
-    padding: 18px 24px;
-  } */
+  .addBtnStyle2 {
+    padding: 0;
+    width: 124px;
+    height: 30px;
+  }
 }

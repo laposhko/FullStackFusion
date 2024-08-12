@@ -1,26 +1,26 @@
-import CalendarItemsList from "../CalendarItemsList/CalendardItemsList";
-import css from "../CalendarPagination/CalendarPagination.module.css";
-import { useEffect, useState } from "react";
-import SvgIcon from "../../img/icons/sprite.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { selectMonthItems } from "../../redux/water/selectors.js";
-import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay.jsx";
-import { getWaterMonthInfo } from "../../redux/water/operations.js";
-import { selectAuthUser } from "../../redux/auth/selectors.js";
+import CalendarItemsList from '../CalendarItemsList/CalendardItemsList';
+import css from '../CalendarPagination/CalendarPagination.module.css';
+import { useEffect, useState } from 'react';
+import SvgIcon from '../../img/icons/sprite.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMonthItems } from '../../redux/water/selectors.js';
+import { convertDateIntoStringFormat } from '../../helpers/convertDateFormatForActiveDay.jsx';
+import { getWaterMonthInfo } from '../../redux/water/operations.js';
+import { selectAuthUser } from '../../redux/auth/selectors.js';
 
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 const CalendarPagination = () => {
@@ -65,7 +65,7 @@ const CalendarPagination = () => {
     }, 0);
 
     const userPercentage = Math.round((userPerDayWater / dailyWaterNorm) * 100);
-    const userNorm = userPerDayWater > dailyWaterNorm ? "100" : userPercentage;
+    const userNorm = userPerDayWater > dailyWaterNorm ? '100' : userPercentage;
 
     arrOfDays.push({
       day: i,
@@ -81,20 +81,20 @@ const CalendarPagination = () => {
         <p className={css.text_leftside}>Month</p>
         <div className={css.right_side_container}>
           <button className={css.btn} onClick={() => decreaseDate(date)}>
-            {"<"}
+            {'<'}
           </button>
           <p className={css.text_rightside}>
             {month}, {year}
           </p>
           <button className={css.btn} onClick={() => increaseDate(date)}>
-            {">"}
+            {'>'}
           </button>
           <button>
             <SvgIcon
               className={css.closeIcon}
               iconName="icon-pie-chart-02"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
             ></SvgIcon>
           </button>
         </div>
