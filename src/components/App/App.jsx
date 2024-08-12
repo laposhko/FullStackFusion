@@ -29,7 +29,9 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUserInformation());
-    dispatch(refresh());
+    // setInterval(() => {
+    //   dispatch(refresh());
+    // }, 5000);
   }, [dispatch]);
 
   // useEffect(() => {

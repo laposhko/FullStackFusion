@@ -59,20 +59,19 @@ export const refresh = createAsyncThunk(
   "auth/refresh",
   async (token, thunkAPI) => {
     try {
-
       const fullReduxState = thunkAPI.getState();
       const token = fullReduxState.auth.token;
       setAuthHeader(token);
-      console.log('====================================');
+      console.log("====================================");
       console.log(axios.defaults.baseURL);
-      console.log('====================================');
+      console.log("====================================");
       const response = await axios.post("/users/refresh", {
         withCredentials: true,
       });
-   
+
       return response.data.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error(`Something went wrong in Refresh: ${error.message}`);
       thunkAPI.rejectWithValue(error.message);
     }
