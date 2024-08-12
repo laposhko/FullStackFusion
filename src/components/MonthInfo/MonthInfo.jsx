@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./Monthinfo.module.css";
 import { useSelector } from "react-redux";
-import { selectMonthWaterAmount } from "../../redux/water/selectors.js";
+import { selectMonthItems } from "../../redux/water/selectors.js";
 
 
 
@@ -15,7 +15,7 @@ const ToggleComponent = () => {
       setIsComponentCalendar(!isComponentCalendar);
     };
   
-    const monthArray = useSelector(selectMonthWaterAmount);
+    const monthArray = useSelector(selectMonthItems);
 
     const formattedMonthArray = useMemo(() => {
         return monthArray.map((day) => {
