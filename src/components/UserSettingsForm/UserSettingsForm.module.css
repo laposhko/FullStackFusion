@@ -1,67 +1,52 @@
 .form {
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
+form > *:not(:last-child) {
+  margin-bottom: 0;
+}
 .uploadImgContainer {
-  height: 103px;
+  min-height: 103px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-@media screen and (min-width: 768px) {
-  .uploadImgContainer {
-    height: 134px;
-  }
-}
 .avatar {
   border-radius: 50%;
   width: 75px;
   height: 75px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
-/* .uploadIcon { */
-/* display: block; */
-/* } */
 .uploadBtn {
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 }
-.inputsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.userInfoAllContainer {
+  margin-bottom: 0;
 }
-@media screen and (min-width: 1440px) {
-  .form {
-    height: 996px;
-  }
-  .inputsContainer {
-    flex-wrap: wrap;
-    width: calc(100% / 2 - 40px);
-    height: 550px;
-    justify-content: center;
-    margin-bottom: 0;
-    column-gap: 100px;
-    /* align-items: flex-start; */
-  }
-  .inputContainer {
-    /* flex-shrink: 50%; */
-  }
-  .inputField {
-    height: 56px;
-  }
+
+.inputContainerLast {
+  margin-bottom: 0;
+}
+
+.inputField {
+  height: 56px;
 }
 .inputContainer {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-bottom: 24px;
 }
+
 .inputName {
   display: flex;
   flex-direction: column;
@@ -71,8 +56,9 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: var(--text-color);
-  /* margin-bottom: 34px; */
+  margin-top: 0;
 }
+
 .inputField {
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
@@ -149,12 +135,6 @@
   flex-direction: column;
   gap: 7px;
 }
-@media screen and (min-width: 768px) {
-  .formulas {
-    flex-direction: row;
-    gap: 28px;
-  }
-}
 
 .formulaLabel {
   font-weight: 400;
@@ -190,15 +170,16 @@
   flex-direction: column;
   gap: 8px;
 }
+
 .waterAmount {
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   color: var(--background-avocado-green);
+  margin-bottom: 14px;
 }
 .note {
   display: flex;
-  /* align-items: center; */
 }
 .saveBtn {
   border-radius: 30px;
@@ -206,6 +187,53 @@
   width: 116px;
   height: 46px;
   background-color: var(--background-avocado-green);
+}
+@media screen and (min-width: 768px) {
+  .uploadImgContainer {
+    height: 134px;
+  }
+  .formulas {
+    flex-direction: row;
+    gap: 28px;
+  }
+  .uploadBtn {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .form {
+    max-width: 920px;
+    max-height: 996px;
+  }
+
+  .userInfoAllContainer {
+    display: flex;
+    gap: 40px;
+  }
+
+  .userInfoPart1 {
+    min-width: 400px;
+    flex-basis: calc((100% - 40px) / 3);
+  }
+  .userInfoPart2 {
+    flex-basis: calc((100% - 40px) / 2);
+  }
+  .uploadImgContainer {
+    max-width: 840px;
+  }
+  .avatar {
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .inputContainer {
+    margin-bottom: 25px;
+  }
+  .inputContainer:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .errorMessage {

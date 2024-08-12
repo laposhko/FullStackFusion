@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: flex-start;
   overflow-x: auto;
-  padding-bottom: 8px;
 }
 
 .waterList {
@@ -14,7 +13,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   overflow: visible;
   list-style-type: none;
 }
@@ -63,12 +62,23 @@
     align-items: center;
     justify-content: flex-start;
     overflow-x: auto;
-    padding-bottom: 8px;
   }
 
   .empty {
     margin: auto;
-    padding: 46px 0 64px;
+    padding: 44px 0 44px;
     font-size: 16px;
+  }
+
+  .waterList {
+    margin-bottom: 24px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .empty {
+    margin: auto;
+    padding: 53px 0 54px;
+    font-size: 20px;
   }
 }

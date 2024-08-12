@@ -14,11 +14,13 @@ const WaterProgressBar = () => {
 
   const user = useSelector(selectAuthUser);
   const waterAmount = useSelector(selectWaterAmountForDay);
-  // console.log(waterAmount);
   const day = useSelector(selectActiveDay);
-  const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
-  // console.log(dayAmount)
-
+  const dayAmount =
+    waterAmount[0] !== undefined
+      ? JSON.stringify(waterAmount[0]) !== "{}"
+        ? waterAmount[0].dayAmount
+        : 0
+      : 0;
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
   // console.log(dailyNorma);
 

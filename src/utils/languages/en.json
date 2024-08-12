@@ -1,0 +1,62 @@
+{
+  "WelcomeSection": {
+    "subtitle": "Record daily water intake and track",
+    "title": "Water consumption tracker",
+    "linkTry": "Try tracker",
+    "signIn": "Sign In"
+  },
+  "AdvantagesSection": {
+    "loading": "Loading...",
+    "error": "Error loading user quantity",
+    "customer": "Customer",
+    "totalUsers": "Our {{count}}",
+    "happy": "happy",
+    "customers": "customers",
+    "habit": "Habit drive",
+    "view": "View statistics",
+    "rate": "Personal rate setting"
+  },
+  "SignUp": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "email": "Email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email field is required",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordMin": "Password must be more than 6 symbols",
+    "passwordRequired": "Password field is required",
+    "passwordPlaceholder": "Enter your password",
+    "repeatPassword": "Repeat Password",
+    "repeatPasswordMatch": "Repeat password field must match with password field",
+    "repeatPasswordRequired": "Repeat password field is required",
+    "text": "Already have account?",
+    "success": "Successfully sign up",
+    "error": "Error in sign up"
+  },
+  "SignIn": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "email": "Email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email field is required",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordMin": "Password must be more than 6 symbols",
+    "passwordRequired": "Password field is required",
+    "passwordPlaceholder": "Enter your password",
+    "passwordForget": "I don't remember the password",
+    "text": " Don't have an account?",
+    "success": "Successful sign in",
+    "error": "Invalid details"
+  },
+  "ResetPassword": {
+    "title": "Don't remember your password?",
+    "text": "Specify the e-mail that was used during registration - we will send you a link.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email is required!",
+    "link": "Send a link"
+  }
+}

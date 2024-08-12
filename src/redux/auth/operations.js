@@ -1,12 +1,10 @@
-// необхідно додати базовий URL
-// додав тостери для помилок, щоб їх ідентифікувати. потрбіно?
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 // axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 axios.defaults.baseURL = "http://localhost:3000/";
+axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -36,6 +34,7 @@ export const signIn = createAsyncThunk(
     try {
       const response = await axios.post("/users/login", user);
       setAuthHeader(response.data.data.accessToken);
+
       return response.data.data;
     } catch (error) {
       // toast.error(`Something went wrong in Sign In: ${error.message}`);
@@ -62,13 +61,7 @@ export const refresh = createAsyncThunk(
       const fullReduxState = thunkAPI.getState();
       const token = fullReduxState.auth.token;
       setAuthHeader(token);
-      console.log("====================================");
-      console.log(axios.defaults.baseURL);
-      console.log("====================================");
-      const response = await axios.post("/users/refresh", {
-        withCredentials: true,
-      });
-
+      const response = await axios.post("/users/refresh");
       return response.data.data;
     } catch (error) {
       console.log(error);
@@ -162,9 +155,7 @@ export const updateCurrentUser = createAsyncThunk(
   "users/updateuser",
   async (updatedUser, thunkAPI) => {
     try {
-      console.log(updatedUser);
       const response = await axios.patch("users/update", updatedUser);
-      console.log(response.data.data.updatedResult);
       return response.data.data.updatedResult;
     } catch (error) {
       toast.error(

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   selectUsersQuantity,
   selectUsersIsLoading,
@@ -26,6 +27,7 @@ export default function AdvantagesSection() {
   const isLoading = useSelector(selectUsersIsLoading);
   const isError = useSelector(selectUsersIsError);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -33,11 +35,11 @@ export default function AdvantagesSection() {
   const totalUsers = userQuantity?.data?.totalUsers || "";
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t("AdvantagesSection.loading")}</div>;
   }
 
   if (isError) {
-    return <div>Error loading user quantity</div>;
+    return <div>{t("AdvantagesSection.error")}</div>;
   }
 
   return (
@@ -60,7 +62,7 @@ export default function AdvantagesSection() {
                   ${imageCustomerGirlMob2x} 2x,
                 `}
                 src={imageCustomerGirlMob1x}
-                alt="Customer"
+                alt={t("AdvantagesSection.customer")}
               />
             </picture>
           </li>
@@ -81,7 +83,7 @@ export default function AdvantagesSection() {
                   ${imageCustomerBoyMob2x} 2x,
                 `}
                 src={imageCustomerBoyMob1x}
-                alt="Customer"
+                alt={t("AdvantagesSection.customer")}
               />
             </picture>
           </li>
@@ -102,13 +104,15 @@ export default function AdvantagesSection() {
                   ${imageCustomerGirl2Mob2x} 2x,
                 `}
                 src={imageCustomerGirl2Mob1x}
-                alt="Customer"
+                alt={t("AdvantagesSection.customer")}
               />
             </picture>
           </li>
         </ul>
         <p className={css.customerText}>
-          Our {totalUsers} <span className={css.happy}>happy</span> customers
+          {t("AdvantagesSection.totalUsers", { count: totalUsers })}{" "}
+          <span className={css.happy}>{t("AdvantagesSection.happy")}</span>{" "}
+          {t("AdvantagesSection.customers")}
         </p>
       </div>
 
@@ -121,14 +125,18 @@ export default function AdvantagesSection() {
                 css.advantagesListTextFirst
               )}
             >
-              Habit drive
+              {t("AdvantagesSection.habit")}
             </p>
           </li>
           <li className={clsx(css.advantagesList, css.advantagesListGreen)}>
-            <p className={css.advantagesListText}>View statistics</p>
+            <p className={css.advantagesListText}>
+              {t("AdvantagesSection.view")}
+            </p>
           </li>
           <li className={clsx(css.advantagesList, css.advantagesListWhite)}>
-            <p className={css.advantagesListText}>Personal rate setting</p>
+            <p className={css.advantagesListText}>
+              {t("AdvantagesSection.rate")}
+            </p>
           </li>
         </ul>
       </div>
