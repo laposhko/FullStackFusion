@@ -1,22 +1,33 @@
+import SvgIcon from "../../img/icons/sprite";
 import { useTranslation } from "react-i18next";
 
+import style from "./Languages.module.css";
+
 const Languages = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const changeLanguageHandler = (lang) => {
     i18n.changeLanguage(lang);
   };
 
   return (
-    <div className="langBtnContainer">
-      <button
-        onClick={() => changeLanguageHandler("en")}
-        type="button"
-      ></button>
-      <button
-        onClick={() => changeLanguageHandler("uk")}
-        type="button"
-      ></button>
+    <div className={style.langBtnContainer}>
+      <button onClick={() => changeLanguageHandler("en")} type="button">
+        <SvgIcon
+          className={style.flag}
+          iconName="icon-en-flag"
+          width={32}
+          height={32}
+        />
+      </button>
+      <button onClick={() => changeLanguageHandler("uk")} type="button">
+        <SvgIcon
+          className={style.flag}
+          iconName="icon-uk-flag"
+          width={32}
+          height={32}
+        />
+      </button>
     </div>
   );
 };

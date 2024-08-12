@@ -1,0 +1,9 @@
+.langBtnContainer {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
