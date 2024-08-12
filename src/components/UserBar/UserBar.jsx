@@ -36,7 +36,7 @@ function UserBar() {
   }, []);
 
   return (
-    <div ref={userBarRef} className={css.userBarWrapper}>
+    <div ref={userBarRef} className={css.userBarWrapper} data-tour="step-6">
       <button type="button" className={css.userBar} onClick={toggleOpen}>
         <span>{user.name}</span>
 

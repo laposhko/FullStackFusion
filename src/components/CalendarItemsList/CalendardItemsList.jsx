@@ -11,7 +11,7 @@ const CalendarItemsList = ({cards}) => {
       setActiveIndex(index);
     };
    
-    return (<ul className={css.container_for_items}>
+    return (<ul className={css.container_for_items} >
         {cards.map((card, index) => {
             if(!card.volume) card.volume = 0;
             return (

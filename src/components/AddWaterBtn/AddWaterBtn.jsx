@@ -7,8 +7,8 @@ import WaterModal from '../WaterModal/WaterModal';
 export default function AddWaterBtn({ className }) {
   const { openModal } = useModalContext();
   return (
-    <div>
-      <button
+    <div >
+      <button data-tour="step-5"
         className={clsx(style.btn, className)}
         type="button"
         onClick={() => {

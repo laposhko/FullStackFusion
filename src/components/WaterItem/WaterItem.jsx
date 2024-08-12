@@ -26,7 +26,7 @@ function WaterItem(data) {
   }
 
   return (
-    <li className={css.waterItem}>
+    <li className={css.waterItem} data-tour="step-6">
       <svg className={css.icon}>
         <use href={`${svg}#icon-water-glass`}></use>
       </svg>
