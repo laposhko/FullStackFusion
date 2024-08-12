@@ -23,7 +23,7 @@ const ToggleComponent = () => {
             const dayPart = day.date.split(' ')[0].split('-')[2];
             return {
               id: day.id,
-              date: dayPart.length === 2 ? dayPart[2] : 'Invalid Date',
+              date: dayPart.length === 2 ? dayPart[3] : 'Invalid Date',
               value: Math.floor(Number(day.totalAmount) * 1000),
             };
           });
