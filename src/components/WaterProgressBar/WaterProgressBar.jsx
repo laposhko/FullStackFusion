@@ -14,11 +14,13 @@ const WaterProgressBar = () => {
 
   const user = useSelector(selectAuthUser);
   const waterAmount = useSelector(selectWaterAmountForDay);
-  // console.log(waterAmount);
   const day = useSelector(selectActiveDay);
-  const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
-  // console.log(dayAmount)
-
+  const dayAmount =
+    waterAmount[0] !== undefined
+      ? JSON.stringify(waterAmount[0]) !== "{}"
+        ? waterAmount[0].dayAmount
+        : 0
+      : 0;
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
   // console.log(dailyNorma);
 
@@ -36,7 +38,7 @@ const WaterProgressBar = () => {
   };
 
   return (
-    <div className={css.waterProgressBar}>
+    <div className={css.waterProgressBar} data-tour="step-3">
       <div className={css.today}>{formatDate(day)}</div>
       <div className={css.progressContainer}>
         <div className={css.progressBar} style={{ width: `${percentage}%` }}>

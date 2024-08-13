@@ -3,7 +3,7 @@ import css from '../Calendar/Calendar.module.css';
 
 const Calendar = () => {
   return (
-    <div className={css.container}>
+    <div className={css.container} data-tour="step-7">
       <CalendarPagination />
     </div>
   );

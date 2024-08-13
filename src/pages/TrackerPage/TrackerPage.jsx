@@ -14,8 +14,8 @@ export default function TrackerPage() {
   }, [dispatch, date]);
 
   return (
-    <div className={css.pageContainer}>
-      <div className={css.sectionWrapper}>
+    <div className={css.pageContainer} data-tour="step-1" >
+      <div className={css.sectionWrapper} data-tour="step-8">
         <WaterMainInfo />
         <WaterDetailedInfo></WaterDetailedInfo>
         {/* <div className={css.rightSectionWrapper}>
