@@ -59,13 +59,13 @@ const ToggleComponent = () => {
           <h3 className={css.title}>
             {ToggleInfo ? "Month" : "Statistics"}
           </h3>
-          <div className={css.pagination}>
+          {/* <div className={css.pagination}>
             <CalendarPagination
             //   onNextMonth={onNextMonth}
             //   onPrevMonth={onPrevMonth}
             //   currentDate={currentMonth}
             //   onTodayClick={handleTodayClick}
-            />
+            /> */}
 
 
       <button onClick={handleToggle}>
@@ -86,7 +86,7 @@ const ToggleComponent = () => {
         <Statistics data={formattedMonthArray} />
       )}
     </div>
-    </div>
+    // </div>
   );
 };
 
