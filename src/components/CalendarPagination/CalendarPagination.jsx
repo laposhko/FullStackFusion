@@ -79,7 +79,7 @@ const CalendarPagination = () => {
   return (
     <div className={css.container}>
       <div className={css.upper_part_container}>
-        <p className={css.text_leftside}>Month</p>
+        <p className={css.text_leftside}>{t("CalendarPagination.month")}</p>
         <div className={css.right_side_container}>
           <button className={css.btn} onClick={() => decreaseDate(date)}>
             {"<"}
