@@ -1,5 +1,6 @@
 import Statistics from "../Statistics/Statistics.jsx";
 import Calendar from "../Calendar/Calendar";
+import CalendarPagination from "../CalendarPagination/CalendarPagination.jsx";
 import { useState, useMemo } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./Monthinfo.module.css";
@@ -8,9 +9,15 @@ import { selectMonthItems } from "../../redux/water/selectors.js";
 
 const ToggleComponent = () => {
   const [isComponentCalendar, setIsComponentCalendar] = useState(true);
+  const [ToggleInfo, setToggleInfo] = useState(true);
+
+//   const handleToggleInfo = () => {
+//     setToggleInfo(!ToggleInfo);
+//   };
 
   const handleToggle = () => {
     setIsComponentCalendar(!isComponentCalendar);
+    setToggleInfo(!ToggleInfo);
   };
 
   // const monthArray = useSelector(selectWaterAmountForDay);
@@ -18,7 +25,7 @@ const ToggleComponent = () => {
 
   const monthArray = useSelector(selectMonthItems);
 
-  console.log(monthArray);
+//   console.log(monthArray);
 
   const formattedMonthArray = useMemo(() => {
     const groupedByDate = monthArray.reduce((acc, day) => {
@@ -46,6 +53,21 @@ const ToggleComponent = () => {
 
   return (
     <div>
+
+<div className={css.wrapper}>
+        <div className={css.thead}>
+          <h3 className={css.title}>
+            {ToggleInfo ? "Month" : "Statistics"}
+          </h3>
+          <div className={css.pagination}>
+            <CalendarPagination
+            //   onNextMonth={onNextMonth}
+            //   onPrevMonth={onPrevMonth}
+            //   currentDate={currentMonth}
+            //   onTodayClick={handleTodayClick}
+            />
+
+
       <button onClick={handleToggle}>
         <SvgIcon
           className={css.closeIcon}
@@ -55,11 +77,15 @@ const ToggleComponent = () => {
         />
       </button>
 
+</div>
+          </div>
+
       {isComponentCalendar ? (
         <Calendar />
       ) : (
         <Statistics data={formattedMonthArray} />
       )}
+    </div>
     </div>
   );
 };
