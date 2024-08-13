@@ -11,9 +11,9 @@ const ToggleComponent = () => {
   const [isComponentCalendar, setIsComponentCalendar] = useState(true);
   const [ToggleInfo, setToggleInfo] = useState(true);
 
-//   const handleToggleInfo = () => {
-//     setToggleInfo(!ToggleInfo);
-//   };
+  //   const handleToggleInfo = () => {
+  //     setToggleInfo(!ToggleInfo);
+  //   };
 
   const handleToggle = () => {
     setIsComponentCalendar(!isComponentCalendar);
@@ -23,12 +23,9 @@ const ToggleComponent = () => {
   // const monthArray = useSelector(selectWaterAmountForDay);
   // const waterState = useSelector(selectWaterState);
 
-
-
-  
   const monthArray = useSelector(selectMonthItems);
 
-//   console.log(monthArray);
+  //   console.log(monthArray);
 
   const formattedMonthArray = useMemo(() => {
     const groupedByDate = monthArray.reduce((acc, day) => {
@@ -39,7 +36,7 @@ const ToggleComponent = () => {
       acc[dayPart] += Number(day.volume);
       return acc;
     }, {});
-  
+
     // Перетворюємо об'єкт у масив, де кожен елемент містить дату та суму об'ємів за цей день
     const unsortedArray = Object.keys(groupedByDate).map((date) => {
       return {
@@ -47,21 +44,21 @@ const ToggleComponent = () => {
         value: Math.floor(groupedByDate[date]),
       };
     });
-  
+
     // Сортуємо масив за датами
     const sortedArray = unsortedArray.sort((a, b) => a.date - b.date);
-  
+
     return sortedArray;
   }, [monthArray]);
 
   return (
     <div>
-
-<div className={css.wrapper}>
+      <div className={css.wrapper}>
         <div className={css.thead}>
-          <h3 className={css.title}>
+          {/* <h3 className={css.title}>
             {ToggleInfo ? "Month" : "Statistics"}
-          </h3>
+          </h3> */}
+
           {/* <div className={css.pagination}>
             <CalendarPagination
             //   onNextMonth={onNextMonth}
@@ -70,18 +67,16 @@ const ToggleComponent = () => {
             //   onTodayClick={handleTodayClick}
             /> */}
 
-
-      <button onClick={handleToggle}>
-        <SvgIcon
-          className={css.closeIcon}
-          iconName="icon-pie-chart-02"
-          width={24}
-          height={24}
-        />
-      </button>
-
-</div>
-          </div>
+          <button onClick={handleToggle}>
+            <SvgIcon
+              className={css.closeIcon}
+              iconName="icon-pie-chart-02"
+              width={24}
+              height={24}
+            />
+          </button>
+        </div>
+      </div>
 
       {isComponentCalendar ? (
         <Calendar />
