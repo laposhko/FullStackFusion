@@ -24,7 +24,7 @@ const ToggleComponent = () => {
             return {
               id: day.id,
               date: dayPart,
-              value: Math.floor(Number(day.volume) * 1000),
+              value: Math.floor(Number(day.volume) / 1000),
             };
           });
         }, [monthArray]);
