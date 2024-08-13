@@ -4,7 +4,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
-import { getCurrentUserInformation } from "../../redux/auth/operations.js";
+import {
+  getCurrentUserInformation,
+  signInGoogle,
+} from "../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
@@ -21,35 +24,40 @@ const ChangePasswordPage = lazy(() =>
 );
 import Modals from "../Modal/ModalWindow";
 import css from "./App.module.css";
+import { jwtDecode } from "jwt-decode";
+import { useTranslation } from "react-i18next";
 
 export default function App() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   useEffect(() => {
-    const getQueryParam = (param) => {
-      const urlParams = new URLSearchParams(location.search);
-      return urlParams.get(param);
+    const processToken = async () => {
+      const getQueryParam = (param) => {
+        const urlParams = new URLSearchParams(location.search);
+        return urlParams.get(param);
+      };
+
+      const accessTokenJWT = getQueryParam("accesstokenjwt");
+
+      if (accessTokenJWT) {
+        try {
+          const decodedToken = jwtDecode(accessTokenJWT);
+          const user = decodedToken.user;
+          const accessToken = decodedToken.accessToken;
+          const data = { accessToken, user };
+          await dispatch(signInGoogle(data)).unwrap();
+        } catch (e) {
+          console.error(e);
+          console.error(t("SignIn.error") || e.message);
+        }
+      } else {
+        dispatch(getCurrentUserInformation());
+      }
     };
 
-    const accessTokenJWT = getQueryParam("accesstokenjwt");
-
-    if (accessTokenJWT) {
-      try {
-        const decodedToken = jwtDecode(accessTokenJWT);
-
-        const user = decodedToken.user;
-        console.log(user);
-
-        const savedToken = decodedToken.accessToken;
-        console.log(savedToken);
-      } catch (e) {
-        console.log("Invalid token");
-        console.error("Error decoding token:", e);
-      }
-    } else {
-      dispatch(getCurrentUserInformation());
-    }
-  }, [dispatch]);
+    processToken();
+  }, [dispatch, location.search, t]);
 
   return (
     <>

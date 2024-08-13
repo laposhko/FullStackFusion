@@ -77,6 +77,19 @@ export const signIn = createAsyncThunk(
   }
 );
 
+export const signInGoogle = createAsyncThunk(
+  "auth/signin",
+  async (data, thunkAPI) => {
+    try {
+      setAuthHeader(data.accessToken);
+
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const signOut = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
   try {
     await apiInstance.post("/users/logout");
