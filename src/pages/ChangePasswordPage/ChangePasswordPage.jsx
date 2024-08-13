@@ -7,13 +7,7 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import * as yup from "yup";
 import css from "./ChangePasswordPage.module.css";
 import { useSearchParams } from "react-router-dom";
-
-let changePasswordSchema = yup.object().shape({
-  password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-});
+import { useTranslation } from "react-i18next";
 
 export default function ChangePasswordPage() {
   const dispatch = useDispatch();
@@ -21,24 +15,32 @@ export default function ChangePasswordPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const { t } = useTranslation();
 
-  const handleChangePassword = async event => {
+  let changePasswordSchema = yup.object().shape({
+    password: yup
+      .string()
+      .min(6, t("ChangePassword.passwordMin"))
+      .required(t("ChangePassword.passwordRequired")),
+  });
+
+  const handleChangePassword = async (event) => {
     event.preventDefault();
 
     try {
       await changePasswordSchema.validate({ password });
       if (token) {
         dispatch(resetPassword({ password: password, token: token }));
-        toast.success("Password has been changed successfully!");
+        toast.success(t("ChangePassword.success"));
       } else {
-        toast.error("Invalid or missing token");
+        toast.error(t("ChangePassword.error"));
       }
     } catch (err) {
       toast.error(err.message);
     }
   };
 
-  const handlePasswordChange = e => {
+  const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
@@ -50,13 +52,13 @@ export default function ChangePasswordPage() {
     <div className={css.changePasswordContainer}>
       <div className={css.changePasswordPage}>
         <Logo />
-        <h3 className={css.changePasswordTitle}>Create a password</h3>
+        <h3 className={css.changePasswordTitle}>{t("ChangePassword.title")}</h3>
         <form onSubmit={handleChangePassword} className={css.passwordForm}>
           <div className={css.passwordFieldWrapper}>
             <input
               name="password"
               type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
+              placeholder={t("ChangePassword.passwordPlaceholder")}
               className={css.changeInput}
               value={password}
               onChange={handlePasswordChange}
@@ -70,7 +72,7 @@ export default function ChangePasswordPage() {
             </div>
           </div>
           <button type="submit" className={css.changePasswordButton}>
-            Save new password
+            {t("ChangePassword.save")}
           </button>
         </form>
       </div>
