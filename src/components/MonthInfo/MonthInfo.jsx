@@ -34,7 +34,7 @@ const ToggleComponent = () => {
     return Object.keys(groupedByDate).map((date) => {
       return {
         date: date.split("-")[2], // Отримуємо день місяця з дати
-        value: Math.floor(groupedByDate[date]), // Перетворюємо мілілітри на літри, якщо потрібно
+        value: Math.floor(groupedByDate[date]), 
       };
     });
   }, [monthArray]);
