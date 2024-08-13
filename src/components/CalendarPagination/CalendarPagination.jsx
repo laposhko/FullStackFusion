@@ -29,45 +29,18 @@ const CalendarPagination = () => {
   const dispatch = useDispatch();
 
   const [isComponentCalendar, setIsComponentCalendar] = useState(true);
-  const [ToggleInfo, setToggleInfo] = useState(true);
+
+  // const [ToggleInfo, setToggleInfo] = useState(true);
+
+  // const [selectedMonth, setSelectedMonth] = useState("08");
+
+  // const handleMonthChange = (newMonth) => {
+  //   setSelectedMonth(newMonth);
+  // };
 
   const monthArray = useSelector(selectMonthItems);
+
   
-  const formattedMonthArray = useMemo(() => {
-    const groupedByDate = monthArray.reduce((acc, day) => {
-      const dayPart = day.date.split(" ")[0]; // Отримуємо лише частину з датою "YYYY-MM-DD"
-      if (!acc[dayPart]) {
-        acc[dayPart] = 0;
-      }
-      acc[dayPart] += Number(day.volume);
-      return acc;
-    }, {});
-
-    // Перетворюємо об'єкт у масив, де кожен елемент містить дату та суму об'ємів за цей день
-    const unsortedArray = Object.keys(groupedByDate).map((date) => {
-      return {
-        date: date.split("-")[2], // Отримуємо день місяця з дати
-        value: Math.floor(groupedByDate[date]),
-      };
-    });
-
-    // Сортуємо масив за датами
-    const sortedArray = unsortedArray.sort((a, b) => a.date - b.date);
-
-    return sortedArray;
-  }, [monthArray]);
-
-
-  //   const handleToggleInfo = () => {
-  //     setToggleInfo(!ToggleInfo);
-  //   };
-
-  const handleToggle = () => {
-    setIsComponentCalendar(!isComponentCalendar);
-    setToggleInfo(!ToggleInfo);
-  };
-
-
 
   useEffect(() => {
     dispatch(getWaterMonthInfo());
@@ -118,6 +91,51 @@ const CalendarPagination = () => {
     });
   }
 
+
+
+  const formattedMonthArray = useMemo(() => {
+
+    const filteredMonthArray = monthArray.filter(day => {
+      const selectedMonth = day.date.split("-")[1]; // отримуємо місяць з дати
+      return selectedMonth === String(monthIndex + 1).padStart(2, "0"); // звіряємо з вибраним місяцем
+    });
+
+
+    const groupedByDate = monthArray.reduce((acc, day) => {
+      const dayPart = day.date.split(" ")[0]; // Отримуємо лише частину з датою "YYYY-MM-DD"
+      if (!acc[dayPart]) {
+        acc[dayPart] = 0;
+      }
+      acc[dayPart] += Number(day.volume);
+      return acc;
+    }, {});
+
+    // Перетворюємо об'єкт у масив, де кожен елемент містить дату та суму об'ємів за цей день
+    const unsortedArray = Object.keys(groupedByDate).map((date) => {
+      return {
+        date: date.split("-")[2], // Отримуємо день місяця з дати
+        value: Math.floor(groupedByDate[date]),
+      };
+    });
+
+    // Сортуємо масив за датами
+    const sortedArray = unsortedArray.sort((a, b) => a.date - b.date);
+
+    return sortedArray;
+  }, [monthArray, monthIndex]);
+
+
+  //   const handleToggleInfo = () => {
+  //     setToggleInfo(!ToggleInfo);
+  //   };
+
+  const handleToggle = () => {
+    setIsComponentCalendar(!isComponentCalendar);
+    
+  };
+
+
+  
   return (
     <div className={css.container}>
       <div className={css.upper_part_container}>
