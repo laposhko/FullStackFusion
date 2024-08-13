@@ -13,8 +13,6 @@ export default function GoogleAuthorization() {
   useEffect(() => {
     dispatch(googleAuthLink());
   }, [dispatch]);
-
-  console.log(selectorGoogleLink);
   return (
     <a href={selectorGoogleLink} className={css.googleLink}>
       <FcGoogle className={css.googleIcon} />

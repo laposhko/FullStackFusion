@@ -14,7 +14,6 @@ axios.defaults.withCredentials = true;
 export const setAuthHeader = (token) => {
   apiInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
 };
 
 export const clearAuthHeader = () => {
@@ -174,7 +173,7 @@ export const googleAuthLink = createAsyncThunk(
   "auth/googleauth",
   async (_, thunkAPI) => {
     try {
-      const response = await apiInstance.get("/auth/get-oauth-url");
+      const response = await apiInstance.get("/users/get-oauth-url");
       return response.data;
     } catch (error) {
       toast.error(
@@ -197,7 +196,6 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-
 export const updateCurrentUser = createAsyncThunk(
   "users/updateuser",
   async (updatedUser, thunkAPI) => {
@@ -212,4 +210,3 @@ export const updateCurrentUser = createAsyncThunk(
     }
   }
 );
-
