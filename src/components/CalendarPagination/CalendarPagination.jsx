@@ -1,30 +1,17 @@
-import CalendarItemsList from '../CalendarItemsList/CalendardItemsList';
-import css from '../CalendarPagination/CalendarPagination.module.css';
-import { useEffect, useState } from 'react';
-import SvgIcon from '../../img/icons/sprite.jsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectMonthItems } from '../../redux/water/selectors.js';
-import { convertDateIntoStringFormat } from '../../helpers/convertDateFormatForActiveDay.jsx';
-import { getWaterMonthInfo } from '../../redux/water/operations.js';
-import { selectAuthUser } from '../../redux/auth/selectors.js';
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import CalendarItemsList from "../CalendarItemsList/CalendardItemsList";
+import css from "../CalendarPagination/CalendarPagination.module.css";
+import { useEffect, useState } from "react";
+import SvgIcon from "../../img/icons/sprite.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMonthItems } from "../../redux/water/selectors.js";
+import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay.jsx";
+import { getWaterMonthInfo } from "../../redux/water/operations.js";
+import { selectAuthUser } from "../../redux/auth/selectors.js";
+import { useTranslation } from "react-i18next";
 
 const CalendarPagination = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getWaterMonthInfo());
@@ -35,6 +22,20 @@ const CalendarPagination = () => {
   const dailyWaterNorm = Number(userInfo.dailyWaterNorm) * 1000;
   const [date, setDate] = useState(new Date());
 
+  const months = [
+    t("ChooseDate.january"),
+    t("ChooseDate.february"),
+    t("ChooseDate.march"),
+    t("ChooseDate.april"),
+    t("ChooseDate.may"),
+    t("ChooseDate.june"),
+    t("ChooseDate.july"),
+    t("ChooseDate.august"),
+    t("ChooseDate.september"),
+    t("ChooseDate.october"),
+    t("ChooseDate.november"),
+    t("ChooseDate.december"),
+  ];
   const increaseDate = (currentDate) => {
     const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + 1));
     setDate(newDate);
@@ -65,7 +66,7 @@ const CalendarPagination = () => {
     }, 0);
 
     const userPercentage = Math.round((userPerDayWater / dailyWaterNorm) * 100);
-    const userNorm = userPerDayWater > dailyWaterNorm ? '100' : userPercentage;
+    const userNorm = userPerDayWater > dailyWaterNorm ? "100" : userPercentage;
 
     arrOfDays.push({
       day: i,
@@ -81,13 +82,13 @@ const CalendarPagination = () => {
         <p className={css.text_leftside}>Month</p>
         <div className={css.right_side_container}>
           <button className={css.btn} onClick={() => decreaseDate(date)}>
-            {'<'}
+            {"<"}
           </button>
           <p className={css.text_rightside}>
             {month}, {year}
           </p>
           <button className={css.btn} onClick={() => increaseDate(date)}>
-            {'>'}
+            {">"}
           </button>
           <button>
             <SvgIcon

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 import svg from "../../img/icons/sprite.svg";
 import css from "../WaterItem/WaterItem.module.css";
@@ -15,6 +16,7 @@ import {
 
 function WaterItem(data) {
   const { openModal } = useModalContext();
+  const { t } = useTranslation();
 
   function formatTime(isoString) {
     const date = new Date(isoString);
@@ -31,7 +33,11 @@ function WaterItem(data) {
         <use href={`${svg}#icon-water-glass`}></use>
       </svg>
       <div className={css.info}>
-        {data && <p className={css.infoMl}>{data.data.volume} ml</p>}
+        {data && (
+          <p className={css.infoMl}>
+            {data.data.volume} {t(WaterItem.ml)}
+          </p>
+        )}
         {data && (
           <p className={css.infoTime}>{formatTime(data.data.createdAt)}</p>
         )}
