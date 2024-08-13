@@ -128,7 +128,8 @@
   },
 
   "CalendarPagination": {
-    "month": "Month"
+    "month": "Month",
+    "statistics": "Statistic"
   },
 
   "DeleteWaterModal": {
