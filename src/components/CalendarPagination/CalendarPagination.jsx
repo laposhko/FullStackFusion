@@ -101,7 +101,7 @@ const CalendarPagination = () => {
     });
 
 
-    const groupedByDate = monthArray.reduce((acc, day) => {
+    const groupedByDate = filteredMonthArray.reduce((acc, day) => {
       const dayPart = day.date.split(" ")[0]; // Отримуємо лише частину з датою "YYYY-MM-DD"
       if (!acc[dayPart]) {
         acc[dayPart] = 0;
@@ -135,7 +135,7 @@ const CalendarPagination = () => {
   };
 
 
-  
+
   return (
     <div className={css.container}>
       <div className={css.upper_part_container}>
