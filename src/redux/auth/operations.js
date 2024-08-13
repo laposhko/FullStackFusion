@@ -2,9 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-// axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
-axios.defaults.baseURL = "http://localhost:3000/";
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
+// axios.defaults.baseURL = "http://localhost:3000/";
+// axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -58,10 +58,12 @@ export const refresh = createAsyncThunk(
   "auth/refresh",
   async (token, thunkAPI) => {
     try {
-      const fullReduxState = thunkAPI.getState();
-      const token = fullReduxState.auth.token;
-      setAuthHeader(token);
-      const response = await axios.post("/users/refresh");
+      // const fullReduxState = thunkAPI.getState();
+      // const token = fullReduxState.auth.token;
+      // setAuthHeader(token);
+      const axiosInstRefresh = axios.create({ baseURL: "https://aquatrackerapp.onrender.com", withCredentials: true});
+      const response = await axiosInstRefresh.post("/users/refresh");
+      setAuthHeader(response.data.data.accessToken);
       return response.data.data;
     } catch (error) {
       console.log(error);

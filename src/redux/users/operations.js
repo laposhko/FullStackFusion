@@ -21,9 +21,9 @@ export const getCurrentUserInformation = createAsyncThunk(
   "users/getcurrent",
   async (_, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const savedToken = state.auth.token;
-      setAuthHeader(savedToken);
+      // const state = thunkAPI.getState();
+      // const savedToken = state.auth.token;
+      // setAuthHeader(savedToken);
       const response = await axios.get("/users/current");
       return response.data.data;
     } catch (error) {

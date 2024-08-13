@@ -8,7 +8,7 @@ import {
   getCurrentUserInformation,
   refresh,
 } from "../../redux/auth/operations.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage"));
 const SignInPage = lazy(() => import("../../pages/SignInPage/SignInPage"));
@@ -24,21 +24,24 @@ const ChangePasswordPage = lazy(() =>
 );
 import Modals from "../Modal/ModalWindow";
 import css from "./App.module.css";
+import { selectAuthIsLoggedIn } from "../../redux/auth/selectors.js";
 
 export default function App() {
+  const isLoggedIn = useSelector(selectAuthIsLoggedIn);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUserInformation());
-    // setInterval(() => {
-    //   dispatch(refresh());
-    // }, 5000);
   }, [dispatch]);
 
-  // useEffect(() => {
-  // setInterval(()=>{
-  //   dispatch()
-  // }, 5000)
-  // }, []);
+  useEffect(() => {
+    if (isLoggedIn) {
+      const refreshInt = setInterval(() => {
+        dispatch(refresh());
+      }, 5000);
+
+      return () => clearInterval(refreshInt);
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
