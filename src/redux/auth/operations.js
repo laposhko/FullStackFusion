@@ -124,36 +124,6 @@ export const requestResetEmail = createAsyncThunk(
   }
 );
 
-export const googleAuthLink = createAsyncThunk(
-  "users/googleauth",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get("/users/get-oauth-url");
-      return response.data;
-    } catch (error) {
-      toast.error(
-        `Something went wrong in google authorization: ${error.message}`
-      );
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const googleAuthConfirm2 = createAsyncThunk(
-  "users/googleAuthConfirm",
-  async (code, thunkAPI) => {
-    try {
-      const response = await axios.post("/users/confirm-google-auth", code);
-      return response.data;
-    } catch (error) {
-      toast.error(
-        `Something went wrong in google authorization: ${error.message}`
-      );
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const resetPassword = createAsyncThunk(
   "auth/resetpassword",
   async (bodyRequest, thunkAPI) => {

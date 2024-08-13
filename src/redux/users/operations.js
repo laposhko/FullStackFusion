@@ -61,3 +61,18 @@ export const updateCurrentUser = createAsyncThunk(
     }
   }
 );
+
+export const googleAuthLink = createAsyncThunk(
+  "users/googleauth",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/users/get-oauth-url");
+      return response.data;
+    } catch (error) {
+      toast.error(
+        `Something went wrong in google authorization: ${error.message}`
+      );
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  googleAuthLink,
   refresh,
   requestResetEmail,
   resetPassword,
@@ -8,7 +7,6 @@ import {
   signOut,
   signUp,
   getCurrentUserInformation,
-  googleAuthConfirm2,
 } from "./operations";
 // import { getCurrentUserInformation } from "../users/operations";
 
@@ -28,7 +26,6 @@ const authSlice = createSlice({
       createdAt: null,
       updatedAt: null,
     },
-    googleLink: null,
     token: null,
     isLoading: false,
     isLoggedIn: false,
@@ -84,7 +81,6 @@ const authSlice = createSlice({
           createdAt: null,
           updatedAt: null,
         };
-        state.googleLink = null;
         state.token = null;
         state.isLoading = false;
         state.isError = false;
@@ -118,20 +114,6 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(googleAuthLink.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
-      .addCase(googleAuthLink.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.googleLink = action.payload.data.url;
-      })
-      .addCase(googleAuthLink.rejected, state => {
-        state.isLoading = false;
-        state.isError = true;
-        state.googleLink = null;
-      })
       .addCase(resetPassword.pending, state => {
         state.isLoading = true;
         state.isError = false;
@@ -156,21 +138,6 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(getCurrentUserInformation.rejected, state => {
-        state.isLoading = false;
-        state.isError = true;
-      })
-      .addCase(googleAuthConfirm2.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
-      .addCase(googleAuthConfirm2.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.isLoggedIn = true;
-        state.token = action.payload.accessToken;
-        state.user = action.payload.user;
-      })
-      .addCase(googleAuthConfirm2.rejected, state => {
         state.isLoading = false;
         state.isError = true;
       }),

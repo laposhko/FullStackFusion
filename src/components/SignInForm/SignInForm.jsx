@@ -7,6 +7,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../redux/auth/operations";
+import GoogleAuthorization from "../GoogleAuthorization/GoogleAuthorization.jsx";
 import css from "./SignInForm.module.css";
 
 const validationSchema = Yup.object().shape({
@@ -116,6 +117,7 @@ const onSubmit = async (data) => {
       <div className={css.submitContainer}>
         <button className={css.submitButton}>Sign In</button>
       </div>
+      <GoogleAuthorization />
       <div className={css.linkContainer}>
         <p>
           Don't have an account?{" "}

@@ -1,1 +1,54 @@
+.googleLink {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  padding: 14px 28px;
+  color: var(--button-gray);
+  border: 1px solid var(--button-gray);
+  background-color: var(--main-background-color);
+  border-radius: 30px;
+  transition: border 0.3s linear, color 0.3s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.googleLink:hover {
+  background-image: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  background-size: 400%;
+  animation: rainbow 3s infinite linear;
+  -webkit-background-clip: text;
+  color: transparent;
+  border: 1px solid var(--accent-darkgreen-color);
+}
+.googleIcon {
+  width: 18px;
+  height: 18px;
+}
 
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .googleLink {
+    font-size: 16px;
+  }
+}

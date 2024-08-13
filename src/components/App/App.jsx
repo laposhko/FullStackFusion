@@ -66,11 +66,7 @@ export default function App() {
             element={<RestrictedRoute component={<ResetPassword />} />}
           />
           <Route
-            path="/users/confirm-google-auth"
-            element={<RestrictedRoute component={<TrackerPage />} />}
-          />
-          <Route
-            path="/changePasswordPage/:token"
+            path="/changePassword"
             element={<RestrictedRoute component={<ChangePasswordPage />} />}
           />
           <Route path="*" element={<NotFoundPage />} />

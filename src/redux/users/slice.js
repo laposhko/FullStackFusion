@@ -3,6 +3,7 @@ import {
   getAllUsers,
   // getCurrentUserInformation,
   updateCurrentUser,
+  googleAuthLink,
 } from "./operations";
 
 const getAllUsersSlice = createSlice({
@@ -18,13 +19,14 @@ const getAllUsersSlice = createSlice({
       dailyWaterNorm: null,
       avatar: null,
     },
+    googleLink: null,
     userQuantity: "",
     isLoading: false,
     isError: false,
   },
-  extraReducers: (builder) =>
+  extraReducers: builder =>
     builder
-      .addCase(getAllUsers.pending, (state) => {
+      .addCase(getAllUsers.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -33,7 +35,7 @@ const getAllUsersSlice = createSlice({
         state.isError = false;
         state.userQuantity = action.payload;
       })
-      .addCase(getAllUsers.rejected, (state) => {
+      .addCase(getAllUsers.rejected, state => {
         state.isLoading = false;
         state.isError = true;
       })
@@ -51,7 +53,7 @@ const getAllUsersSlice = createSlice({
       //   state.isLoading = false;
       //   state.isError = true;
       // })
-      .addCase(updateCurrentUser.pending, (state) => {
+      .addCase(updateCurrentUser.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -60,9 +62,24 @@ const getAllUsersSlice = createSlice({
         state.isError = false;
         state.user = action.payload;
       })
-      .addCase(updateCurrentUser.rejected, (state) => {
+      .addCase(updateCurrentUser.rejected, state => {
         state.isLoading = false;
         state.isError = true;
+      })
+      .addCase(googleAuthLink.pending, state => {
+        state.googleLink = null;
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(googleAuthLink.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.googleLink = action.payload.data.url;
+      })
+      .addCase(googleAuthLink.rejected, state => {
+        state.isLoading = false;
+        state.isError = true;
+        state.googleLink = null;
       }),
 });
 

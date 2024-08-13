@@ -1,56 +1,24 @@
 import React from "react";
-import { GoogleLogin } from "@react-oauth/google";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  googleAuthLink,
-  googleAuthConfirm2,
-} from "../../redux/auth/operations.js";
-import { selectAuthGoogleLink } from "../../redux/auth/selectors.js";
-import { useParams, useNavigate } from "react-router-dom";
+import { googleAuthLink } from "../../redux/users/operations.js";
+import { selectAuthGoogleLink } from "../../redux/users/selectors.js";
 import { useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import css from "./GoogleAuthorization.module.css";
 
 export default function GoogleAuthorization() {
   const dispatch = useDispatch();
-  const { code } = useParams();
   const selectorGoogleLink = useSelector(selectAuthGoogleLink);
 
-  const handleSuccess = () => {
-    try {
-      dispatch(googleAuthLink());
-      //   console.log(selectorGoogleLink);
-
-      if (selectorGoogleLink) {
-        window.location.href = selectorGoogleLink;
-        // console.log(code);
-      }
-    } catch (error) {
-      console.error("error", error);
-    }
-  };
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const confirmGoogleAuth = async () => {
-      if (code) {
-        try {
-          await dispatch(googleAuthConfirm2({ code })).unwrap();
-          navigate("/tracker");
-        } catch (error) {
-          console.error("Error during Google auth confirmation", error);
-        }
-      }
-    };
-
-    confirmGoogleAuth();
-  }, [dispatch, code, navigate]);
+    dispatch(googleAuthLink());
+  }, [dispatch]);
 
   return (
-    <button type="button" onClick={handleSuccess}>
-      google
-    </button>
-    //   <GoogleLogin
-    //   onSuccess={handleSuccess}
-    // />
+    <a href={selectorGoogleLink} className={css.googleLink}>
+      <FcGoogle className={css.googleIcon} />
+      Login with Google
+    </a>
   );
 }
