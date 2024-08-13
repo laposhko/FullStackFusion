@@ -15,8 +15,12 @@ const ToggleComponent = () => {
       setIsComponentCalendar(!isComponentCalendar);
     };
   
+    // const monthArray = useSelector(selectWaterAmountForDay);
     const monthArray = useSelector(selectMonthItems);
+    // const waterState = useSelector(selectWaterState);
+
     console.log(monthArray);
+   
 
     const formattedMonthArray = useMemo(() => {
         return monthArray.map((day) => {
