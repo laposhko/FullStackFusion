@@ -128,9 +128,11 @@
   },
 
   "CalendarPagination": {
-    "month": "Місяць"
+    "month": "Місяць",
+    "statistics": "Статистика"
   },
 
+  
   "DeleteWaterModal": {
     "success": "Запис успішно видалено",
     "error": "Не вдалося видалити запис",
