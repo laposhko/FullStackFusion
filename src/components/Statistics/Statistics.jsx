@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import {
   AreaChart,
   Area,
@@ -6,11 +6,11 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
+} from "recharts";
 
-import CustomTooltip from './CustomTooltip';
+import CustomTooltip from "./CustomTooltip";
 
-import css from './Statistics.module.css';
+import css from "./Statistics.module.css";
 
 const Statistics = ({ data }) => {
   const renderCustomDot = ({ cx, cy, index }) => {
@@ -33,23 +33,23 @@ const Statistics = ({ data }) => {
     return value === 0
       ? `${value}%`
       : value % 1 === 0
-        ? `${value / 1000} L`
-        : `${(value / 1000).toFixed(1)} L`;
+      ? `${value / 1000} L`
+      : `${(value / 1000).toFixed(1)} L`;
   };
   const yAxisStyle = {
-    color: 'rgb(50, 63, 71)',
-    fontSize: '14px',
-    fontWeight: '400',
-    lineHeight: '18px',
-    textWrap: 'nowrap',
-    textAnchor: 'start',
+    color: "rgb(50, 63, 71)",
+    fontSize: "14px",
+    fontWeight: "400",
+    lineHeight: "18px",
+    textWrap: "nowrap",
+    textAnchor: "start",
     dx: -30,
   };
   useEffect(() => {
     const originalConsoleError = console.error;
 
     console.error = (...args) => {
-      if (typeof args[0] === 'string' && /defaultProps/.test(args[0])) {
+      if (typeof args[0] === "string" && /defaultProps/.test(args[0])) {
         return;
       }
 
@@ -82,9 +82,11 @@ const Statistics = ({ data }) => {
             dataKey="date"
             axisLine={false}
             tickLine={false}
-            padding={{ left: 10 }}
+            padding={{ left: 1 }}
             tickCount={11}
-            interval={3}
+            interval={0}
+            // angle={-45}
+            textAnchor="end"
           />
           <YAxis
             domain={[0, 2500]}
