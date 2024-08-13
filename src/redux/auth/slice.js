@@ -7,6 +7,7 @@ import {
   signOut,
   signUp,
   getCurrentUserInformation,
+  googleAuthLink,
 } from "./operations";
 // import { getCurrentUserInformation } from "../users/operations";
 
@@ -26,6 +27,7 @@ const authSlice = createSlice({
       createdAt: null,
       updatedAt: null,
     },
+    googleLink: null,
     token: null,
     isLoading: false,
     isLoggedIn: false,
@@ -140,6 +142,21 @@ const authSlice = createSlice({
       .addCase(getCurrentUserInformation.rejected, state => {
         state.isLoading = false;
         state.isError = true;
+      })
+      .addCase(googleAuthLink.pending, state => {
+        state.googleLink = null;
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(googleAuthLink.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.googleLink = action.payload.data.url;
+      })
+      .addCase(googleAuthLink.rejected, state => {
+        state.isLoading = false;
+        state.isError = true;
+        state.googleLink = null;
       }),
 });
 

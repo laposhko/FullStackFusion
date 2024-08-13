@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { googleAuthLink } from "../../redux/users/operations.js";
-import { selectAuthGoogleLink } from "../../redux/users/selectors.js";
+import { googleAuthLink } from "../../redux/auth/operations.js";
+import { selectAuthGoogleLink } from "../../redux/auth/selectors.js";
 import { useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import css from "./GoogleAuthorization.module.css";
 

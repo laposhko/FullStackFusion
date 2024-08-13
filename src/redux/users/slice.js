@@ -3,7 +3,6 @@ import {
   getAllUsers,
   // getCurrentUserInformation,
   updateCurrentUser,
-  googleAuthLink,
 } from "./operations";
 
 const getAllUsersSlice = createSlice({
@@ -19,7 +18,6 @@ const getAllUsersSlice = createSlice({
       dailyWaterNorm: null,
       avatar: null,
     },
-    googleLink: null,
     userQuantity: "",
     isLoading: false,
     isError: false,
@@ -65,21 +63,6 @@ const getAllUsersSlice = createSlice({
       .addCase(updateCurrentUser.rejected, state => {
         state.isLoading = false;
         state.isError = true;
-      })
-      .addCase(googleAuthLink.pending, state => {
-        state.googleLink = null;
-        state.isLoading = true;
-        state.isError = false;
-      })
-      .addCase(googleAuthLink.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.googleLink = action.payload.data.url;
-      })
-      .addCase(googleAuthLink.rejected, state => {
-        state.isLoading = false;
-        state.isError = true;
-        state.googleLink = null;
       }),
 });
 
