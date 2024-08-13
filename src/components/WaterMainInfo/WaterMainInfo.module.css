@@ -1,48 +1,50 @@
 .mainInfoContainer {
-    position: relative;
-    width: 343px;
-    height: 415px;
-    border-radius: 30px;
-    padding: 24px 16px 32px 16px;
-    background-color: var(--background-avocado-green);
-    /* background-image: url('../../img/TrackerPage/bottle-for-water-mobile.png');
+  position: relative;
+  width: 343px;
+  height: 415px;
+  border-radius: 30px;
+  padding: 24px 16px 32px 16px;
+  background-color: var(--background-avocado-green);
+  /* background-image: url('../../img/TrackerPage/bottle-for-water-mobile.png');
     background-size: cover; /* або cover, залежно від потрібного ефекту */
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */ 
+  /* background-repeat: no-repeat; */
+  /* background-position: center; */
+
+  /* margin-bottom: 16px; */
 }
 
 .waterBottle {
-    width: 262px;
-    height: 335px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+  width: 262px;
+  height: 335px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 @media screen and (min-width: 768px) {
-    .mainInfoContainer {
-        min-width: 704px;
-        height: 578px;
-        padding: 32px 32px 35px;
-    }
+  .mainInfoContainer {
+    min-width: 704px;
+    height: 578px;
+    padding: 32px 32px 35px;
+  }
 
-    .waterBottle {
-        width: 374px;
-        height: 477px;
-    }
+  .waterBottle {
+    width: 374px;
+    height: 477px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
-    .mainInfoContainer {
-        min-width: 672px;
-        height: 736px;
-        padding: 32px;
-    }
+  .mainInfoContainer {
+    min-width: 672px;
+    height: 736px;
+    padding: 32px;
+  }
 
-    .waterBottle {
-        width: 472px;
-        height: 604px;
-    }
+  .waterBottle {
+    width: 472px;
+    height: 604px;
+  }
 }

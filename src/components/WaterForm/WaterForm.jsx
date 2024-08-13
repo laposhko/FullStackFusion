@@ -6,17 +6,9 @@ import { createCard, updateCard } from "../../redux/water/operations";
 import { toast } from "react-toastify";
 import { useModalContext } from "../../context/useModalContext";
 import { selectActiveDay } from "/src/redux/water/selectors.js";
+import { useTranslation } from "react-i18next";
 import SvgIcon from "../../img/icons/sprite";
 import css from "./WaterForm.module.css";
-
-const schema = Yup.object().shape({
-  waterValue: Yup.number()
-    .min(50, "The value must be at least 50 ml")
-    .max(1500, "The value must be at most 1500 ml")
-    .positive("The number must be a positive value")
-    .required("Value is required"),
-  localTime: Yup.string().required("Time is required"),
-});
 
 const getTimeFormat = () => {
   const date = new Date();
@@ -31,6 +23,17 @@ const getTimeFormat = () => {
 
 const WaterForm = ({ mode, water }) => {
   const { closeModal } = useModalContext();
+  const { t } = useTranslation();
+
+  const schema = Yup.object().shape({
+    waterValue: Yup.number()
+      .min(50, t("WaterForm.waterValueMin"))
+      .max(1500, t("WaterForm.waterValueMax"))
+      .positive(t("WaterForm.waterValuePositive"))
+      .required(t("WaterForm.waterValueRequired")),
+    localTime: Yup.string().required(t("WaterForm.localTimeRequired")),
+  });
+
   const {
     register,
     handleSubmit,
@@ -60,7 +63,6 @@ const WaterForm = ({ mode, water }) => {
   };
 
   const onSubmit = () => {
-    console.log(watch("localTime"));
     const newData = {
       volume: watch("waterValue"),
       date: `${activeDay} ${watch("localTime")}`,
@@ -69,18 +71,14 @@ const WaterForm = ({ mode, water }) => {
     try {
       if (mode === "add") {
         dispatch(createCard(newData));
-        toast.success(
-          "The amount of water consumed has been added successfully."
-        );
+        toast.success(t("WaterForm.addSuccess"));
       } else if (mode === "edit") {
         dispatch(updateCard({ _id: water._id, ...newData }));
-        toast.success(
-          "The amount of water consumed has been successfully updated."
-        );
+        toast.success(t("WaterForm.editSuccess"));
       }
       closeModal();
     } catch (error) {
-      toast.error("Failed to save water data. Please try again.");
+      toast.error(t("WaterForm.error"));
     }
   };
 
@@ -95,7 +93,7 @@ const WaterForm = ({ mode, water }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p className={css.amountTitle}>Amount of water:</p>
+      <p className={css.amountTitle}>{t("WaterForm.title")}</p>
       <div className={css.amountWrap}>
         <button
           type="button"
@@ -114,8 +112,8 @@ const WaterForm = ({ mode, water }) => {
           {watch("waterValue") >= 999
             ? `${(Math.round((watch("waterValue") / 1000) * 100) / 100).toFixed(
                 2
-              )} L`
-            : `${watch("waterValue")} ml`}
+              )} ${t("WaterForm.l")}`
+            : `${watch("waterValue")} ${t("WaterForm.ml")}`}
         </span>
         <button
           type="button"
@@ -134,7 +132,7 @@ const WaterForm = ({ mode, water }) => {
       <div>
         <div className={css.valueDiv}>
           <label className={css.labelTime} htmlFor="localTime">
-            Recording time:
+            {t("WaterForm.record")}
           </label>
           <input
             {...register("localTime")}
@@ -150,7 +148,7 @@ const WaterForm = ({ mode, water }) => {
 
         <div className={css.valueDiv}>
           <label className={css.labelVal} htmlFor="value">
-            Enter the value of the water used:
+            {t("WaterForm.value")}
           </label>
           <input
             {...register("waterValue")}
@@ -172,7 +170,7 @@ const WaterForm = ({ mode, water }) => {
         </div>
       </div>
       <button className={css.btnSubmit} type="submit">
-        Save
+        {t("WaterForm.save")}
       </button>
     </form>
   );

@@ -7,24 +7,11 @@ import { selectMonthItems } from "../../redux/water/selectors.js";
 import { convertDateIntoStringFormat } from "../../helpers/convertDateFormatForActiveDay.jsx";
 import { getWaterMonthInfo } from "../../redux/water/operations.js";
 import { selectAuthUser } from "../../redux/auth/selectors.js";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { useTranslation } from "react-i18next";
 
 const CalendarPagination = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getWaterMonthInfo());
@@ -35,6 +22,20 @@ const CalendarPagination = () => {
   const dailyWaterNorm = Number(userInfo.dailyWaterNorm) * 1000;
   const [date, setDate] = useState(new Date());
 
+  const months = [
+    t("ChooseDate.january"),
+    t("ChooseDate.february"),
+    t("ChooseDate.march"),
+    t("ChooseDate.april"),
+    t("ChooseDate.may"),
+    t("ChooseDate.june"),
+    t("ChooseDate.july"),
+    t("ChooseDate.august"),
+    t("ChooseDate.september"),
+    t("ChooseDate.october"),
+    t("ChooseDate.november"),
+    t("ChooseDate.december"),
+  ];
   const increaseDate = (currentDate) => {
     const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + 1));
     setDate(newDate);
@@ -78,7 +79,7 @@ const CalendarPagination = () => {
   return (
     <div className={css.container}>
       <div className={css.upper_part_container}>
-        <p className={css.text_leftside}>Month</p>
+        <p className={css.text_leftside}>{t("CalendarPagination.month")}</p>
         <div className={css.right_side_container}>
           <button className={css.btn} onClick={() => decreaseDate(date)}>
             {"<"}
@@ -93,8 +94,8 @@ const CalendarPagination = () => {
             <SvgIcon
               className={css.closeIcon}
               iconName="icon-pie-chart-02"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
             ></SvgIcon>
           </button>
         </div>

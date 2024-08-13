@@ -8,6 +8,7 @@ import {
   signUp,
   getCurrentUserInformation,
   googleAuthLink,
+  updateCurrentUser,
 } from "./operations";
 // import { getCurrentUserInformation } from "../users/operations";
 
@@ -34,7 +35,12 @@ const authSlice = createSlice({
     isRefreshing: false,
     isError: false,
   },
-  extraReducers: builder =>
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload.token;
+    },
+  },
+  extraReducers: (builder) =>
     builder
       .addCase(signUp.pending, state => {
         state.isError = false;
@@ -157,8 +163,11 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.googleLink = null;
-      }),
+      })
+
 });
+
+export const { setToken } = authSlice.actions;
 
 const authReducer = authSlice.reducer;
 

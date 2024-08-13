@@ -1,22 +1,24 @@
 import { useModalContext } from "../../context/useModalContext";
+import { useTranslation } from "react-i18next";
 import SvgIcon from "../../img/icons/sprite";
 import WaterForm from "../WaterForm/WaterForm";
 import css from "./WaterModal.module.css";
 
 const WaterModal = ({ mode, water = {} }) => {
   const { closeModal } = useModalContext();
+  const { t } = useTranslation();
   const title =
     mode === "add" ? (
-      <h2 className={css.title}>Add Water</h2>
+      <h2 className={css.title}>{t("WaterModal.firstTitle")}</h2>
     ) : (
-      <h2 className={css.title}>Edit the entered amount of water</h2>
+      <h2 className={css.title}>{t("WaterModal.secondTitle")}</h2>
     );
 
   const subtitle =
     mode === "add" ? (
-      <p className={css.subtitle}>Choose a value:</p>
+      <p className={css.subtitle}>{t("WaterModal.firstSubtitle")}</p>
     ) : (
-      <p className={css.subtitle}>Correct entered data:</p>
+      <p className={css.subtitle}>{t("WaterModal.secondSubtitle")}</p>
     );
 
   return (

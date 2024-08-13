@@ -7,7 +7,7 @@ import style from '../AddWaterBtn/AddWaterBtn.module.css';
 
 function DailyInfo() {
   return (
-    <div className={css.wrapper}>
+    <div className={css.wrapper} data-tour="step-4">
       <div className={css.infoWrapper}>
         <ChooseDate />
         <AddWaterBtn className={style.addBtnStyle2}></AddWaterBtn>

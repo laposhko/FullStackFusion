@@ -2,7 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { lazy, Suspense, useEffect } from "react";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader.jsx";
 import { getCurrentUserInformation } from "../../redux/auth/operations.js";
 import { useDispatch } from "react-redux";
@@ -24,9 +24,32 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import css from "./App.module.css";
 
 export default function App() {
+  const location = useLocation();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCurrentUserInformation());
+    const getQueryParam = (param) => {
+      const urlParams = new URLSearchParams(location.search);
+      return urlParams.get(param);
+    };
+
+    const accessTokenJWT = getQueryParam("accesstokenjwt");
+
+    if (accessTokenJWT) {
+      try {
+        const decodedToken = jwtDecode(accessTokenJWT);
+
+        const user = decodedToken.user;
+        console.log(user);
+
+        const savedToken = decodedToken.accessToken;
+        console.log(savedToken);
+      } catch (e) {
+        console.log("Invalid token");
+        console.error("Error decoding token:", e);
+      }
+    } else {
+      dispatch(getCurrentUserInformation());
+    }
   }, [dispatch]);
 
   return (

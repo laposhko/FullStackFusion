@@ -8,8 +8,6 @@
   gap: 20px;
   background-color: var(--main-background-color);
   border-radius: 15px;
-
-  /* outline: 1px solid red; */
 }
 
 .icon {
@@ -35,7 +33,7 @@
 .infoTime {
   font-size: 11px;
   line-height: 1.87;
-  color: var(--grey-text);
+  color: var(--light-gray-text-color);
 }
 
 .btnsWrapper {
@@ -60,4 +58,37 @@
 
 .svg:hover {
   stroke: var(--background-avocado-green);
+}
+
+@media screen and (max-width: 767px) {
+  .waterItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 149px;
+    max-height: 74px;
+    padding: 18px 14px;
+    gap: 10px;
+    background-color: var(--main-background-color);
+    border-radius: 15px;
+  }
+
+  .infoMl {
+    font-size: 13px;
+    line-height: 1.49;
+    font-weight: 700;
+  }
+
+  .svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--main-background-color);
+  }
+
+  .btn {
+    border: none;
+    background-color: var(--main-background-color);
+    padding: 0;
+  }
+
 }

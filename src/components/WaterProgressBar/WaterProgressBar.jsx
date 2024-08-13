@@ -1,11 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { dayWaterAmount } from "../../redux/water/selectors";
+import { useSelector } from "react-redux";
+import { selectWaterAmountForDay } from "../../redux/water/selectors";
 import { selectAuthUser } from "../../redux/auth/selectors";
-import { getWaterDayInfo } from "../../redux/water/operations";
-import { getCurrentUserInformation } from "../../redux/auth/operations";
 import css from "./WaterProgressBar.module.css";
-
+import { selectActiveDay } from "../../redux/water/selectors";
+import formatDate from "../../helpers/formatDate";
 const WaterProgressBar = () => {
   // const dispatch = useDispatch();
 
@@ -15,11 +13,14 @@ const WaterProgressBar = () => {
   // }, [dispatch]);
 
   const user = useSelector(selectAuthUser);
-  const waterAmount = useSelector(dayWaterAmount);
-  // console.log(waterAmount);
-  const dayAmount = waterAmount.length > 0 ? waterAmount[0].dayAmount : 0;
-  // console.log(dayAmount)
-
+  const waterAmount = useSelector(selectWaterAmountForDay);
+  const day = useSelector(selectActiveDay);
+  const dayAmount =
+    waterAmount[0] !== undefined
+      ? JSON.stringify(waterAmount[0]) !== "{}"
+        ? waterAmount[0].dayAmount
+        : 0
+      : 0;
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
   // console.log(dailyNorma);
 
@@ -37,8 +38,8 @@ const WaterProgressBar = () => {
   };
 
   return (
-    <div className={css.waterProgressBar}>
-      <div className={css.today}>Today</div>
+    <div className={css.waterProgressBar} data-tour="step-3">
+      <div className={css.today}>{formatDate(day)}</div>
       <div className={css.progressContainer}>
         <div className={css.progressBar} style={{ width: `${percentage}%` }}>
           {showPercentage(percentage) && (

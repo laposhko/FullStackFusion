@@ -1,0 +1,224 @@
+{
+  "WelcomeSection": {
+    "subtitle": "Record daily water intake and track",
+    "title": "Water consumption tracker",
+    "linkTry": "Try tracker",
+    "signIn": "Sign In"
+  },
+
+  "AdvantagesSection": {
+    "loading": "Loading...",
+    "error": "Error loading user quantity",
+    "customer": "Customer",
+    "totalUsers": "Our {{count}}",
+    "happy": "happy",
+    "customers": "customers",
+    "habit": "Habit drive",
+    "view": "View statistics",
+    "rate": "Personal rate setting"
+  },
+
+  "SignUp": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "email": "Email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email field is required",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordMin": "Password must be more than 6 symbols",
+    "passwordRequired": "Password field is required",
+    "passwordPlaceholder": "Enter your password",
+    "repeatPassword": "Repeat Password",
+    "repeatPasswordMatch": "Repeat password field must match with password field",
+    "repeatPasswordRequired": "Repeat password field is required",
+    "text": "Already have account?",
+    "success": "Successfully sign up",
+    "error": "Error in sign up"
+  },
+
+  "SignIn": {
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "email": "Email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email field is required",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordMin": "Password must be more than 6 symbols",
+    "passwordRequired": "Password field is required",
+    "passwordPlaceholder": "Enter your password",
+    "passwordForget": "I don't remember the password",
+    "text": " Don't have an account?",
+    "success": "Successful sign in",
+    "error": "Invalid details"
+  },
+
+  "ResetPassword": {
+    "title": "Don't remember your password?",
+    "text": "Specify the e-mail that was used during registration - we will send you a link.",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "emailInvalid": "Invalid email",
+    "emailRequired": "Email is required!",
+    "link": "Send a link"
+  },
+
+  "NotFound": {
+    "text": "Page not found. Return to",
+    "link": "Home Page"
+  },
+
+  "ChangePassword": {
+    "title": "Create a password",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordRequired": "Password is required",
+    "passwordPlaceholder": "Enter your password",
+    "save": "Save new password",
+    "success": "Password has been changed successfully!",
+    "error": "Invalid or missing token"
+  },
+
+  "WaterMainInfo": {
+    "alt": "Bottle",
+    "WaterDailyNorma": {
+      "amount": "{{count}} L",
+      "text": "My daily norma"
+    },
+    "AddWaterBtn": {
+      "text": "Add water"
+    }
+  },
+
+  "UserPanel": {
+    "title": "Hello"
+  },
+
+  "UserBar": {
+    "alt": "User avatar"
+  },
+
+  "UserBarPopover": {
+    "settings": "Settings",
+    "logout": "Sign out"
+  },
+
+  "WaterList": {
+    "empty": "Empty"
+  },
+
+  "WaterItem": {
+    "ml": "ml"
+  },
+
+  "ChooseDate": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "today": "Today"
+  },
+
+  "CalendarPagination": {
+    "month": "Month"
+  },
+
+  "DeleteWaterModal": {
+    "success": "Entry deleted successfully",
+    "error": "Failed to delete the entry",
+    "title": "Delete entry",
+    "text": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "LogoutModal": {
+    "title": "Log out",
+    "text": "Do you really want to leave?",
+    "success": "You have successfully logged out",
+    "error": "Something wrong, please try again",
+    "cancel": "Cancel"
+  },
+
+  "UserSettingsModal": {
+    "title": "Settings"
+  },
+
+  "UserSettingsForm": {
+    "woman": "Woman",
+    "man": "Man",
+    "genderOneOf": "Gender can be only woman or man",
+    "nameMax": "Name should not be longer than 70 characters",
+    "emailMatch": "Invalid email",
+    "weightTypeError": "Weight must be a number",
+    "weightNullable": "Weight should be a number",
+    "weightMin": "Weight should not be less than 10 kg",
+    "weightMax": "Weight should not be more than 250 kg",
+    "timeTypeError": "Activity number must be a number",
+    "timeMin": "Activity time cannot be negative number",
+    "timeMax": "Activity time cannot be more than 12 hours for day",
+    "normTypeError": "Daily water norm must be a number",
+    "normMin": "Water norm should be more than 0 L",
+    "normMax": "Water norm should not be more than 10 L for day",
+    "success": "Your info updated!",
+    "error": "Something went wrong.Please try again!",
+    "alt": "Avatar",
+    "uploadPhoto": "Upload a photo",
+    "genderIdentity": "Your gender identity",
+    "name": "Your name",
+    "email": "Email",
+    "norma": "My daily norma",
+    "normaWoman": "For woman",
+    "normaMan": "For man",
+    "description": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
+    "activeTime": "Active time in hours",
+    "weight": "Your weight in kilograms:",
+    "activity": "The time of active participation in sports:",
+    "amount": "The required amount of water in liters per day:",
+    "l": "{{count}} L",
+    "drink": "Write down how much water you will drink:",
+    "save": "Save"
+  },
+
+  "WaterModal": {
+    "firstTitle": "Add Water",
+    "secondTitle": "Edit the entered amount of water",
+    "firstSubtitle": "Choose a value:",
+    "secondSubtitle": "Correct entered data:"
+  },
+
+  "WaterForm": {
+    "waterValueMin": "The value must be at least 50 ml",
+    "waterValueMax": "The value must be at most 1500 ml",
+    "waterValuePositive": "The number must be a positive value",
+    "waterValueRequired": "Value is required",
+    "localTimeRequired": "Time is required",
+    "addSuccess": "The amount of water consumed has been added successfully.",
+    "editSuccess": "The amount of water consumed has been successfully updated.",
+    "error": "Failed to save water data. Please try again.",
+    "title": "Amount of water:",
+    "l": "L",
+    "ml": "ml",
+    "record": "Recording time:",
+    "value": "Enter the value of the water used:",
+    "save": "Save"
+  },
+  "Reactour": {
+    "step1": "Alright, let`s start the tour of Aqua Track!",
+    "step2": "Here you can see your daily water intake.",
+    "step3": "And here you can track your progress in water consumption.",
+    "step4": "Here you will be able to see the cards of water consumed throughout the day after adding it. The cards can be edited and deleted.",
+    "step5": "And with the help of this button, you can add the amount of water consumed and set the time of this event.",
+    "step6": "Here you can edit your personal information.",
+    "step7": "In the calendar, you can see the progress of water consumption for each day.",
+    "step8": "We wish you get the most satisfaction from using our app!"
+  }
+}
