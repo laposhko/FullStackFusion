@@ -1,6 +1,6 @@
 import Statistics from "../Statistics/Statistics.jsx";
 import Calendar from "../Calendar/Calendar";
-import CalendarPagination from "../CalendarPagination/CalendarPagination.jsx";
+// import CalendarPagination from "../CalendarPagination/CalendarPagination.jsx";
 import { useState, useMemo } from "react";
 import SvgIcon from "../../img/icons/sprite.jsx";
 import css from "./Monthinfo.module.css";
@@ -23,6 +23,9 @@ const ToggleComponent = () => {
   // const monthArray = useSelector(selectWaterAmountForDay);
   // const waterState = useSelector(selectWaterState);
 
+
+
+  
   const monthArray = useSelector(selectMonthItems);
 
 //   console.log(monthArray);

@@ -9,10 +9,44 @@ import {
 } from "recharts";
 
 import CustomTooltip from "./CustomTooltip";
-
+import { useState } from "react";
 import css from "./Statistics.module.css";
+import SvgIcon from "../../img/icons/sprite";
+
+
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 
 const Statistics = ({ data }) => {
+  const [date, setDate] = useState(new Date());
+
+
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+
+
+  const increaseDate = (currentDate) => {
+    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + 1));
+    setDate(newDate);
+  };
+
+  const decreaseDate = (currentDate) => {
+    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() - 1));
+    setDate(newDate);
+  };
   const renderCustomDot = ({ cx, cy, index }) => {
     if (index === 0 || index === data.length - 1) return null;
     return (
@@ -62,6 +96,32 @@ const Statistics = ({ data }) => {
   }, []);
 
   return ( 
+
+    <div className={css.container}>
+    <div className={css.upper_part_container}>
+      <p className={css.text_leftside}>Statistics</p>
+      <div className={css.right_side_container}>
+        <button className={css.btn} onClick={() => decreaseDate(date)}>
+          {'<'}
+        </button>
+        <p className={css.text_rightside}>
+          {month}, {year}
+        </p>
+        <button className={css.btn} onClick={() => increaseDate(date)}>
+          {'>'}
+        </button>
+        <button>
+          <SvgIcon
+            className={css.closeIcon}
+            iconName="icon-pie-chart-02"
+            width={20}
+            height={20}
+          ></SvgIcon>
+        </button>
+      </div>
+    </div>
+    
+
     <div className={css.wrapper}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
@@ -115,7 +175,7 @@ const Statistics = ({ data }) => {
       </ResponsiveContainer>
     </div>
     
-    
+    </div>
   );
 };
 
