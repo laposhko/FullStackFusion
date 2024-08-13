@@ -83,10 +83,10 @@
     "alt": "Пляшка",
     "WaterDailyNorma": {
       "amount": "{{count}} Л",
-      "text": "Моя денна норма"
+      "text": "Денна норма"
     },
     "AddWaterBtn": {
-      "text": "Додати воду"
+      "text": "Додати"
     }
   },
 
@@ -125,6 +125,10 @@
     "november": "Листопад",
     "december": "Грудень",
     "today": "Сьогодні"
+  },
+
+  "CalendarPagination": {
+    "month": "Місяць"
   },
 
   "DeleteWaterModal": {

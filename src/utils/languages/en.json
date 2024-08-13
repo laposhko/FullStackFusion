@@ -91,7 +91,7 @@
   },
 
   "UserPanel": {
-    "title": "Привіт"
+    "title": "Hello"
   },
 
   "UserBar": {
@@ -125,6 +125,10 @@
     "november": "November",
     "december": "December",
     "today": "Today"
+  },
+
+  "CalendarPagination": {
+    "month": "Month"
   },
 
   "DeleteWaterModal": {

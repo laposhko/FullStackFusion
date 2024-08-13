@@ -35,7 +35,7 @@ function WaterItem(data) {
       <div className={css.info}>
         {data && (
           <p className={css.infoMl}>
-            {data.data.volume} {t(WaterItem.ml)}
+            {data.data.volume} {t("WaterItem.ml")}
           </p>
         )}
         {data && (
