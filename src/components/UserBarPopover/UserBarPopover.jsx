@@ -1,11 +1,13 @@
-import css from './UserBarPopover.module.css';
-import svg from '../../img/icons/sprite.svg';
-import { useModalContext } from '../../context/useModalContext';
-import UserSettingsModal from '../UserSettingsModal/UserSettingsModal';
-import LogOutModal from '../LogOutModal/LogOutModal';
+import css from "./UserBarPopover.module.css";
+import svg from "../../img/icons/sprite.svg";
+import { useModalContext } from "../../context/useModalContext";
+import UserSettingsModal from "../UserSettingsModal/UserSettingsModal";
+import LogOutModal from "../LogOutModal/LogOutModal";
+import { useTranslation } from "react-i18next";
+
 function UserBarPopover() {
   const { openModal } = useModalContext();
-
+  const { t } = useTranslation();
   // const [openModal, setOpenModal] = useState(null);
 
   // const handleOpenSettings = () => setOpenModal("settings");
@@ -27,7 +29,7 @@ function UserBarPopover() {
             <svg className={css.icon}>
               <use href={`${svg}#icon-settings`}></use>
             </svg>
-            Settings
+            {t("UserBarPopover.settings")}
           </button>
         </li>
         <li>
@@ -42,7 +44,7 @@ function UserBarPopover() {
             <svg className={css.icon}>
               <use href={`${svg}#icon-log-out`}></use>
             </svg>
-            Sign out
+            {t("UserBarPopover.logout")}
           </button>
         </li>
       </ul>

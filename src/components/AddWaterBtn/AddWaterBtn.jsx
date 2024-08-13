@@ -1,14 +1,17 @@
-import clsx from 'clsx';
-import style from './AddWaterBtn.module.css';
-import SvgIcon from '../../img/icons/sprite';
-import { useModalContext } from '../../context/useModalContext';
-import WaterModal from '../WaterModal/WaterModal';
+import clsx from "clsx";
+import style from "./AddWaterBtn.module.css";
+import SvgIcon from "../../img/icons/sprite";
+import { useModalContext } from "../../context/useModalContext";
+import WaterModal from "../WaterModal/WaterModal";
+import { useTranslation } from "react-i18next";
 
 export default function AddWaterBtn({ className }) {
   const { openModal } = useModalContext();
+  const { t } = useTranslation();
   return (
-    <div >
-      <button data-tour="step-5"
+    <div>
+      <button
+        data-tour="step-5"
         className={clsx(style.btn, className)}
         type="button"
         onClick={() => {
@@ -23,7 +26,7 @@ export default function AddWaterBtn({ className }) {
             height={14}
           />
         </div>
-        Add water
+        {t("WaterMainInfo.AddWaterBtn.text")}
       </button>
     </div>
   );
