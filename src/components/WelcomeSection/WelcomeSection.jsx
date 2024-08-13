@@ -1,4 +1,5 @@
 import Logo from "../Logo/Logo.jsx";
+import Languages from "../Languages/Languages.jsx";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -9,6 +10,7 @@ export default function WelcomeSection() {
   return (
     <div className={css.welcomeContainer}>
       <Logo />
+      <Languages tracker={WelcomeSection} />
       <div>
         <p className={css.subtitle}>{t("WelcomeSection.subtitle")}</p>
         <h1 className={css.mainTitle}>{t("WelcomeSection.title")}</h1>
