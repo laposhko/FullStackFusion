@@ -33,17 +33,7 @@ const CalendarPagination = () => {
 
   const [isComponentCalendar, setIsComponentCalendar] = useState(true);
 
-  // const [ToggleInfo, setToggleInfo] = useState(true);
-
-  // const [selectedMonth, setSelectedMonth] = useState("08");
-
-  // const handleMonthChange = (newMonth) => {
-  //   setSelectedMonth(newMonth);
-  // };
-
   const monthArray = useSelector(selectMonthItems);
-
-  
 
   useEffect(() => {
     dispatch(getWaterMonthInfo());
