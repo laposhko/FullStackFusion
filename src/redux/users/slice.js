@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  getAllUsers,
-  // getCurrentUserInformation,
-  // updateCurrentUser,
-} from "./operations";
+import { getAllUsers } from "./operations";
 
 const getAllUsersSlice = createSlice({
   name: "users",
@@ -78,20 +74,6 @@ const getAllUsersSlice = createSlice({
   //   state.isLoading = false;
   //   state.isError = true;
   // })
-  // .addCase(updateCurrentUser.pending, (state) => {
-  //   state.isLoading = true;
-  //   state.isError = false;
-  // })
-  // .addCase(updateCurrentUser.fulfilled, (state, action) => {
-  //   state.isLoading = false;
-  //   state.isError = false;
-
-  //   state.user = action.payload;
-  // })
-  // .addCase(updateCurrentUser.rejected, (state) => {
-  //   state.isLoading = false;
-  //   state.isError = true;
-  // }),
 });
 
 const usersReducer = getAllUsersSlice.reducer;
