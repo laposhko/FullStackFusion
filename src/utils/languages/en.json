@@ -206,5 +206,15 @@
     "record": "Recording time:",
     "value": "Enter the value of the water used:",
     "save": "Save"
+  },
+  "Reactour": {
+    "step1": "Alright, let`s start the tour of Aqua Track!",
+    "step2": "Here you can see your daily water intake.",
+    "step3": "And here you can track your progress in water consumption.",
+    "step4": "Here you will be able to see the cards of water consumed throughout the day after adding it. The cards can be edited and deleted.",
+    "step5": "And with the help of this button, you can add the amount of water consumed and set the time of this event.",
+    "step6": "Here you can edit your personal information.",
+    "step7": "In the calendar, you can see the progress of water consumption for each day.",
+    "step8": "We wish you get the most satisfaction from using our app!"
   }
 }
