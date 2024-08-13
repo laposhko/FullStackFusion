@@ -110,14 +110,14 @@ const Statistics = ({ data }) => {
         <button className={css.btn} onClick={() => increaseDate(date)}>
           {'>'}
         </button>
-        <button>
+        {/* <button>
           <SvgIcon
             className={css.closeIcon}
             iconName="icon-pie-chart-02"
             width={20}
             height={20}
           ></SvgIcon>
-        </button>
+        </button> */}
       </div>
     </div>
     
