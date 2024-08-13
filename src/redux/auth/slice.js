@@ -35,6 +35,11 @@ const authSlice = createSlice({
     isRefreshing: false,
     isError: false,
   },
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload.token;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(signUp.pending, (state) => {
@@ -173,6 +178,8 @@ const authSlice = createSlice({
         state.isError = true;
       }),
 });
+
+export const { setToken } = authSlice.actions;
 
 const authReducer = authSlice.reducer;
 

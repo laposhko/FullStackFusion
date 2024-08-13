@@ -1,9 +1,59 @@
-.langBtnContainer {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+@media screen and (min-width: 375px) {
+  .langBtnContainer {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .langBtnContainer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .trackerLangContainer {
+    position: absolute;
+    top: 472px;
+    right: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .trackerLangContainer {
+    position: absolute;
+    top: 670px;
+    right: 270px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .trackerLangContainer {
+    position: absolute;
+    top: 75px;
+    right: 270px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
 }

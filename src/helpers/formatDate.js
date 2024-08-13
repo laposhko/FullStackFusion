@@ -1,3 +1,5 @@
+import i18n from "../utils/i18n";
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const today = new Date();
@@ -7,7 +9,7 @@ const formatDate = (dateString) => {
     date.getMonth() === today.getMonth() &&
     date.getFullYear() === today.getFullYear()
   ) {
-    return "Today";
+    return i18n.t("ChooseDate.today");
   }
   const day = date.getDate();
   const month = date.toLocaleString("eng", { month: "long" });

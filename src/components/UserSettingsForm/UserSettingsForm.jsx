@@ -10,9 +10,12 @@ import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { updateCurrentUser } from "../../redux/auth/operations";
 import { useModalContext } from "../../context/useModalContext";
+import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
+
 export default function UserSettingsForm() {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const user = useSelector(selectAuthUser);
   const [activityTime, setActivityTime] = useState(user.dailyActivityTime);
   const [userWeight, setUserWeight] = useState(user.weight);
@@ -34,39 +37,42 @@ export default function UserSettingsForm() {
   const validationSchema = Yup.object().shape({
     gender: Yup.string().oneOf(
       ["woman", "man"],
-      "Gender can be only woman or man"
+      t("UserSettingsForm.genderOneOf")
     ),
-    name: Yup.string().max(70, "Name should not be longer than 70 characters"),
+    name: Yup.string().max(70, t("UserSettingsForm.nameMax")),
     email: Yup.string()
-      .matches(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, "Invalid email")
+      .matches(
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+        t("UserSettingsForm.emailMatch")
+      )
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       ),
     weight: Yup.number()
-      .typeError("Weight must be a number")
-      .nullable("Weight should be a number")
+      .typeError(t("UserSettingsForm.weightTypeError"))
+      .nullable(t("UserSettingsForm.weightNullable"))
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(10, "Weight should not be less than 10 kg")
-      .max(250, "Weight should not be more than 250 kg"),
+      .min(10, t("UserSettingsForm.weightMin"))
+      .max(250, t("UserSettingsForm.weightMax")),
     dailyActivityTime: Yup.number()
-      .typeError("Activity number must be a number")
+      .typeError(t("UserSettingsForm.timeTypeError"))
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0, "Activity time cannot be negative number")
-      .max(12, "Activity time cannot be more than 12 hours for day"),
+      .min(0, t("UserSettingsForm.timeMin"))
+      .max(12, t("UserSettingsForm.timeMax")),
     dailyWaterNorm: Yup.number()
-      .typeError("Daily water norm must be a number")
+      .typeError(t("UserSettingsForm.normTypeError"))
       .nullable()
       .transform((value, originalValue) =>
         String(originalValue).trim() === "" ? null : value
       )
-      .min(0, "Water norm should be more than 0 L")
-      .max(10, "Water norm should not be more than 10 L for day"),
+      .min(0, t("UserSettingsForm.normMin"))
+      .max(10, t("UserSettingsForm.normMax")),
     avatar: Yup.mixed(),
   });
   const {
@@ -136,11 +142,11 @@ export default function UserSettingsForm() {
     dispatch(updateCurrentUser(formData))
       .unwrap()
       .then(() => {
-        toast.success("Your info updated!");
+        toast.success(t("UserSettingsForm.success"));
         closeModal();
       })
       .catch(() => {
-        toast.error("Something went wrong.Please try again!");
+        toast.error(t("UserSettingsForm.error"));
       });
   };
 
@@ -148,7 +154,11 @@ export default function UserSettingsForm() {
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
       {/* IMG UPLOAD CONTAINER */}
       <div className={css.uploadImgContainer} onClick={handleClick}>
-        <img className={css.avatar} src={avatar} alt="avatar" />
+        <img
+          className={css.avatar}
+          src={avatar}
+          alt={t("UserSettingsForm.alt")}
+        />
         <input
           type="file"
           accept="image/*"
@@ -159,7 +169,7 @@ export default function UserSettingsForm() {
         />
         <p className={css.uploadBtn}>
           <FiUpload />
-          <span> Upload a photo</span>
+          <span>{t("UserSettingsForm.uploadPhoto")}</span>
         </p>
       </div>
 
@@ -167,7 +177,7 @@ export default function UserSettingsForm() {
         {/* GENDER */}
         <div className={css.inputContainer}>
           <label htmlFor="gender" className={css.inputName}>
-            Your gender identity
+            {t("UserSettingsForm.genderIdentity")}
           </label>
           <div className={css.radiobuttons}>
             <label className={css.radiobuttonsLabel}>
@@ -181,7 +191,9 @@ export default function UserSettingsForm() {
                 onChange={() => setGender("woman")}
               />
               <span className={css.customRadio}></span>
-              <span className={css.radiobuttonText}>Woman</span>
+              <span className={css.radiobuttonText}>
+                {t("UserSettingsForm.woman")}
+              </span>
             </label>
             <label className={css.radiobuttonsLabel}>
               <input
@@ -194,7 +206,9 @@ export default function UserSettingsForm() {
                 onChange={() => setGender("man")}
               />
               <span className={css.customRadio}></span>
-              <span className={css.radiobuttonText}>Man</span>
+              <span className={css.radiobuttonText}>
+                {t("UserSettingsForm.man")}
+              </span>
             </label>
           </div>
         </div>
@@ -203,7 +217,7 @@ export default function UserSettingsForm() {
           <div className={css.userInfoPart1}>
             <div className={css.inputContainer}>
               <label htmlFor="name" className={css.inputName}>
-                Your name
+                {t("UserSettingsForm.name")}
                 <input
                   className={css.inputField}
                   id="name"
@@ -213,7 +227,7 @@ export default function UserSettingsForm() {
                 />
               </label>
               <label htmlFor="email" className={css.inputName}>
-                Email
+                {t("UserSettingsForm.email")}
                 <input
                   className={css.inputField}
                   id="email"
@@ -225,30 +239,31 @@ export default function UserSettingsForm() {
             </div>
             {/* FORMULAS */}
             <div className={css.inputContainer}>
-              <h5 className={css.inputName}>My daily norma</h5>
+              <h5 className={css.inputName}>{t("UserSettingsForm.norma")}</h5>
               <div className={css.formulas}>
                 <div className={css.formulaBlock}>
-                  <h6 className={css.formulaLabel}>For woman</h6>
+                  <h6 className={css.formulaLabel}>
+                    {t("UserSettingsForm.normaWoman")}
+                  </h6>
                   <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
                 </div>
                 <div className={css.formulaBlock}>
-                  <h6 className={css.formulaLabel}>For man</h6>
+                  <h6 className={css.formulaLabel}>
+                    {t("UserSettingsForm.normaMan")}
+                  </h6>
                   <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
                 </div>
               </div>
 
               <p className={css.formulasDescription}>
-                <span className={css.accentColor}>*</span> V is the volume of
-                the water norm in liters per day, M is your body weight, T is
-                the time of active sports, or another type of activity
-                commensurate in terms of loads (in the absence of these, you
-                must set 0)
+                <span className={css.accentColor}>*</span>{" "}
+                {t("UserSettingsForm.description")}
               </p>
               <span className={css.note}>
                 <span className={css.accentColor}>
                   <BsExclamationLg style={{ fontSize: "18px" }} />
                 </span>
-                Active time in hours
+                {t("UserSettingsForm.activeTime")}
               </span>
             </div>
           </div>
@@ -256,7 +271,7 @@ export default function UserSettingsForm() {
           <div className={css.userInfoPart2}>
             <div className={css.inputContainer}>
               <label htmlFor="weight" className={css.calculatorField}>
-                Your weight in kilograms:
+                {t("UserSettingsForm.weight")}
                 <input
                   className={css.inputField}
                   id="weight"
@@ -272,7 +287,7 @@ export default function UserSettingsForm() {
               </label>
 
               <label htmlFor="activity" className={css.calculatorField}>
-                The time of active participation in sports:
+                {t("UserSettingsForm.activity")}
                 <input
                   className={css.inputField}
                   id="activity"
@@ -292,14 +307,14 @@ export default function UserSettingsForm() {
             {/* WATER AMOUNT */}
             <div className={css.inputContainer}>
               <div className={css.calculatorField}>
-                <p>The required amount of water in liters per day:</p>
+                <p>{t("UserSettingsForm.amount")}</p>
                 <span className={css.waterAmount}>
-                  {recommendedWaterNorm} L
+                  {t("UserSettingsForm.l", { count: recommendedWaterNorm })}
                 </span>
               </div>
 
               <label htmlFor="water" className={css.inputName}>
-                Write down how much water you will drink:
+                {t("UserSettingsForm.drink")}
                 <input
                   className={css.inputField}
                   id="water"
@@ -314,7 +329,7 @@ export default function UserSettingsForm() {
         </div>
       </div>
       <button className={css.saveBtn} type="submit" onSubmit={onSubmit}>
-        Save
+        {t("UserSettingsForm.save")}
       </button>
     </form>
   );

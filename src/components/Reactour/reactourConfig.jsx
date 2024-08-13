@@ -1,5 +1,5 @@
 import { TourProvider } from '@reactour/tour';
-import steps from './reacTourSteps.js';
+import useTourSteps from './reacTourSteps.js';
 import { tourStyles } from './tourStyles.js';
 
 const handleClickMask = ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
@@ -11,10 +11,14 @@ const handleClickMask = ({ setCurrentStep, currentStep, steps, setIsOpen }) => {
   }
 };
 
-const TourProviderWrapper = ({ children }) => (
-  <TourProvider steps={steps} styles={tourStyles} onClickMask={handleClickMask}>
-    {children}
-  </TourProvider>
-);
+const TourProviderWrapper = ({ children }) => {
+  const steps = useTourSteps();
+  // console.log(steps)
+  return (
+    <TourProvider steps={steps} styles={tourStyles} onClickMask={handleClickMask}>
+      {children}
+    </TourProvider>
+  );
+} 
 
 export default TourProviderWrapper;
