@@ -14,6 +14,7 @@ axios.defaults.withCredentials = true;
 export const setAuthHeader = (token) => {
   apiInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
 };
 
 export const clearAuthHeader = () => {
@@ -195,6 +196,8 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+
 export const updateCurrentUser = createAsyncThunk(
   "users/updateuser",
   async (updatedUser, thunkAPI) => {
@@ -209,3 +212,4 @@ export const updateCurrentUser = createAsyncThunk(
     }
   }
 );
+

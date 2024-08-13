@@ -73,6 +73,7 @@ form > *:not(:last-child) {
   border-radius: 30px;
   text-align: center;
   transition: background-color 300ms ease-in;
+  margin-bottom: 32px;
 }
 
 .formBtn:hover {

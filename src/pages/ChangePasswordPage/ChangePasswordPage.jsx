@@ -9,6 +9,7 @@ import css from "./ChangePasswordPage.module.css";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+
 export default function ChangePasswordPage() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
@@ -23,6 +24,7 @@ export default function ChangePasswordPage() {
       .min(6, t("ChangePassword.passwordMin"))
       .required(t("ChangePassword.passwordRequired")),
   });
+
 
   const handleChangePassword = async (event) => {
     event.preventDefault();
