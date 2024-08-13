@@ -42,7 +42,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(signUp.pending, state => {
+      .addCase(signUp.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
       })
@@ -53,11 +53,11 @@ const authSlice = createSlice({
         state.token = action.payload.accessToken;
         state.user = action.payload.user;
       })
-      .addCase(signUp.rejected, state => {
+      .addCase(signUp.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(signIn.pending, state => {
+      .addCase(signIn.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
       })
@@ -68,15 +68,15 @@ const authSlice = createSlice({
         state.token = action.payload.accessToken;
         state.user = action.payload.user;
       })
-      .addCase(signIn.rejected, state => {
+      .addCase(signIn.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(signOut.pending, state => {
+      .addCase(signOut.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
       })
-      .addCase(signOut.fulfilled, state => {
+      .addCase(signOut.fulfilled, (state) => {
         state.user = {
           name: null,
           email: null,
@@ -94,7 +94,7 @@ const authSlice = createSlice({
         state.isError = false;
         state.isLoggedIn = false;
       })
-      .addCase(refresh.pending, state => {
+      .addCase(refresh.pending, (state) => {
         state.isRefreshing = true;
         state.isError = false;
         state.isLoggedIn = false;
@@ -105,37 +105,37 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.token = action.payload.refreshToken;
       })
-      .addCase(refresh.rejected, state => {
+      .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
         state.isError = true;
       })
-      .addCase(requestResetEmail.pending, state => {
+      .addCase(requestResetEmail.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(requestResetEmail.fulfilled, state => {
+      .addCase(requestResetEmail.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(requestResetEmail.rejected, state => {
+      .addCase(requestResetEmail.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(resetPassword.pending, state => {
+      .addCase(resetPassword.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
-      .addCase(resetPassword.fulfilled, state => {
+      .addCase(resetPassword.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
         state.isLoggedIn = true;
       })
-      .addCase(resetPassword.rejected, state => {
+      .addCase(resetPassword.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(getCurrentUserInformation.pending, state => {
+      .addCase(getCurrentUserInformation.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -145,11 +145,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.user = action.payload;
       })
-      .addCase(getCurrentUserInformation.rejected, state => {
+      .addCase(getCurrentUserInformation.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       })
-      .addCase(googleAuthLink.pending, state => {
+      .addCase(googleAuthLink.pending, (state) => {
         state.googleLink = null;
         state.isLoading = true;
         state.isError = false;
@@ -159,12 +159,24 @@ const authSlice = createSlice({
         state.isError = false;
         state.googleLink = action.payload.data.url;
       })
-      .addCase(googleAuthLink.rejected, state => {
+      .addCase(googleAuthLink.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         state.googleLink = null;
       })
-
+      .addCase(updateCurrentUser.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(updateCurrentUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.user = action.payload;
+      })
+      .addCase(updateCurrentUser.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      }),
 });
 
 export const { setToken } = authSlice.actions;
