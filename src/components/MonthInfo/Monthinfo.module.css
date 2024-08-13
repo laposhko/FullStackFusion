@@ -1,6 +1,22 @@
 .closeIcon {
     position: absolute;
-    right: 80px;
+    right: 100px;
     /* top: 44px; */
     margin-top: 5px;
 }
+
+@media screen and (min-width: 768px) {
+    .closeIcon {
+        right: 90px;
+    }
+  }
+
+
+  @media screen and (min-width: 1440px) {
+    .closeIcon {
+        right: 80px;
+    }
+  }
+
+
+  
