@@ -137,7 +137,7 @@ export const resetPassword = createAsyncThunk(
 );
 
 export const googleAuthLink = createAsyncThunk(
-  "users/googleauth",
+  "auth/googleauth",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/users/get-oauth-url");
