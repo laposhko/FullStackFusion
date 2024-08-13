@@ -61,7 +61,7 @@ const Statistics = ({ data }) => {
     };
   }, []);
 
-  return (
+  return ( 
     <div className={css.wrapper}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
@@ -113,6 +113,8 @@ const Statistics = ({ data }) => {
           />
         </AreaChart>
       </ResponsiveContainer>
+    </div>
+    
     </div>
   );
 };
