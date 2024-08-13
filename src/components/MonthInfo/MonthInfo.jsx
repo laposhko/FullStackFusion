@@ -29,14 +29,19 @@ const ToggleComponent = () => {
       acc[dayPart] += Number(day.volume);
       return acc;
     }, {});
-
+  
     // Перетворюємо об'єкт у масив, де кожен елемент містить дату та суму об'ємів за цей день
-    return Object.keys(groupedByDate).map((date) => {
+    const unsortedArray = Object.keys(groupedByDate).map((date) => {
       return {
         date: date.split("-")[2], // Отримуємо день місяця з дати
-        value: Math.floor(groupedByDate[date]), 
+        value: Math.floor(groupedByDate[date]),
       };
     });
+  
+    // Сортуємо масив за датами
+    const sortedArray = unsortedArray.sort((a, b) => a.date - b.date);
+  
+    return sortedArray;
   }, [monthArray]);
 
   return (
