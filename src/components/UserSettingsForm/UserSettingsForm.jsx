@@ -317,7 +317,7 @@ export default function UserSettingsForm() {
                   className={css.inputField}
                   id="water"
                   type="text"
-                  placeholder={recommendedWaterNorm}
+                  placeholder={user.dailyWaterNorm}
                   onChange={(e) => setValue("dailyWaterNorm", e.target.value)}
                   {...register("dailyWaterNorm", {})}
                 />
