@@ -129,7 +129,7 @@ const authSlice = createSlice({
       .addCase(resetPassword.fulfilled, (state) => {
         state.isLoading = false;
         state.isError = false;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
       })
       .addCase(resetPassword.rejected, (state) => {
         state.isLoading = false;

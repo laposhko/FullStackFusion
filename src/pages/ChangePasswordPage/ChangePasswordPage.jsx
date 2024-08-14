@@ -2,16 +2,17 @@ import { resetPassword } from "../../redux/auth/operations.js";
 import Logo from "../../components/Logo/Logo.jsx";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import React, { useState } from "react";
+import { useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import * as yup from "yup";
 import css from "./ChangePasswordPage.module.css";
-import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 export default function ChangePasswordPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   // const [searchParams] = useSearchParams();
@@ -34,6 +35,7 @@ export default function ChangePasswordPage() {
       if (token) {
         dispatch(resetPassword({ password: password, token: token }));
         toast.success(t("ChangePassword.success"));
+        navigate("/signin");
       } else {
         toast.error(t("ChangePassword.error"));
       }
