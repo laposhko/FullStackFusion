@@ -12,7 +12,9 @@
     font-weight: 700;
   }
 }
-
+.userBarWrapper {
+  position: relative;
+}
 @media screen and (min-width: 768px) {
   .userBarWrapper {
     display: flex;

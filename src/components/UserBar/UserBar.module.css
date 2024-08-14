@@ -31,9 +31,9 @@
   border-radius: 50%;
 }
 
-.userBarWrapper {
+/* .userBarWrapper {
   position: relative;
-}
+} */
 
 @media screen and (max-width: 767px) {
   .userBarWrapper {
