@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import svg from "../../img/icons/sprite.svg";
@@ -7,16 +6,11 @@ import css from "../WaterItem/WaterItem.module.css";
 import { useModalContext } from "../../context/useModalContext";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
-import {
-  selectWaterAmountForDay,
-  selectActiveDay,
-  selectWaterState,
-  selectDayItems,
-} from "../../redux/water/selectors";
 
 function WaterItem(data) {
   const { openModal } = useModalContext();
   const { t } = useTranslation();
+
   function formatTime(isoString) {
     const date = new Date(isoString);
     return date.toLocaleTimeString("en-US", {

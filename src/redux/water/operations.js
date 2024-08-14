@@ -77,6 +77,7 @@ export const updateCard = createAsyncThunk(
     try {
       const response = await apiInstance.patch(`/water/${newData._id}`, {
         volume: newData.volume,
+        date: newData.date,
       });
       return response.data.data;
     } catch (error) {
