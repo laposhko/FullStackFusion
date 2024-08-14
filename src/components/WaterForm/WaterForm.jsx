@@ -65,6 +65,7 @@ const WaterForm = ({ mode, water }) => {
   };
 
   const onSubmit = () => {
+    handleBlur();
     const newData = {
       volume: watch("waterValue"),
       date: `${activeDay} ${watch("localTime")}`,
@@ -155,10 +156,8 @@ const WaterForm = ({ mode, water }) => {
           <input
             {...register("waterValue")}
             className={css.input}
-            // step={50}
             name="value"
             id="value"
-            // defaultValue={mode === "edit" ? water.volume : ""}
             onChange={(e) =>
               setValue(
                 "waterValue",
