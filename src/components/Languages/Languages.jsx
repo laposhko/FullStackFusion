@@ -1,4 +1,3 @@
-import SvgIcon from "../../img/icons/sprite";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import css from "./Languages.module.css";
@@ -25,7 +24,6 @@ const Languages = ({ tracker }) => {
         onClick={() => changeLanguageHandler("en")}
         type="button"
       >
-        {" "}
         eng
         {/* <SvgIcon
           className={style.flag}
@@ -39,7 +37,6 @@ const Languages = ({ tracker }) => {
         onClick={() => changeLanguageHandler("uk")}
         type="button"
       >
-        {" "}
         ukr
         {/* <SvgIcon
           className={style.flag}
