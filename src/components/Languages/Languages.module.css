@@ -1,12 +1,20 @@
 .trackerLangContainer {
   position: absolute;
-  bottom: 10px;
+  top: 60px;
   right: 10px;
 }
 .langBtnContainer {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+.langBtn {
+  width: 32px;
+  height: 22px;
+  border-radius: 20%;
+  border: 1px solid var(--light-gray-text-color);
+  color: var(--text-color);
+  /* background-color: aqua; */
 }
 @media screen and (min-width: 375px) {
   .langBtnContainer {
