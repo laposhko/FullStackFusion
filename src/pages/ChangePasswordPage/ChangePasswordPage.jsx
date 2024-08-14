@@ -8,14 +8,15 @@ import * as yup from "yup";
 import css from "./ChangePasswordPage.module.css";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import { useParams } from "react-router-dom";
 
 export default function ChangePasswordPage() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  // const [searchParams] = useSearchParams();
+  // const token = searchParams.get("token");
+  const { token } = useParams();
   const { t } = useTranslation();
 
   let changePasswordSchema = yup.object().shape({
@@ -24,7 +25,6 @@ export default function ChangePasswordPage() {
       .min(6, t("ChangePassword.passwordMin"))
       .required(t("ChangePassword.passwordRequired")),
   });
-
 
   const handleChangePassword = async (event) => {
     event.preventDefault();

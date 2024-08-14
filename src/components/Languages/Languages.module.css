@@ -3,6 +3,11 @@
   bottom: 10px;
   right: 10px;
 }
+.langBtnContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 @media screen and (min-width: 375px) {
   .langBtnContainer {
     /* position: absolute;
