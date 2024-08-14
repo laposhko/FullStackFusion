@@ -24,7 +24,10 @@ const getTimeFormat = () => {
 const WaterForm = ({ mode, water }) => {
   const { closeModal } = useModalContext();
   const { t } = useTranslation();
-
+  let waterTime;
+  if (water.date) {
+    waterTime = water.date.split(" ")[1];
+  }
   const schema = Yup.object().shape({
     waterValue: Yup.number()
       .min(50, t("WaterForm.waterValueMin"))
@@ -33,7 +36,6 @@ const WaterForm = ({ mode, water }) => {
       .required(t("WaterForm.waterValueRequired")),
     localTime: Yup.string().required(t("WaterForm.localTimeRequired")),
   });
-
   const {
     register,
     handleSubmit,
@@ -45,8 +47,8 @@ const WaterForm = ({ mode, water }) => {
     mode: "onChange",
     resolver: yupResolver(schema),
     defaultValues: {
-      waterValue: Number(water.amount) || 50,
-      localTime: water.time || getTimeFormat(),
+      waterValue: Number(water.volume) || 50,
+      localTime: waterTime || getTimeFormat(),
     },
   });
   const activeDay = useSelector(selectActiveDay);
@@ -153,9 +155,10 @@ const WaterForm = ({ mode, water }) => {
           <input
             {...register("waterValue")}
             className={css.input}
-            step={50}
+            // step={50}
             name="value"
             id="value"
+            // defaultValue={mode === "edit" ? water.volume : ""}
             onChange={(e) =>
               setValue(
                 "waterValue",
