@@ -20,6 +20,7 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  margin-top: 8px;
   margin-bottom: 16px;
 }
 
@@ -52,7 +53,6 @@
   height: 40px;
   fill: #ffffff;
   stroke: #2f2f2f;
-  /* transform: rotate(45deg); */
 }
 
 @media only screen and (min-width: 768px) {
@@ -67,17 +67,6 @@
   }
 }
 
-/* .quantityButton:hover svg path,
-      .quantityButton:hover svg rect {
-        stroke: var(--color-lightgreenhover);
-        transition: stroke var(--animation);
-      } */
-
-/* .quantityButton:disabled svg path,
-      .quantityButton:disabled svg rect {
-        stroke: #323f4750;
-      } */
-
 .amountValue {
   font-size: 14px;
   font-weight: 700;
@@ -88,15 +77,11 @@
   color: #fff;
 }
 
-/* .valueWrap {
-        display: flex;
-        flex-direction: column;
-      } */
-
 .valueDiv {
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-top: 16px;
 }
 
 .labelTime {
