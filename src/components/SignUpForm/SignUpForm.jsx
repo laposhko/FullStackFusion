@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
 import GoogleAuthorization from "../GoogleAuthorization/GoogleAuthorization.jsx";
 
-
 import style from "./SignUpForm.module.css";
 
 const SignUpForm = () => {
@@ -160,7 +159,7 @@ const SignUpForm = () => {
           </div>
         </div>
         <div className="submitBtn">
-          <button className={style.formBtn}>Sign Up</button>
+          <button className={style.formBtn}>{t("SignUp.signUp")}</button>
           <GoogleAuthorization />
         </div>
         <div className={style.linkContainer}>
