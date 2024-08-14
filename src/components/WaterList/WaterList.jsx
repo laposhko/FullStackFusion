@@ -1,14 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+// import { useEffect } from "react";
 import WaterItem from "../WaterItem/WaterItem";
 import css from "../WaterList/WaterList.module.css";
-import { getWaterDayInfo } from "../../redux/water/operations";
+// import { getWaterDayInfo } from "../../redux/water/operations";
 import { selectDayItems } from "../../redux/water/selectors";
-import { selectActiveDay } from "../../redux/water/selectors";
+// import { selectActiveDay } from "../../redux/water/selectors";
 import { useTranslation } from "react-i18next";
 
 function WaterList() {
-  const date = useSelector(selectActiveDay);
+  // const date = useSelector(selectActiveDay);
   const waterEntries = useSelector(selectDayItems);
   const { t } = useTranslation();
 

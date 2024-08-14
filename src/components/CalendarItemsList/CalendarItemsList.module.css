@@ -1,19 +1,20 @@
 .container_for_items {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 20px 18px;
-    list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  /* gap: 20px 18px; */
+  /* list-style: none; */
+  width: 250px;
+  height: 300px;
+  @media screen and (min-width: 375px) {
     width: 303px;
-    height: 300px;
-
-    @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 768px) {
     grid-template-columns: repeat(8, 1fr);
     gap: 15px 48px;
-    }
+  }
 
-    @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     grid-template-columns: repeat(8, 1fr);
     gap: 15px 43px;
-        }
+  }
 }
-
