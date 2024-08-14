@@ -17,7 +17,6 @@ import {
 function WaterItem(data) {
   const { openModal } = useModalContext();
   const { t } = useTranslation();
-
   function formatTime(isoString) {
     const date = new Date(isoString);
     return date.toLocaleTimeString("en-US", {
@@ -26,7 +25,6 @@ function WaterItem(data) {
       hour12: true,
     });
   }
-
   return (
     <li className={css.waterItem} data-tour="step-6">
       <svg className={css.icon}>
@@ -38,9 +36,7 @@ function WaterItem(data) {
             {data.data.volume} {t("WaterItem.ml")}
           </p>
         )}
-        {data && (
-          <p className={css.infoTime}>{formatTime(data.data.createdAt)}</p>
-        )}
+        {data && <p className={css.infoTime}>{formatTime(data.data.date)}</p>}
       </div>
       <div className={css.btnsWrapper}>
         <button
