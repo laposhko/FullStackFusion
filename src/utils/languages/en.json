@@ -129,7 +129,7 @@
 
   "CalendarPagination": {
     "month": "Month",
-    "statistics": "Statistic"
+    "statistics": "Statistics"
   },
 
   "DeleteWaterModal": {
@@ -212,6 +212,11 @@
     "value": "Enter the value of the water used:",
     "save": "Save"
   },
+
+  "GoogleAuthBtn": {
+    "text": "Login with Google"
+  },
+
   "Reactour": {
     "step1": "Alright, let`s start the tour of Aqua Track!",
     "step2": "Here you can see your daily water intake.",
