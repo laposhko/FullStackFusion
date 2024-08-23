@@ -178,7 +178,7 @@ export const googleAuthLink = createAsyncThunk(
   "auth/googleauth",
   async (_, thunkAPI) => {
     try {
-      const response = await apiInstance.get("/auth/get-oauth-url");
+      const response = await apiInstance.get("/users/get-oauth-url");
       return response.data;
     } catch (error) {
       toast.error(
@@ -200,11 +200,32 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+// export const updateCurrentUser = createAsyncThunk(
+//   "users/updateuser",
+//   async (updatedUser, thunkAPI) => {
+//     try {
+//       const response = await apiInstance.patch("users/update", updatedUser);
+
+//       return response.data.data.updatedResult;
+//     } catch (error) {
+//       toast.error(
+//         `Something wrong in updating current user information: ${error.message}`
+//       );
+//       thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const updateCurrentUser = createAsyncThunk(
   "users/updateuser",
   async (updatedUser, thunkAPI) => {
     try {
-      const response = await apiInstance.patch("users/update", updatedUser);
+      const response = await apiInstance.patch("users/update", updatedUser, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return response.data.data.updatedResult;
     } catch (error) {
       toast.error(

@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import svg from "../../img/icons/sprite.svg";
@@ -7,12 +6,6 @@ import css from "../WaterItem/WaterItem.module.css";
 import { useModalContext } from "../../context/useModalContext";
 import WaterModal from "../WaterModal/WaterModal";
 import DeleteWaterModal from "../DeleteWaterModal/DeleteWaterModal";
-import {
-  selectWaterAmountForDay,
-  selectActiveDay,
-  selectWaterState,
-  selectDayItems,
-} from "../../redux/water/selectors";
 
 function WaterItem(data) {
   const { openModal } = useModalContext();
@@ -26,7 +19,6 @@ function WaterItem(data) {
       hour12: true,
     });
   }
-
   return (
     <li className={css.waterItem} data-tour="step-6">
       <svg className={css.icon}>
@@ -38,9 +30,7 @@ function WaterItem(data) {
             {data.data.volume} {t("WaterItem.ml")}
           </p>
         )}
-        {data && (
-          <p className={css.infoTime}>{formatTime(data.data.createdAt)}</p>
-        )}
+        {data && <p className={css.infoTime}>{formatTime(data.data.date)}</p>}
       </div>
       <div className={css.btnsWrapper}>
         <button

@@ -46,7 +46,11 @@ export const getAllUsers = createAsyncThunk(
 //   async (updatedUser, thunkAPI) => {
 //     try {
 //       console.log(updatedUser);
-//       const response = await axios.patch("users/update", updatedUser);
+//       const response = await axios.patch("users/update", updatedUser, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
 //       console.log(response.data.data.updatedResult);
 //       return response.data.data.updatedResult;
 //     } catch (error) {
@@ -56,3 +60,4 @@ export const getAllUsers = createAsyncThunk(
 //       thunkAPI.rejectWithValue(error.message);
 //     }
 //   }
+// );

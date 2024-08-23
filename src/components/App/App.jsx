@@ -23,6 +23,7 @@ const ChangePasswordPage = lazy(() =>
   import("../../pages/ChangePasswordPage/ChangePasswordPage.jsx")
 );
 import Modals from "../Modal/ModalWindow";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import css from "./App.module.css";
 import { jwtDecode } from "jwt-decode";
 import { useTranslation } from "react-i18next";
@@ -60,7 +61,7 @@ export default function App() {
   }, [dispatch, location.search, t]);
 
   return (
-    <>
+    <GoogleOAuthProvider clientId="600058872872-igr40nq9bls1o67lup2pis6h3rj83452.apps.googleusercontent.com">
       <Toaster
         toastOptions={{
           className: css.toastCssStyles,
@@ -102,6 +103,6 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </>
+    </GoogleOAuthProvider>
   );
 }

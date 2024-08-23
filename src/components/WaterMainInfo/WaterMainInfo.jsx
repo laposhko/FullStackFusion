@@ -12,6 +12,7 @@ import bottle1t from "../../img/TrackerPage/bottle-for-water-tablet.png";
 import bottle2t from "../../img/TrackerPage/bottle-for-water-tablet@2x.png";
 import ReactourBtn from "../Reactour/ReactourBtn/ReactourBtn";
 import { useTranslation } from "react-i18next";
+import Languages from "../Languages/Languages";
 
 export default function WaterMainInfo() {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ export default function WaterMainInfo() {
   return (
     <div className={css.mainInfoContainer}>
       <Logo></Logo>
+      <Languages></Languages>
       <WaterDailyNorma></WaterDailyNorma>
       <WaterProgressBar></WaterProgressBar>
       <AddWaterBtn className={style.addBtnStyle1}></AddWaterBtn>

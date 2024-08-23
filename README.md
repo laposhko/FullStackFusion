@@ -1,8 +1,5 @@
-# React + Vite
+AquaTrack is an app for healthy tracking of the water drunk during the day or longer period. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You can register a new account or sign in with your Google account, add water, see your progress, and statistics, and improve your drinking habit as a result. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Developed with HTML/CSS, JS, React, Redux, Node.js, Express, MongoDB. 

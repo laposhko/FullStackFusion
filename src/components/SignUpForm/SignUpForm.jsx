@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/operations";
+import GoogleAuthorization from "../GoogleAuthorization/GoogleAuthorization.jsx";
 
 import style from "./SignUpForm.module.css";
 
@@ -159,6 +160,7 @@ const SignUpForm = () => {
         </div>
         <div className="submitBtn">
           <button className={style.formBtn}>{t("SignUp.signUp")}</button>
+          <GoogleAuthorization />
         </div>
         <div className={style.linkContainer}>
           <p>

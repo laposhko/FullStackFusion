@@ -1,8 +1,27 @@
+.trackerLangContainer {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  margin: 10px;
+}
+.langBtnContainer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.langBtn {
+  width: 32px;
+  height: 22px;
+  border-radius: 20%;
+  border: 1px solid var(--light-gray-text-color);
+  color: var(--text-color);
+  /* background-color: aqua; */
+}
 @media screen and (min-width: 375px) {
   .langBtnContainer {
-    position: absolute;
+    /* position: absolute;
     top: 13px;
-    right: 20px;
+    right: 20px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -12,9 +31,9 @@
 
 @media screen and (min-width: 768px) {
   .langBtnContainer {
-    position: absolute;
+    /* position: absolute;
     top: 20px;
-    right: 20px;
+    right: 20px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,9 +43,9 @@
 
 @media screen and (min-width: 375px) {
   .trackerLangContainer {
-    position: absolute;
+    /* position: absolute;
     top: 472px;
-    right: 50px;
+    right: 50px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,9 +55,7 @@
 
 @media screen and (min-width: 768px) {
   .trackerLangContainer {
-    position: absolute;
-    top: 670px;
-    right: 270px;
+    right: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -48,9 +65,9 @@
 
 @media screen and (min-width: 1440px) {
   .trackerLangContainer {
-    position: absolute;
+    /* position: absolute;
     top: 75px;
-    right: 270px;
+    right: 270px; */
     display: flex;
     flex-direction: row;
     align-items: center;

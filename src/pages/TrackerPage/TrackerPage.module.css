@@ -1,12 +1,19 @@
+.rightSectionWrapper {
+  position: relative;
+}
 @media screen and (max-width: 767px) {
   .sectionWrapper {
     min-width: 320px;
     max-width: 375px;
     padding: 16px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     gap: 8px;
   }
-
+  /* .mainInfoContainer {
+    width: 300px;
+  } */
   .rightSectionWrapper {
     min-width: 343px;
     height: 770px;

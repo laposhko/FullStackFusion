@@ -1,4 +1,4 @@
-import Languages from "../Languages/Languages.jsx";
+// import Languages from "../Languages/Languages.jsx";
 import { useSelector } from "react-redux";
 import css from "./UserPanel.module.css";
 import { selectAuthUser } from "../../redux/auth/selectors";
@@ -11,7 +11,7 @@ function UserPanel() {
   const { t } = useTranslation();
   return (
     <div className={css.userBarWrapper}>
-      <Languages />
+      {/* <Languages /> */}
       <h2 className={css.welcome}>
         {t("UserPanel.title")}
         <span className={css.userName}>, {user.name}!</span>
