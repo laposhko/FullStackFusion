@@ -29,7 +29,11 @@ export const setupAxiosInterceptors = (store) => {
     },
     async (error) => {
       const originalRequest = error.config;
-      if (error.response.status === 401 && !originalRequest._retry) {
+      if (
+        error.response.status === 401 &&
+        error.response.message === "Access token expired" &&
+        !originalRequest._retry
+      ) {
         originalRequest._retry = true;
         try {
           const response = await axios.post("/users/refresh");
@@ -68,11 +72,8 @@ export const signIn = createAsyncThunk(
     try {
       const response = await apiInstance.post("/users/login", user);
       setAuthHeader(response.data.data.accessToken);
-      console.log('===============signIn=====================');
-      console.log(response.data.data);
-      console.log('====================================');
+
       return response.data.data;
-     
     } catch (error) {
       // toast.error(`Something went wrong in Sign In: ${error.message}`);
       //we do not need this toast on login page as it has own toast
@@ -131,11 +132,13 @@ export const refresh = createAsyncThunk(
 export const getCurrentUserInformation = createAsyncThunk(
   "users/getcurrent",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const savedToken = state.auth.token;
     try {
-      const response = await apiInstance.get("/users/current");
-      console.log('===============users/getcurrent=====================');
-      console.log(response);
-      console.log('====================================');
+      setAuthHeader(savedToken);
+      const response = await apiInstance.get("/users/current", {
+        withCredentials: false,
+      });
       return response.data.data.user;
     } catch (error) {
       // toast.error(
