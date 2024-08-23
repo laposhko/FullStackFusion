@@ -14,7 +14,6 @@ export default function WaterDailyNorma() {
       <p className={css.title}>
         {t("WaterMainInfo.WaterDailyNorma.amount", { count: dailyNorma })}
       </p>
-      <p>user</p>
       <p className={css.text}>{t("WaterMainInfo.WaterDailyNorma.text")}</p>
     </div>
   );
