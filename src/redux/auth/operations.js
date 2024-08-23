@@ -3,13 +3,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { setToken } from "./slice";
 export const apiInstance = axios.create({
-  baseURL: "https://aquatrackerapp.onrender.com",
+  // baseURL: "https://aquatrackerapp.onrender.com",
+  baseURL: "http://localhost:3000/",
   withCredentials: true, // Додає cookie до кожного запиту
   headers: {
     "Content-Type": "application/json",
   },
 });
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (token) => {
   apiInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -67,8 +68,11 @@ export const signIn = createAsyncThunk(
     try {
       const response = await apiInstance.post("/users/login", user);
       setAuthHeader(response.data.data.accessToken);
-
+      console.log('===============signIn=====================');
+      console.log(response.data.data);
+      console.log('====================================');
       return response.data.data;
+     
     } catch (error) {
       // toast.error(`Something went wrong in Sign In: ${error.message}`);
       //we do not need this toast on login page as it has own toast
@@ -128,9 +132,10 @@ export const getCurrentUserInformation = createAsyncThunk(
   "users/getcurrent",
   async (_, thunkAPI) => {
     try {
-      const response = await apiInstance.get("/users/current", {
-        withCredentials: false,
-      });
+      const response = await apiInstance.get("/users/current");
+      console.log('===============users/getcurrent=====================');
+      console.log(response);
+      console.log('====================================');
       return response.data.data.user;
     } catch (error) {
       // toast.error(

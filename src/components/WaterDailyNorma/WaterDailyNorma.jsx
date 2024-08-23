@@ -12,7 +12,7 @@ export default function WaterDailyNorma() {
 
   useEffect(() => {
     dispatch(getCurrentUserInformation());
-  }, [dispatch]);
+  },);
 
   const dailyNorma = user && user.dailyWaterNorm ? user.dailyWaterNorm : 1.5;
 
@@ -21,6 +21,7 @@ export default function WaterDailyNorma() {
       <p className={css.title}>
         {t("WaterMainInfo.WaterDailyNorma.amount", { count: dailyNorma })}
       </p>
+      <p>user</p>
       <p className={css.text}>{t("WaterMainInfo.WaterDailyNorma.text")}</p>
     </div>
   );
