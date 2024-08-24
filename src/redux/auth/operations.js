@@ -3,8 +3,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { setToken } from "./slice";
 export const apiInstance = axios.create({
-  // baseURL: "https://aquatrackerapp.onrender.com",
-  baseURL: "http://localhost:3000/",
+   baseURL: "https://aquatrackerapp.onrender.com",
+  // baseURL: "http://localhost:3000/",
   withCredentials: true, // Додає cookie до кожного запиту
   headers: {
     "Content-Type": "application/json",
