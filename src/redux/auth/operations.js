@@ -3,13 +3,14 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { setToken } from "./slice";
 export const apiInstance = axios.create({
-  baseURL: "https://aquatrackerapp.onrender.com",
+   baseURL: "https://aquatrackerapp.onrender.com",
+  // baseURL: "http://localhost:3000/",
   withCredentials: true, // Додає cookie до кожного запиту
   headers: {
     "Content-Type": "application/json",
   },
 });
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 export const setAuthHeader = (token) => {
   apiInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -28,7 +29,11 @@ export const setupAxiosInterceptors = (store) => {
     },
     async (error) => {
       const originalRequest = error.config;
-      if (error.response.status === 401 && !originalRequest._retry) {
+      if (
+        error.response.status === 401 &&
+        error.response.message === "Access token expired" &&
+        !originalRequest._retry
+      ) {
         originalRequest._retry = true;
         try {
           const response = await axios.post("/users/refresh");
@@ -127,7 +132,10 @@ export const refresh = createAsyncThunk(
 export const getCurrentUserInformation = createAsyncThunk(
   "users/getcurrent",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const savedToken = state.auth.token;
     try {
+      setAuthHeader(savedToken);
       const response = await apiInstance.get("/users/current", {
         withCredentials: false,
       });

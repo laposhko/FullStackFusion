@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
 // import { setAuthHeader } from "../auth/operations";
-axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
+// axios.defaults.baseURL = "https://aquatrackerapp.onrender.com";
 
 export const getAllUsers = createAsyncThunk(
   "users/getallusers",
